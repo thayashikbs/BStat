@@ -578,12 +578,12 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <span id="cb23-14"><a href="r言語の基本.html#cb23-14" tabindex="-1"></a>lm.res[<span class="st">&quot;coefficients&quot;</span>]</span>
 <span id="cb23-15"><a href="r言語の基本.html#cb23-15" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb23-16"><a href="r言語の基本.html#cb23-16" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb23-17"><a href="r言語の基本.html#cb23-17" tabindex="-1"></a><span class="co">#&gt;  -0.2496518   0.6145865 </span></span>
+<span id="cb23-17"><a href="r言語の基本.html#cb23-17" tabindex="-1"></a><span class="co">#&gt;  -0.4160387   0.6329973 </span></span>
 <span id="cb23-18"><a href="r言語の基本.html#cb23-18" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb23-19"><a href="r言語の基本.html#cb23-19" tabindex="-1"></a><span class="co">#&gt;  -0.2496518   0.6145865 </span></span>
+<span id="cb23-19"><a href="r言語の基本.html#cb23-19" tabindex="-1"></a><span class="co">#&gt;  -0.4160387   0.6329973 </span></span>
 <span id="cb23-20"><a href="r言語の基本.html#cb23-20" tabindex="-1"></a><span class="co">#&gt; $coefficients</span></span>
 <span id="cb23-21"><a href="r言語の基本.html#cb23-21" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb23-22"><a href="r言語の基本.html#cb23-22" tabindex="-1"></a><span class="co">#&gt;  -0.2496518   0.6145865</span></span></code></pre></div>
+<span id="cb23-22"><a href="r言語の基本.html#cb23-22" tabindex="-1"></a><span class="co">#&gt;  -0.4160387   0.6329973</span></span></code></pre></div>
 </div>
 <div id="データフレーム" class="section level3 hasAnchor" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -816,7 +816,7 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <ul>
 <li>ファイル読み込み用のR関数には, ファイルの格納場所 (パス) とファイル名を知らせる必要がある</li>
 <li>パスを省略すると, 現在のディレクトリ (getwd関数で確認可能) 下でファイルを探す. もし, 存在しなければ, エラーとなる</li>
-<li>ここでは, あらかじめ, 各自のPCのデスクトップ上に, “BS_2022”という名前のフォルダ (ディレクトリ) を作成していると想定</li>
+<li>ここでは, あらかじめ, 各自のPCのデスクトップ上に, “BS_2023”という名前のフォルダ (ディレクトリ) を作成していると想定</li>
 <li>ファイルは, カンマ(, )で区切られたcsv形式や, タブで区切られたtsv形式の テキストファイルであるとする.</li>
 </ul>
 <pre><code>data1 &lt;- read.table(&quot;/[パス名]/ファイル名&quot;, header = T, row.names = 1)
@@ -826,26 +826,26 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <ul>
 <li>または, file.path関数を使ってファイルの格納されているパス(経路)を指定しても良い.</li>
 </ul>
-<pre><code># ユーザー(yamada)が, デスクトップ(Desktop)フォルダの下に授業用フォルダ(BS_2022)を作成した場合のパスの指定
-fpath &lt;- file.path(&quot;~&quot;, &quot;Desktop&quot;, &quot;BS_2022&quot;)
+<pre><code># ユーザー(yamada)が, デスクトップ(Desktop)フォルダの下に授業用フォルダ(BS_2023)を作成した場合のパスの指定
+fpath &lt;- file.path(&quot;~&quot;, &quot;Desktop&quot;, &quot;BS_2023&quot;)
 # または
-fpath &lt;- file.path(&quot;Users&quot;, &quot;yamada&quot;, &quot;Desktop&quot;, &quot;BS_2022&quot;)
+fpath &lt;- file.path(&quot;Users&quot;, &quot;yamada&quot;, &quot;Desktop&quot;, &quot;BS_2023&quot;)
 #
 ifile &lt;- file.path(fpath, &quot;)</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r言語の基本.html#cb49-1" tabindex="-1"></a><span class="co"># 例えば, data1 &lt;- read.table(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep = &#39;, &#39;)</span></span>
-<span id="cb49-2"><a href="r言語の基本.html#cb49-2" tabindex="-1"></a><span class="co"># または data1 &lt;- read.csv(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, header = T,</span></span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r言語の基本.html#cb49-1" tabindex="-1"></a><span class="co"># 例えば, data1 &lt;- read.table(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, sep = &#39;, &#39;)</span></span>
+<span id="cb49-2"><a href="r言語の基本.html#cb49-2" tabindex="-1"></a><span class="co"># または data1 &lt;- read.csv(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, header = T,</span></span>
 <span id="cb49-3"><a href="r言語の基本.html#cb49-3" tabindex="-1"></a><span class="co"># row.names = 1)</span></span>
 <span id="cb49-4"><a href="r言語の基本.html#cb49-4" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="r言語の基本.html#cb49-5" tabindex="-1"></a><span class="co"># 代替的に data2 &lt;- scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep = &#39;, &#39;)</span></span>
-<span id="cb49-6"><a href="r言語の基本.html#cb49-6" tabindex="-1"></a><span class="co"># matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep = &#39;, &#39;), 3, 4, byrow =</span></span>
-<span id="cb49-7"><a href="r言語の基本.html#cb49-7" tabindex="-1"></a><span class="co"># T) matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep = &#39;, &#39;), 3, 4)</span></span>
+<span id="cb49-5"><a href="r言語の基本.html#cb49-5" tabindex="-1"></a><span class="co"># 代替的に data2 &lt;- scan(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, sep = &#39;, &#39;)</span></span>
+<span id="cb49-6"><a href="r言語の基本.html#cb49-6" tabindex="-1"></a><span class="co"># matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, sep = &#39;, &#39;), 3, 4, byrow =</span></span>
+<span id="cb49-7"><a href="r言語の基本.html#cb49-7" tabindex="-1"></a><span class="co"># T) matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, sep = &#39;, &#39;), 3, 4)</span></span>
 <span id="cb49-8"><a href="r言語の基本.html#cb49-8" tabindex="-1"></a></span>
 <span id="cb49-9"><a href="r言語の基本.html#cb49-9" tabindex="-1"></a><span class="co"># scan()において, 数値, 文字が混在している場合, 列ごとにデータ属性を指定する必要 data2.txt</span></span>
-<span id="cb49-10"><a href="r言語の基本.html#cb49-10" tabindex="-1"></a><span class="co"># a 1 2 b 2 3 c 3 4 data3 &lt;- scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep =</span></span>
+<span id="cb49-10"><a href="r言語の基本.html#cb49-10" tabindex="-1"></a><span class="co"># a 1 2 b 2 3 c 3 4 data3 &lt;- scan(&#39;/Users/[アカウント名]/Desktop/BS_2023/data.txt&#39;, sep =</span></span>
 <span id="cb49-11"><a href="r言語の基本.html#cb49-11" tabindex="-1"></a><span class="co"># &#39;, &#39;, list(x = &#39;&#39;, y = 0, z = 0)) data.frame(data2)\t\t# データフレーム化</span></span>
 <span id="cb49-12"><a href="r言語の基本.html#cb49-12" tabindex="-1"></a></span>
 <span id="cb49-13"><a href="r言語の基本.html#cb49-13" tabindex="-1"></a><span class="co"># パスを指定せずに, テキストファイルの置かれているフォルダに移動してから</span></span>
-<span id="cb49-14"><a href="r言語の基本.html#cb49-14" tabindex="-1"></a><span class="co"># ファイル名のみを使って読み込んでも良い setwd(&#39;/Users/[アカウント名]/Desktop/BS_2022&#39;)</span></span>
+<span id="cb49-14"><a href="r言語の基本.html#cb49-14" tabindex="-1"></a><span class="co"># ファイル名のみを使って読み込んでも良い setwd(&#39;/Users/[アカウント名]/Desktop/BS_2023&#39;)</span></span>
 <span id="cb49-15"><a href="r言語の基本.html#cb49-15" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
 <span id="cb49-16"><a href="r言語の基本.html#cb49-16" tabindex="-1"></a></span>
 <span id="cb49-17"><a href="r言語の基本.html#cb49-17" tabindex="-1"></a><span class="co"># パッケージ&#39;foreign&#39;により, SAS, SPSS等のファイル形式のデータの読み込みが可能</span></span></code></pre></div>
@@ -853,11 +853,11 @@ ifile &lt;- file.path(fpath, &quot;)</code></pre>
 <div id="テキストファイル書き出し" class="section level3 hasAnchor" number="2.6.2">
 <h3><span class="header-section-number">2.6.2</span> テキストファイル書き出し<a href="r言語の基本.html#テキストファイル書き出し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>write(data3, &quot;/[パス名]/ファイル名&quot;)</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r言語の基本.html#cb51-1" tabindex="-1"></a><span class="co"># 例えば, write.table(data3, &#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;)</span></span>
-<span id="cb51-2"><a href="r言語の基本.html#cb51-2" tabindex="-1"></a><span class="co"># write.table(data3, &#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;, append = T)</span></span>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r言語の基本.html#cb51-1" tabindex="-1"></a><span class="co"># 例えば, write.table(data3, &#39;/Users/[アカウント名]/Desktop/BS_2023/data3_out1.txt&#39;)</span></span>
+<span id="cb51-2"><a href="r言語の基本.html#cb51-2" tabindex="-1"></a><span class="co"># write.table(data3, &#39;/Users/[アカウント名]/Desktop/BS_2023/data3_out1.txt&#39;, append = T)</span></span>
 <span id="cb51-3"><a href="r言語の基本.html#cb51-3" tabindex="-1"></a><span class="co"># write.csv()</span></span>
 <span id="cb51-4"><a href="r言語の基本.html#cb51-4" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="r言語の基本.html#cb51-5" tabindex="-1"></a><span class="co"># sink(&#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;)</span></span>
+<span id="cb51-5"><a href="r言語の基本.html#cb51-5" tabindex="-1"></a><span class="co"># sink(&#39;/Users/[アカウント名]/Desktop/BS_2023/data3_out1.txt&#39;)</span></span>
 <span id="cb51-6"><a href="r言語の基本.html#cb51-6" tabindex="-1"></a>data1</span>
 <span id="cb51-7"><a href="r言語の基本.html#cb51-7" tabindex="-1"></a>data2</span>
 <span id="cb51-8"><a href="r言語の基本.html#cb51-8" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
