@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 R言語の基本 | ビジネス統計</title>
+  <meta name="description" content="2 R言語の基本 | ビジネス統計" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 R言語の基本 | ビジネス統計" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 R言語の基本 | ビジネス統計" />
+  
+  
+  
+
+<meta name="author" content="林 高樹" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#コースの目的"><i class="fa fa-check"></i><b>1.1</b> コースの目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#統計学統計的手法の学習について"><i class="fa fa-check"></i><b>1.2</b> 統計学/統計的手法の学習について</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#学習の目標"><i class="fa fa-check"></i>学習の目標</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習方法"><i class="fa fa-check"></i>統計学/統計的手法の学習方法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習ステップ"><i class="fa fa-check"></i>統計学/統計的手法の学習ステップ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#ビジネス応用における統計学の最近の趨勢"><i class="fa fa-check"></i><b>1.3</b> ビジネス応用における統計学の最近の趨勢</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#本書内の記載の注意点"><i class="fa fa-check"></i><b>1.4</b> 本書内の記載の注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r言語の基本.html"><a href="r言語の基本.html"><i class="fa fa-check"></i><b>2</b> R言語の基本</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#rの基本プログラミング"><i class="fa fa-check"></i><b>2.1</b> Rの基本プログラミング</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r言語の基本.html"><a href="r言語の基本.html#基本操作"><i class="fa fa-check"></i><b>2.1.1</b> 基本操作</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本構文"><i class="fa fa-check"></i><b>2.1.2</b> 基本構文</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r言語の基本.html"><a href="r言語の基本.html#自作関数"><i class="fa fa-check"></i><b>2.1.3</b> 自作関数</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r言語の基本.html"><a href="r言語の基本.html#パッケージのインストール-読み込み"><i class="fa fa-check"></i><b>2.1.4</b> パッケージのインストール &amp; 読み込み</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r言語の基本.html"><a href="r言語の基本.html#ヘルプ"><i class="fa fa-check"></i><b>2.1.5</b> ヘルプ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの型や構造と操作"><i class="fa fa-check"></i><b>2.2</b> データの型や構造と操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="r言語の基本.html"><a href="r言語の基本.html#データの値の種類"><i class="fa fa-check"></i>データの値の種類</a></li>
+<li class="chapter" data-level="" data-path="r言語の基本.html"><a href="r言語の基本.html#データ構造とオブジェクト"><i class="fa fa-check"></i>データ構造とオブジェクト</a></li>
+<li class="chapter" data-level="" data-path="r言語の基本.html"><a href="r言語の基本.html#特別な値"><i class="fa fa-check"></i>特別な値</a></li>
+<li class="chapter" data-level="2.2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトル"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#行列"><i class="fa fa-check"></i><b>2.2.2</b> 行列</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#リスト"><i class="fa fa-check"></i><b>2.2.3</b> リスト</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトル-の結合-ソート"><i class="fa fa-check"></i><b>2.2.5</b> ベクトル の結合, ソート</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#二項演算"><i class="fa fa-check"></i><b>2.2.6</b> 二項演算</a></li>
+<li class="chapter" data-level="2.2.7" data-path="r言語の基本.html"><a href="r言語の基本.html#論理演算"><i class="fa fa-check"></i><b>2.2.7</b> 論理演算</a></li>
+<li class="chapter" data-level="2.2.8" data-path="r言語の基本.html"><a href="r言語の基本.html#条件式"><i class="fa fa-check"></i><b>2.2.8</b> 条件式</a></li>
+<li class="chapter" data-level="2.2.9" data-path="r言語の基本.html"><a href="r言語の基本.html#行列演算"><i class="fa fa-check"></i><b>2.2.9</b> 行列演算</a></li>
+<li class="chapter" data-level="2.2.10" data-path="r言語の基本.html"><a href="r言語の基本.html#基本数学関数"><i class="fa fa-check"></i><b>2.2.10</b> 基本数学関数</a></li>
+<li class="chapter" data-level="2.2.11" data-path="r言語の基本.html"><a href="r言語の基本.html#基本統計量"><i class="fa fa-check"></i><b>2.2.11</b> 基本統計量</a></li>
+<li class="chapter" data-level="2.2.12" data-path="r言語の基本.html"><a href="r言語の基本.html#その他便利な関数"><i class="fa fa-check"></i><b>2.2.12</b> その他便利な関数</a></li>
+<li class="chapter" data-level="2.2.13" data-path="r言語の基本.html"><a href="r言語の基本.html#データの可視化"><i class="fa fa-check"></i><b>2.2.13</b> データの可視化</a></li>
+<li class="chapter" data-level="2.2.14" data-path="r言語の基本.html"><a href="r言語の基本.html#確率分布"><i class="fa fa-check"></i><b>2.2.14</b> 確率分布</a></li>
+<li class="chapter" data-level="2.2.15" data-path="r言語の基本.html"><a href="r言語の基本.html#ファイル入出力"><i class="fa fa-check"></i><b>2.2.15</b> ファイル入出力</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ビジネス統計</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r言語の基本" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> R言語の基本<a href="r言語の基本.html#r言語の基本" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rの基本プログラミング" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Rの基本プログラミング<a href="r言語の基本.html#rの基本プログラミング" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>主な参考書籍:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>金, 『Rによるデータサイエンス』, 森北出版</li>
+<li>山田他, 『Rによるやさしい統計学』, オーム社</li>
+<li><a href="http://minato.sip21c.org/swtips/R-jp-docs/R-intro-170.jp.pdf" class="uri">http://minato.sip21c.org/swtips/R-jp-docs/R-intro-170.jp.pdf</a></li>
+</ol>
+<ul>
+<li>本コースは, 基本的なRプログラミングにもっぱら限定
+<ul>
+<li>よりモダンなプログラミング (本コース終了後) → tidyverse</li>
+<li>例. 松村他, 『RユーザーのためのRStudio[実践]入門]』, 技術評論社</li>
+</ul></li>
+<li>(中級者以上) Rコーディングスタイルを気にすると良い
+<ul>
+<li>例. Google’s R Style Guide: <a href="https://google.github.io/styleguide/Rguide.html" class="uri">https://google.github.io/styleguide/Rguide.html</a></li>
+</ul></li>
+</ul>
+<div id="基本操作" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 基本操作<a href="r言語の基本.html#基本操作" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>数値 (ベクトル), 演算の直接評価</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r言語の基本.html#cb2-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb2-2"><a href="r言語の基本.html#cb2-2" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb2-3"><a href="r言語の基本.html#cb2-3" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb2-4"><a href="r言語の基本.html#cb2-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4</span></span>
+<span id="cb2-5"><a href="r言語の基本.html#cb2-5" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb2-6"><a href="r言語の基本.html#cb2-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4</span></span></code></pre></div>
+<ul>
+<li>変数xに値を格納. 変数xに対する演算</li>
+</ul>
+<pre><code>- 基本形: 変数名 &lt;- 代入する値</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r言語の基本.html#cb4-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb4-2"><a href="r言語の基本.html#cb4-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb4-3"><a href="r言語の基本.html#cb4-3" tabindex="-1"></a>x</span>
+<span id="cb4-4"><a href="r言語の基本.html#cb4-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
+<span id="cb4-5"><a href="r言語の基本.html#cb4-5" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))  <span class="co"># 代入と表示を同時に実行</span></span>
+<span id="cb4-6"><a href="r言語の基本.html#cb4-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
+<span id="cb4-7"><a href="r言語の基本.html#cb4-7" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-8"><a href="r言語の基本.html#cb4-8" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span>
+<span id="cb4-9"><a href="r言語の基本.html#cb4-9" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-10"><a href="r言語の基本.html#cb4-10" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
+<ul>
+<li>xに関数を適用</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r言語の基本.html#cb5-1" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb5-2"><a href="r言語の基本.html#cb5-2" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb5-3"><a href="r言語の基本.html#cb5-3" tabindex="-1"></a><span class="fu">var</span>(x)</span>
+<span id="cb5-4"><a href="r言語の基本.html#cb5-4" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
+<span id="cb5-5"><a href="r言語の基本.html#cb5-5" tabindex="-1"></a><span class="fu">sd</span>(x)</span>
+<span id="cb5-6"><a href="r言語の基本.html#cb5-6" tabindex="-1"></a><span class="co">#&gt; [1] 1.581139</span></span>
+<span id="cb5-7"><a href="r言語の基本.html#cb5-7" tabindex="-1"></a><span class="fu">summary</span>(x)</span>
+<span id="cb5-8"><a href="r言語の基本.html#cb5-8" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb5-9"><a href="r言語の基本.html#cb5-9" tabindex="-1"></a><span class="co">#&gt;       1       2       3       3       4       5</span></span>
+<span id="cb5-10"><a href="r言語の基本.html#cb5-10" tabindex="-1"></a><span class="co"># sqrt, summary, ...</span></span></code></pre></div>
+<ul>
+<li>その他, R言語の基本</li>
+</ul>
+<pre><code>- 空白は無視される
+- Pythonと異なり, インデントは意味を持たない
+- 一行に二つのコマンドを入力する場合は, 間をセミコロン(;)で区切る
+- 行頭がシャープ(#)で始まる行は丸々無視される (コメント行)</code></pre>
+<pre><code>- R言語における処理の対象は, オブジェクト (object) と呼ばれる
+- オブジェクトには名前が与えられる</code></pre>
+<!--- 
+#### 参考: R言語に関する補足
+
+- R言語において最重要なデータタイプであるベクトルには, 原始的ベクトル(atomic vectors)とリストがある. 
+  - 原始的ベクトル(atomic vectors): 同一のtypeから成る
+  - リスト: 異なるtypeの要素から成る (recursive vectors)
+- 原始的ベクトルを構成する要素のtypeの主要4種類:
+  論理型 (logical), 倍精度型 (double), 整数型 (integer) (合わせて数値型 (numeric)), 文字列型 (character) 
+- データフレーム (data.frame): リストの上に構築される表形式の構造
+- 参考:[https://adv-r.hadley.nz](https://adv-r.hadley.nz)
+
+[http://minato.sip21c.org/swtips/R-jp-docs/R-intro-170.jp.pdf](https://ultrabem-branch3.com/informatics/r/data_format#google_vignette)
+- オブジェクト (object) : R言語における処理の対象
+  - オブジェクトの基本的なデータ型: 
+    論理型 (logical), 数値型 (numeric), 整数型 (integer), 文字列型 (character) 等
+    (→ ベクトルを構成する要素の("原始的な")型)
+  - オブジェクトのクラス属性 (class): 
+    ベクトル(vector), 行列 (matrix), リスト (list),
+    データフレーム (data.frame), 関数 (function) 等 (→ データ構造)
+
+  - オブジェクトには, type、mode, class の 3 種類の型が存在
+  - 型 (type): 数値型 (numeric), 文字型 (character), 論理型 (logical), 等
+  - クラス (class): ベクトル (vector), 行列 (matrix), リスト (list), データフレーム (data.frame), 関数型 (function) など
+    自分で新たなクラスを定義することも可能
+- (要確認) Rプログラムの中で処理の対象となる最小単位をオブジェクト (object) と呼ぶ. オブジェクトには, ベクトル型, 行列型, リスト型, データフレーム型, 関数型などの様々なクラス (class) が存在する. 自分で新たなクラスを定義することもできる.--->
+</div>
+<div id="基本構文" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> 基本構文<a href="r言語の基本.html#基本構文" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code># 繰り返し処理 (forループ)
+for (変数名 in 変数のリスト){
+    実行部分
+}
+
+# 条件分岐 (if文)
+# if (条件式) 処理1 else 処理2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r言語の基本.html#cb9-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb9-2"><a href="r言語の基本.html#cb9-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb9-3"><a href="r言語の基本.html#cb9-3" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> i</span>
+<span id="cb9-4"><a href="r言語の基本.html#cb9-4" tabindex="-1"></a>}</span>
+<span id="cb9-5"><a href="r言語の基本.html#cb9-5" tabindex="-1"></a>x</span>
+<span id="cb9-6"><a href="r言語の基本.html#cb9-6" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb9-7"><a href="r言語の基本.html#cb9-7" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> aaa) <span class="fu">print</span>(a)</span>
+<span id="cb9-8"><a href="r言語の基本.html#cb9-8" tabindex="-1"></a><span class="co">#&gt; [1] 55</span></span>
+<span id="cb9-9"><a href="r言語の基本.html#cb9-9" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb9-10"><a href="r言語の基本.html#cb9-10" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb9-11"><a href="r言語の基本.html#cb9-11" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+</div>
+<div id="自作関数" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 自作関数<a href="r言語の基本.html#自作関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>同様な処理を繰り返し行う場合は, 関数を作っておくと便利である.</p>
+<pre><code># 自作関数の作成
+関数名 &lt;- function(引数1, 引数2, ...){
+    プログラム本体
+}</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r言語の基本.html#cb11-1" tabindex="-1"></a>myfunc <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb11-2"><a href="r言語の基本.html#cb11-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="r言語の基本.html#cb11-3" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>y) x <span class="ot">&lt;-</span> x <span class="sc">+</span> i</span>
+<span id="cb11-4"><a href="r言語の基本.html#cb11-4" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb11-5"><a href="r言語の基本.html#cb11-5" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="r言語の基本.html#cb11-6" tabindex="-1"></a><span class="co"># 実行例</span></span>
+<span id="cb11-7"><a href="r言語の基本.html#cb11-7" tabindex="-1"></a><span class="fu">myfunc</span>(<span class="dv">10</span>)</span>
+<span id="cb11-8"><a href="r言語の基本.html#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="r言語の基本.html#cb11-9" tabindex="-1"></a>myfunc2 <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb11-10"><a href="r言語の基本.html#cb11-10" tabindex="-1"></a>  <span class="cf">if</span> (y <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
+<span id="cb11-11"><a href="r言語の基本.html#cb11-11" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;yes&quot;</span>) <span class="cf">else</span> <span class="fu">print</span>(<span class="st">&quot;no&quot;</span>)</span>
+<span id="cb11-12"><a href="r言語の基本.html#cb11-12" tabindex="-1"></a>}</span>
+<span id="cb11-13"><a href="r言語の基本.html#cb11-13" tabindex="-1"></a><span class="co"># 実行例</span></span>
+<span id="cb11-14"><a href="r言語の基本.html#cb11-14" tabindex="-1"></a><span class="fu">myfunc2</span>(<span class="dv">5</span>)</span>
+<span id="cb11-15"><a href="r言語の基本.html#cb11-15" tabindex="-1"></a><span class="co">#&gt; [1] 55</span></span>
+<span id="cb11-16"><a href="r言語の基本.html#cb11-16" tabindex="-1"></a><span class="co">#&gt; [1] &quot;no&quot;</span></span></code></pre></div>
+</div>
+<div id="パッケージのインストール-読み込み" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> パッケージのインストール &amp; 読み込み<a href="r言語の基本.html#パッケージのインストール-読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r言語の基本.html#cb12-1" tabindex="-1"></a><span class="co"># lda # lda関数 → このままだエラー発生</span></span>
+<span id="cb12-2"><a href="r言語の基本.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="r言語の基本.html#cb12-3" tabindex="-1"></a><span class="fu">library</span>()  <span class="co"># インストール済パッケージ一覧</span></span>
+<span id="cb12-4"><a href="r言語の基本.html#cb12-4" tabindex="-1"></a><span class="fu">search</span>()  <span class="co"># 読み込み済みパッケージ一覧</span></span>
+<span id="cb12-5"><a href="r言語の基本.html#cb12-5" tabindex="-1"></a><span class="fu">library</span>(MASS)  <span class="co"># MASSパッケージの読み込み(ロード)</span></span>
+<span id="cb12-6"><a href="r言語の基本.html#cb12-6" tabindex="-1"></a><span class="fu">search</span>()  <span class="co"># アタッチされたパッケージのリスト表示</span></span>
+<span id="cb12-7"><a href="r言語の基本.html#cb12-7" tabindex="-1"></a>lda</span>
+<span id="cb12-8"><a href="r言語の基本.html#cb12-8" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;DAAG&quot;</span>)</span>
+<span id="cb12-9"><a href="r言語の基本.html#cb12-9" tabindex="-1"></a><span class="co"># http://cran.r-project.org</span></span>
+<span id="cb12-10"><a href="r言語の基本.html#cb12-10" tabindex="-1"></a><span class="co"># http://cran.r-project.org/web/packages/googleVis/index.html</span></span>
+<span id="cb12-11"><a href="r言語の基本.html#cb12-11" tabindex="-1"></a><span class="co"># パッケージインストローラー</span></span></code></pre></div>
+</div>
+<div id="ヘルプ" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> ヘルプ<a href="r言語の基本.html#ヘルプ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>関数のヘルプ</li>
+<li>R関数helpを使うか, R/RStudioのメニューを使用</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r言語の基本.html#cb13-1" tabindex="-1"></a><span class="fu">help</span>(<span class="st">&quot;fivenum&quot;</span>)  <span class="co"># 関数fivenumのヘルプ</span></span></code></pre></div>
+</div>
+</div>
+<div id="データの型や構造と操作" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> データの型や構造と操作<a href="r言語の基本.html#データの型や構造と操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ここで, R言語の基礎を理解するのに重要な二つの概念について,
+初心者を念頭に正確性を犠牲にしながら概要について述べる.
+実際はここでの記載よりもはるかに複雑で,
+技術的にも難易度が高い.
+包括的かつ技術的に正確な内容については,
+例えば, <a href="https://adv-r.hadley.nz">https://adv-r.hadley.nz</a> を参照されたい.</p>
+<div id="データの値の種類" class="section level3 unnumbered hasAnchor">
+<h3>データの値の種類<a href="r言語の基本.html#データの値の種類" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rでは, データの取る値の主要な種類 (type) として,
+実数型 (double), 整数型 (integer), 文字列型 (character), 論理型 (logical) がある.
+また, 実数型, 整数型はまとめて数値型 (numeric) とも呼ばれる.
+初心者は, 次数型と整数型の違いは気にしなくても良い.</p>
+<!-- これらは, R言語における最も重要なデータの型であるベクトル (vector) の一種,  原子型ベクトル (atomic vector) を構成する -->
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r言語の基本.html#cb14-1" tabindex="-1"></a><span class="co"># 実数型</span></span>
+<span id="cb14-2"><a href="r言語の基本.html#cb14-2" tabindex="-1"></a><span class="fl">3.14</span></span>
+<span id="cb14-3"><a href="r言語の基本.html#cb14-3" tabindex="-1"></a><span class="fl">2.718</span></span>
+<span id="cb14-4"><a href="r言語の基本.html#cb14-4" tabindex="-1"></a><span class="co"># 整数型</span></span>
+<span id="cb14-5"><a href="r言語の基本.html#cb14-5" tabindex="-1"></a>1L</span>
+<span id="cb14-6"><a href="r言語の基本.html#cb14-6" tabindex="-1"></a>5L</span>
+<span id="cb14-7"><a href="r言語の基本.html#cb14-7" tabindex="-1"></a><span class="co"># 文字列型</span></span>
+<span id="cb14-8"><a href="r言語の基本.html#cb14-8" tabindex="-1"></a><span class="st">&quot;KBS&quot;</span></span>
+<span id="cb14-9"><a href="r言語の基本.html#cb14-9" tabindex="-1"></a><span class="st">&quot;日吉&quot;</span></span>
+<span id="cb14-10"><a href="r言語の基本.html#cb14-10" tabindex="-1"></a><span class="co"># 論理型</span></span>
+<span id="cb14-11"><a href="r言語の基本.html#cb14-11" tabindex="-1"></a><span class="cn">TRUE</span></span>
+<span id="cb14-12"><a href="r言語の基本.html#cb14-12" tabindex="-1"></a><span class="cn">FALSE</span></span>
+<span id="cb14-13"><a href="r言語の基本.html#cb14-13" tabindex="-1"></a>T</span>
+<span id="cb14-14"><a href="r言語の基本.html#cb14-14" tabindex="-1"></a>F</span></code></pre></div>
+</div>
+<div id="データ構造とオブジェクト" class="section level3 unnumbered hasAnchor">
+<h3>データ構造とオブジェクト<a href="r言語の基本.html#データ構造とオブジェクト" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- Rでは, (複数の) データをまとめたベクトル (vector) と呼ばれる構造物が処理の基本的な対象となる.
+※ ベクトル同じ種類の値を持つデータを1要素として一つにまとめたものを原子ベクトル(atomic vector), 異なる種類のデータを一つにまとめたものをリスト (list) と呼ぶ. -->
+<p>Rでは, データ構造 (データの配置の仕方) の種類の主要なものとして,
+ベクトル (vector), リスト (list), 行列 (matrix), 配列(array), データフレーム (data frame) などがある.
+分析に応じて, 適切なデータの構造にして処理を行う必要がある.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r言語の基本.html#cb15-1" tabindex="-1"></a><span class="co"># ベクトル</span></span>
+<span id="cb15-2"><a href="r言語の基本.html#cb15-2" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">3.14</span>, <span class="fl">2.718</span>)</span>
+<span id="cb15-3"><a href="r言語の基本.html#cb15-3" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;KBS&quot;</span>, <span class="st">&quot;日吉&quot;</span>)</span>
+<span id="cb15-4"><a href="r言語の基本.html#cb15-4" tabindex="-1"></a><span class="co"># リスト</span></span>
+<span id="cb15-5"><a href="r言語の基本.html#cb15-5" tabindex="-1"></a><span class="fu">list</span>(<span class="st">&quot;KBS&quot;</span>, 1962L, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb15-6"><a href="r言語の基本.html#cb15-6" tabindex="-1"></a><span class="co"># 行列</span></span>
+<span id="cb15-7"><a href="r言語の基本.html#cb15-7" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb15-8"><a href="r言語の基本.html#cb15-8" tabindex="-1"></a><span class="co"># 配列</span></span>
+<span id="cb15-9"><a href="r言語の基本.html#cb15-9" tabindex="-1"></a><span class="fu">arra</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb15-10"><a href="r言語の基本.html#cb15-10" tabindex="-1"></a><span class="co"># データフレーム</span></span>
+<span id="cb15-11"><a href="r言語の基本.html#cb15-11" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Steve&quot;</span>, <span class="st">&quot;Top&quot;</span>), <span class="at">income =</span> <span class="fu">c</span>(<span class="dv">40000</span>, <span class="dv">50000</span>))</span></code></pre></div>
+<p>ちなみに, これらのデータ構造には階層構造があり, 行列や配列はベクトルの特別な場合, リストはベクトルの特別な場合, データフレームはリストの特別な場合である.
+データフレームは, リスト (異なる種類のデータを同時に要素として持つ) でありながら,
+リストの各要素 (ベクトル) の長さが等しく, 2次元の行列の形式にデータが並べられたものである.
+R言語では, 内部的にはベクトルが処理単位の基本であるが,
+Rを用いた統計分析では, データフレームを用いるケースが非常に多いため,
+データフレームを使いこなすことが上達には欠かせない.</p>
+<p>Rで分析を行う場合には, データや関数 (データ処理するための手続きを書いたコード) をオブジェクト (object) と呼ばれる”箱”に名前を付けて一旦格納し, その名前を呼び出す形で処理を実行するのが便利である.
+量的変数や質的変数を同時に持つデータセットの分析には, データフレームが便利である.
+オブジェクトにはクラス (class) というオブジェクトの持つデータ構造の種類の属性が付与される.</p>
+</div>
+<div id="特別な値" class="section level3 unnumbered hasAnchor">
+<h3>特別な値<a href="r言語の基本.html#特別な値" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rにおける分析において注意や対処が必要な, データの取り得る特別な値として,
+- NA (欠損値)
+- NULL (非存在)
+- NaN (非数値)
+- Inf (無限大)</p>
+<p>これらの値をテストする関数が用意されている.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r言語の基本.html#cb16-1" tabindex="-1"></a><span class="fu">is.na</span>()</span>
+<span id="cb16-2"><a href="r言語の基本.html#cb16-2" tabindex="-1"></a><span class="fu">is.null</span>()</span>
+<span id="cb16-3"><a href="r言語の基本.html#cb16-3" tabindex="-1"></a><span class="fu">is.nan</span>()</span>
+<span id="cb16-4"><a href="r言語の基本.html#cb16-4" tabindex="-1"></a><span class="fu">is.infinite</span>()</span>
+<span id="cb16-5"><a href="r言語の基本.html#cb16-5" tabindex="-1"></a><span class="fu">is.finite</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r言語の基本.html#cb17-1" tabindex="-1"></a><span class="co"># NAの含まれている例</span></span>
+<span id="cb17-2"><a href="r言語の基本.html#cb17-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb17-3"><a href="r言語の基本.html#cb17-3" tabindex="-1"></a>x <span class="sc">==</span> <span class="cn">NA</span></span>
+<span id="cb17-4"><a href="r言語の基本.html#cb17-4" tabindex="-1"></a><span class="co">#&gt; [1] NA NA NA NA NA</span></span>
+<span id="cb17-5"><a href="r言語の基本.html#cb17-5" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb17-6"><a href="r言語の基本.html#cb17-6" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb17-7"><a href="r言語の基本.html#cb17-7" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb17-8"><a href="r言語の基本.html#cb17-8" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb17-9"><a href="r言語の基本.html#cb17-9" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> T)</span>
+<span id="cb17-10"><a href="r言語の基本.html#cb17-10" tabindex="-1"></a><span class="co">#&gt; [1] 3.25</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r言語の基本.html#cb18-1" tabindex="-1"></a><span class="co"># NULLの含まれている例</span></span>
+<span id="cb18-2"><a href="r言語の基本.html#cb18-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb18-3"><a href="r言語の基本.html#cb18-3" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</span>
+<span id="cb18-4"><a href="r言語の基本.html#cb18-4" tabindex="-1"></a>x</span>
+<span id="cb18-5"><a href="r言語の基本.html#cb18-5" tabindex="-1"></a><span class="co">#&gt; a b c d e </span></span>
+<span id="cb18-6"><a href="r言語の基本.html#cb18-6" tabindex="-1"></a><span class="co">#&gt; 1 2 3 4 5</span></span>
+<span id="cb18-7"><a href="r言語の基本.html#cb18-7" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb18-8"><a href="r言語の基本.html#cb18-8" tabindex="-1"></a>x</span>
+<span id="cb18-9"><a href="r言語の基本.html#cb18-9" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r言語の基本.html#cb19-1" tabindex="-1"></a><span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span>
+<span id="cb19-2"><a href="r言語の基本.html#cb19-2" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span>
+<span id="cb19-3"><a href="r言語の基本.html#cb19-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span></span>
+<span id="cb19-4"><a href="r言語の基本.html#cb19-4" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
+</div>
+<div id="ベクトル" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> ベクトル<a href="r言語の基本.html#ベクトル" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r言語の基本.html#cb20-1" tabindex="-1"></a><span class="co"># 以下は, 互いに等価</span></span>
+<span id="cb20-2"><a href="r言語の基本.html#cb20-2" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)  <span class="co"># 変数aaaに数値ベクトル(2,4,6,8)を割り当てる</span></span>
+<span id="cb20-3"><a href="r言語の基本.html#cb20-3" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb20-4"><a href="r言語の基本.html#cb20-4" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">2</span>)</span>
+<span id="cb20-5"><a href="r言語の基本.html#cb20-5" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>) <span class="ot">-&gt;</span> aaa</span>
+<span id="cb20-6"><a href="r言語の基本.html#cb20-6" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb20-7"><a href="r言語の基本.html#cb20-7" tabindex="-1"></a><span class="co"># assign(&#39;aaa&#39;, c(2, 4, 6, 8)) # 値を割り当てる際に,</span></span>
+<span id="cb20-8"><a href="r言語の基本.html#cb20-8" tabindex="-1"></a><span class="co"># &#39;環境&#39;を指定することができる</span></span>
+<span id="cb20-9"><a href="r言語の基本.html#cb20-9" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="r言語の基本.html#cb20-10" tabindex="-1"></a><span class="co"># ベクトルの長さ</span></span>
+<span id="cb20-11"><a href="r言語の基本.html#cb20-11" tabindex="-1"></a><span class="fu">length</span>(aaa)</span>
+<span id="cb20-12"><a href="r言語の基本.html#cb20-12" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="r言語の基本.html#cb20-13" tabindex="-1"></a><span class="co"># 文字列ベクトル</span></span>
+<span id="cb20-14"><a href="r言語の基本.html#cb20-14" tabindex="-1"></a>bbb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;東京&quot;</span>, <span class="st">&quot;埼玉&quot;</span>, <span class="st">&quot;千葉&quot;</span>, <span class="st">&quot;神奈川&quot;</span>)</span>
+<span id="cb20-15"><a href="r言語の基本.html#cb20-15" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="r言語の基本.html#cb20-16" tabindex="-1"></a><span class="co"># ベクトルの各要素に名前 (ラベル) を付与</span></span>
+<span id="cb20-17"><a href="r言語の基本.html#cb20-17" tabindex="-1"></a><span class="fu">names</span>(aaa) <span class="ot">&lt;-</span> bbb</span>
+<span id="cb20-18"><a href="r言語の基本.html#cb20-18" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+</div>
+<div id="行列" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> 行列<a href="r言語の基本.html#行列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r言語の基本.html#cb21-1" tabindex="-1"></a>ccc0 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>)  <span class="co"># 全要素0の3x4-行列</span></span>
+<span id="cb21-2"><a href="r言語の基本.html#cb21-2" tabindex="-1"></a>ccc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">3</span>)  <span class="co"># 2x3-行列</span></span>
+<span id="cb21-3"><a href="r言語の基本.html#cb21-3" tabindex="-1"></a>ccc[<span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># (1, 1)成分</span></span>
+<span id="cb21-4"><a href="r言語の基本.html#cb21-4" tabindex="-1"></a>ccc[<span class="dv">1</span>, ]  <span class="co"># 第1行(行ベクトル)</span></span>
+<span id="cb21-5"><a href="r言語の基本.html#cb21-5" tabindex="-1"></a>ccc[, <span class="dv">1</span>]  <span class="co"># 第1列(列ベクトル)</span></span>
+<span id="cb21-6"><a href="r言語の基本.html#cb21-6" tabindex="-1"></a>ccc[<span class="sc">-</span><span class="dv">2</span>, ]  <span class="co"># 2行目を除く → 2x4-行列</span></span>
+<span id="cb21-7"><a href="r言語の基本.html#cb21-7" tabindex="-1"></a>ccc[, <span class="sc">-</span><span class="dv">2</span>]  <span class="co"># 2列目を除く → 3x3-行列</span></span>
+<span id="cb21-8"><a href="r言語の基本.html#cb21-8" tabindex="-1"></a><span class="fu">dim</span>(ccc)</span>
+<span id="cb21-9"><a href="r言語の基本.html#cb21-9" tabindex="-1"></a><span class="fu">nrow</span>(ccc)</span>
+<span id="cb21-10"><a href="r言語の基本.html#cb21-10" tabindex="-1"></a><span class="fu">ncol</span>(ccc)  <span class="co"># セミコロン(;)により, 複数のコマンドを1行に収め, 順次実行</span></span>
+<span id="cb21-11"><a href="r言語の基本.html#cb21-11" tabindex="-1"></a>ccc[<span class="dv">2</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># (2, 3)成分に値10を代入</span></span>
+<span id="cb21-12"><a href="r言語の基本.html#cb21-12" tabindex="-1"></a><span class="co"># 行列にラベルを付与</span></span>
+<span id="cb21-13"><a href="r言語の基本.html#cb21-13" tabindex="-1"></a><span class="fu">colnames</span>(ccc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;大阪&quot;</span>, <span class="st">&quot;京都&quot;</span>, <span class="st">&quot;名古屋&quot;</span>)  <span class="co"># 列ラベル</span></span>
+<span id="cb21-14"><a href="r言語の基本.html#cb21-14" tabindex="-1"></a><span class="fu">rownames</span>(ccc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2012&quot;</span>, <span class="st">&quot;2013&quot;</span>)  <span class="co"># 行ラベル</span></span>
+<span id="cb21-15"><a href="r言語の基本.html#cb21-15" tabindex="-1"></a>ccc</span>
+<span id="cb21-16"><a href="r言語の基本.html#cb21-16" tabindex="-1"></a><span class="fu">t</span>(ccc)  <span class="co"># 転置</span></span>
+<span id="cb21-17"><a href="r言語の基本.html#cb21-17" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb21-18"><a href="r言語の基本.html#cb21-18" tabindex="-1"></a><span class="co">#&gt; [1] 3 1 5</span></span>
+<span id="cb21-19"><a href="r言語の基本.html#cb21-19" tabindex="-1"></a><span class="co">#&gt; [1] 3 2</span></span>
+<span id="cb21-20"><a href="r言語の基本.html#cb21-20" tabindex="-1"></a><span class="co">#&gt; [1] 3 1 5</span></span>
+<span id="cb21-21"><a href="r言語の基本.html#cb21-21" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb21-22"><a href="r言語の基本.html#cb21-22" tabindex="-1"></a><span class="co">#&gt; [1,]    3    5</span></span>
+<span id="cb21-23"><a href="r言語の基本.html#cb21-23" tabindex="-1"></a><span class="co">#&gt; [2,]    2    4</span></span>
+<span id="cb21-24"><a href="r言語の基本.html#cb21-24" tabindex="-1"></a><span class="co">#&gt; [1] 2 3</span></span>
+<span id="cb21-25"><a href="r言語の基本.html#cb21-25" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb21-26"><a href="r言語の基本.html#cb21-26" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb21-27"><a href="r言語の基本.html#cb21-27" tabindex="-1"></a><span class="co">#&gt;      大阪 京都 名古屋</span></span>
+<span id="cb21-28"><a href="r言語の基本.html#cb21-28" tabindex="-1"></a><span class="co">#&gt; 2012    3    1      5</span></span>
+<span id="cb21-29"><a href="r言語の基本.html#cb21-29" tabindex="-1"></a><span class="co">#&gt; 2013    2    6     10</span></span>
+<span id="cb21-30"><a href="r言語の基本.html#cb21-30" tabindex="-1"></a><span class="co">#&gt;        2012 2013</span></span>
+<span id="cb21-31"><a href="r言語の基本.html#cb21-31" tabindex="-1"></a><span class="co">#&gt; 大阪      3    2</span></span>
+<span id="cb21-32"><a href="r言語の基本.html#cb21-32" tabindex="-1"></a><span class="co">#&gt; 京都      1    6</span></span>
+<span id="cb21-33"><a href="r言語の基本.html#cb21-33" tabindex="-1"></a><span class="co">#&gt; 名古屋    5   10</span></span></code></pre></div>
+</div>
+<div id="リスト" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> リスト<a href="r言語の基本.html#リスト" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>ベクトル, 行列, 配列, リスト等の異なる型(&amp;異なる長さ)のオブジェクトを一つにまとめたオブジェクト</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r言語の基本.html#cb22-1" tabindex="-1"></a>L1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">3</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">0</span>, <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb22-2"><a href="r言語の基本.html#cb22-2" tabindex="-1"></a>L1[[<span class="dv">1</span>]]  <span class="co"># 1番目の要素(変数)の取り出し</span></span>
+<span id="cb22-3"><a href="r言語の基本.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="r言語の基本.html#cb22-4" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Taro&quot;</span>, <span class="at">salary =</span> <span class="dv">50000</span>, <span class="at">male =</span> T)</span>
+<span id="cb22-5"><a href="r言語の基本.html#cb22-5" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Taro&quot;</span>, <span class="dv">50000</span>, T)  <span class="co"># 要素名 (タグ)なしの場合</span></span>
+<span id="cb22-6"><a href="r言語の基本.html#cb22-6" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="r言語の基本.html#cb22-7" tabindex="-1"></a>k<span class="sc">$</span>sal  <span class="co"># 要素名は省略形可</span></span>
+<span id="cb22-8"><a href="r言語の基本.html#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="r言語の基本.html#cb22-9" tabindex="-1"></a><span class="co"># リストはベクトルの一種 (recursive vector) 一方,</span></span>
+<span id="cb22-10"><a href="r言語の基本.html#cb22-10" tabindex="-1"></a><span class="co"># 通常のベクトルはatomic vector (それ以上分解できない)</span></span>
+<span id="cb22-11"><a href="r言語の基本.html#cb22-11" tabindex="-1"></a><span class="co"># vector()からリスト生成する場合</span></span>
+<span id="cb22-12"><a href="r言語の基本.html#cb22-12" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>)</span>
+<span id="cb22-13"><a href="r言語の基本.html#cb22-13" tabindex="-1"></a>z[[<span class="st">&quot;abd&quot;</span>]] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb22-14"><a href="r言語の基本.html#cb22-14" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="r言語の基本.html#cb22-15" tabindex="-1"></a>k[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]  <span class="co"># 元のリストの部分リスト</span></span>
+<span id="cb22-16"><a href="r言語の基本.html#cb22-16" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> k[<span class="dv">2</span>]</span>
+<span id="cb22-17"><a href="r言語の基本.html#cb22-17" tabindex="-1"></a><span class="fu">class</span>(k2)</span>
+<span id="cb22-18"><a href="r言語の基本.html#cb22-18" tabindex="-1"></a><span class="fu">str</span>(k2)</span>
+<span id="cb22-19"><a href="r言語の基本.html#cb22-19" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="r言語の基本.html#cb22-20" tabindex="-1"></a>k2a <span class="ot">&lt;-</span> k[[<span class="dv">2</span>]]  <span class="co"># 2番目の要素(変数)の取り出し (要素の型を持つ結果を返す)</span></span>
+<span id="cb22-21"><a href="r言語の基本.html#cb22-21" tabindex="-1"></a><span class="co"># k[[1:2]]\t\t# --&gt; エラー</span></span>
+<span id="cb22-22"><a href="r言語の基本.html#cb22-22" tabindex="-1"></a><span class="fu">class</span>(k2a)</span>
+<span id="cb22-23"><a href="r言語の基本.html#cb22-23" tabindex="-1"></a><span class="fu">str</span>(k2a)</span>
+<span id="cb22-24"><a href="r言語の基本.html#cb22-24" tabindex="-1"></a><span class="co">#&gt; [1] &quot;A&quot; &quot;A&quot; &quot;A&quot;</span></span>
+<span id="cb22-25"><a href="r言語の基本.html#cb22-25" tabindex="-1"></a><span class="co">#&gt; [1] 50000</span></span>
+<span id="cb22-26"><a href="r言語の基本.html#cb22-26" tabindex="-1"></a><span class="co">#&gt; $name</span></span>
+<span id="cb22-27"><a href="r言語の基本.html#cb22-27" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Taro&quot;</span></span>
+<span id="cb22-28"><a href="r言語の基本.html#cb22-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-29"><a href="r言語の基本.html#cb22-29" tabindex="-1"></a><span class="co">#&gt; $salary</span></span>
+<span id="cb22-30"><a href="r言語の基本.html#cb22-30" tabindex="-1"></a><span class="co">#&gt; [1] 50000</span></span>
+<span id="cb22-31"><a href="r言語の基本.html#cb22-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-32"><a href="r言語の基本.html#cb22-32" tabindex="-1"></a><span class="co">#&gt; [1] &quot;list&quot;</span></span>
+<span id="cb22-33"><a href="r言語の基本.html#cb22-33" tabindex="-1"></a><span class="co">#&gt; List of 1</span></span>
+<span id="cb22-34"><a href="r言語の基本.html#cb22-34" tabindex="-1"></a><span class="co">#&gt;  $ salary: num 50000</span></span>
+<span id="cb22-35"><a href="r言語の基本.html#cb22-35" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
+<span id="cb22-36"><a href="r言語の基本.html#cb22-36" tabindex="-1"></a><span class="co">#&gt;  num 50000</span></span></code></pre></div>
+<ul>
+<li>リストの要素追加・削除</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r言語の基本.html#cb23-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="st">&quot;abcd&quot;</span>, <span class="at">b =</span> <span class="dv">10</span>)</span>
+<span id="cb23-2"><a href="r言語の基本.html#cb23-2" tabindex="-1"></a>z<span class="sc">$</span>c <span class="ot">&lt;-</span> <span class="st">&quot;piano&quot;</span></span>
+<span id="cb23-3"><a href="r言語の基本.html#cb23-3" tabindex="-1"></a>z[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb23-4"><a href="r言語の基本.html#cb23-4" tabindex="-1"></a>z[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb23-5"><a href="r言語の基本.html#cb23-5" tabindex="-1"></a>z<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-6"><a href="r言語の基本.html#cb23-6" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="r言語の基本.html#cb23-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb23-8"><a href="r言語の基本.html#cb23-8" tabindex="-1"></a>xxx <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb23-9"><a href="r言語の基本.html#cb23-9" tabindex="-1"></a>yyy <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> xxx <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb23-10"><a href="r言語の基本.html#cb23-10" tabindex="-1"></a>lm.res <span class="ot">&lt;-</span> <span class="fu">lm</span>(yyy <span class="sc">~</span> xxx)</span>
+<span id="cb23-11"><a href="r言語の基本.html#cb23-11" tabindex="-1"></a><span class="fu">is.list</span>(lm.res)</span>
+<span id="cb23-12"><a href="r言語の基本.html#cb23-12" tabindex="-1"></a>lm.res[[<span class="dv">1</span>]]</span>
+<span id="cb23-13"><a href="r言語の基本.html#cb23-13" tabindex="-1"></a>lm.res<span class="sc">$</span>coef</span>
+<span id="cb23-14"><a href="r言語の基本.html#cb23-14" tabindex="-1"></a>lm.res[<span class="st">&quot;coefficients&quot;</span>]</span>
+<span id="cb23-15"><a href="r言語の基本.html#cb23-15" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb23-16"><a href="r言語の基本.html#cb23-16" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
+<span id="cb23-17"><a href="r言語の基本.html#cb23-17" tabindex="-1"></a><span class="co">#&gt;  -0.1479408   0.4589035 </span></span>
+<span id="cb23-18"><a href="r言語の基本.html#cb23-18" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
+<span id="cb23-19"><a href="r言語の基本.html#cb23-19" tabindex="-1"></a><span class="co">#&gt;  -0.1479408   0.4589035 </span></span>
+<span id="cb23-20"><a href="r言語の基本.html#cb23-20" tabindex="-1"></a><span class="co">#&gt; $coefficients</span></span>
+<span id="cb23-21"><a href="r言語の基本.html#cb23-21" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
+<span id="cb23-22"><a href="r言語の基本.html#cb23-22" tabindex="-1"></a><span class="co">#&gt;  -0.1479408   0.4589035</span></span></code></pre></div>
+</div>
+<div id="データフレーム" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>リストの特別な場合</li>
+<li>長さが等しい複数のベクトルを要素に持つリスト</li>
+<li>数値と文字列などの異なるデータが混在するデータを行列のように扱える</li>
+<li>Rにおける様々な統計分析において多用される</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r言語の基本.html#cb24-1" tabindex="-1"></a>kids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;taro&quot;</span>, <span class="st">&quot;hanako&quot;</span>)</span>
+<span id="cb24-2"><a href="r言語の基本.html#cb24-2" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>)</span>
+<span id="cb24-3"><a href="r言語の基本.html#cb24-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kids, ages, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-4"><a href="r言語の基本.html#cb24-4" tabindex="-1"></a><span class="co"># 注: stringsAsFactors = T: 文字ベクトルをfactorとして扱う</span></span>
+<span id="cb24-5"><a href="r言語の基本.html#cb24-5" tabindex="-1"></a>d</span>
+<span id="cb24-6"><a href="r言語の基本.html#cb24-6" tabindex="-1"></a><span class="fu">str</span>(d)</span>
+<span id="cb24-7"><a href="r言語の基本.html#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="r言語の基本.html#cb24-8" tabindex="-1"></a><span class="co"># 以下の3つは等価な操作</span></span>
+<span id="cb24-9"><a href="r言語の基本.html#cb24-9" tabindex="-1"></a>d[[<span class="dv">1</span>]]  <span class="co"># データフレームの第1列 (リストの一番目の要素) を取り出す(→ 文字列ベクトル)</span></span>
+<span id="cb24-10"><a href="r言語の基本.html#cb24-10" tabindex="-1"></a>d<span class="sc">$</span>kids  <span class="co"># 変数(kids)のように取り出す</span></span>
+<span id="cb24-11"><a href="r言語の基本.html#cb24-11" tabindex="-1"></a>d[, <span class="dv">1</span>]  <span class="co"># 行列のように操作 (--&gt; 便利)</span></span>
+<span id="cb24-12"><a href="r言語の基本.html#cb24-12" tabindex="-1"></a><span class="co"># ただし,</span></span>
+<span id="cb24-13"><a href="r言語の基本.html#cb24-13" tabindex="-1"></a>d[<span class="dv">1</span>]  <span class="co"># 第1列をデータフレーム (リスト) として取り出す</span></span>
+<span id="cb24-14"><a href="r言語の基本.html#cb24-14" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="r言語の基本.html#cb24-15" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb24-16"><a href="r言語の基本.html#cb24-16" tabindex="-1"></a><span class="fu">rownames</span>(df1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;大阪&quot;</span>, <span class="st">&quot;京都&quot;</span>, <span class="st">&quot;名古屋&quot;</span>)</span>
+<span id="cb24-17"><a href="r言語の基本.html#cb24-17" tabindex="-1"></a><span class="fu">colnames</span>(df1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;方言種類&quot;</span>, <span class="st">&quot;順位&quot;</span>)</span>
+<span id="cb24-18"><a href="r言語の基本.html#cb24-18" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="r言語の基本.html#cb24-19" tabindex="-1"></a><span class="fu">class</span>(df1)</span>
+<span id="cb24-20"><a href="r言語の基本.html#cb24-20" tabindex="-1"></a><span class="fu">is.vector</span>(df1)</span>
+<span id="cb24-21"><a href="r言語の基本.html#cb24-21" tabindex="-1"></a><span class="co">#&gt;     kids ages</span></span>
+<span id="cb24-22"><a href="r言語の基本.html#cb24-22" tabindex="-1"></a><span class="co">#&gt; 1   taro   10</span></span>
+<span id="cb24-23"><a href="r言語の基本.html#cb24-23" tabindex="-1"></a><span class="co">#&gt; 2 hanako    8</span></span>
+<span id="cb24-24"><a href="r言語の基本.html#cb24-24" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    2 obs. of  2 variables:</span></span>
+<span id="cb24-25"><a href="r言語の基本.html#cb24-25" tabindex="-1"></a><span class="co">#&gt;  $ kids: chr  &quot;taro&quot; &quot;hanako&quot;</span></span>
+<span id="cb24-26"><a href="r言語の基本.html#cb24-26" tabindex="-1"></a><span class="co">#&gt;  $ ages: num  10 8</span></span>
+<span id="cb24-27"><a href="r言語の基本.html#cb24-27" tabindex="-1"></a><span class="co">#&gt; [1] &quot;taro&quot;   &quot;hanako&quot;</span></span>
+<span id="cb24-28"><a href="r言語の基本.html#cb24-28" tabindex="-1"></a><span class="co">#&gt; [1] &quot;taro&quot;   &quot;hanako&quot;</span></span>
+<span id="cb24-29"><a href="r言語の基本.html#cb24-29" tabindex="-1"></a><span class="co">#&gt; [1] &quot;taro&quot;   &quot;hanako&quot;</span></span>
+<span id="cb24-30"><a href="r言語の基本.html#cb24-30" tabindex="-1"></a><span class="co">#&gt;     kids</span></span>
+<span id="cb24-31"><a href="r言語の基本.html#cb24-31" tabindex="-1"></a><span class="co">#&gt; 1   taro</span></span>
+<span id="cb24-32"><a href="r言語の基本.html#cb24-32" tabindex="-1"></a><span class="co">#&gt; 2 hanako</span></span>
+<span id="cb24-33"><a href="r言語の基本.html#cb24-33" tabindex="-1"></a><span class="co">#&gt; [1] &quot;data.frame&quot;</span></span>
+<span id="cb24-34"><a href="r言語の基本.html#cb24-34" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+</div>
+<div id="ベクトル-の結合-ソート" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> ベクトル の結合, ソート<a href="r言語の基本.html#ベクトル-の結合-ソート" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r言語の基本.html#cb25-1" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="r言語の基本.html#cb25-2" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb25-3"><a href="r言語の基本.html#cb25-3" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb25-4"><a href="r言語の基本.html#cb25-4" tabindex="-1"></a><span class="fu">rbind</span>(vec1, vec2)  <span class="co"># ベクトルの行方向への結合</span></span>
+<span id="cb25-5"><a href="r言語の基本.html#cb25-5" tabindex="-1"></a><span class="fu">cbind</span>(vec1, vec2)  <span class="co"># べクトルの列方向への結合</span></span>
+<span id="cb25-6"><a href="r言語の基本.html#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="r言語の基本.html#cb25-7" tabindex="-1"></a>vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb25-8"><a href="r言語の基本.html#cb25-8" tabindex="-1"></a><span class="fu">sort</span>(vec3)  <span class="co"># 昇順</span></span>
+<span id="cb25-9"><a href="r言語の基本.html#cb25-9" tabindex="-1"></a><span class="fu">rev</span>(vec3)  <span class="co"># 順番を逆転させる</span></span>
+<span id="cb25-10"><a href="r言語の基本.html#cb25-10" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="r言語の基本.html#cb25-11" tabindex="-1"></a>ccc[, <span class="fu">order</span>(ccc[<span class="st">&quot;2012&quot;</span>, ])]</span>
+<span id="cb25-12"><a href="r言語の基本.html#cb25-12" tabindex="-1"></a>ccc[, <span class="fu">sort.list</span>(ccc[<span class="st">&quot;2012&quot;</span>, ])]</span>
+<span id="cb25-13"><a href="r言語の基本.html#cb25-13" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb25-14"><a href="r言語の基本.html#cb25-14" tabindex="-1"></a><span class="co">#&gt; vec1    1    2    3    4</span></span>
+<span id="cb25-15"><a href="r言語の基本.html#cb25-15" tabindex="-1"></a><span class="co">#&gt; vec2    2    3    4    5</span></span>
+<span id="cb25-16"><a href="r言語の基本.html#cb25-16" tabindex="-1"></a><span class="co">#&gt;      vec1 vec2</span></span>
+<span id="cb25-17"><a href="r言語の基本.html#cb25-17" tabindex="-1"></a><span class="co">#&gt; [1,]    1    2</span></span>
+<span id="cb25-18"><a href="r言語の基本.html#cb25-18" tabindex="-1"></a><span class="co">#&gt; [2,]    2    3</span></span>
+<span id="cb25-19"><a href="r言語の基本.html#cb25-19" tabindex="-1"></a><span class="co">#&gt; [3,]    3    4</span></span>
+<span id="cb25-20"><a href="r言語の基本.html#cb25-20" tabindex="-1"></a><span class="co">#&gt; [4,]    4    5</span></span>
+<span id="cb25-21"><a href="r言語の基本.html#cb25-21" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 5</span></span>
+<span id="cb25-22"><a href="r言語の基本.html#cb25-22" tabindex="-1"></a><span class="co">#&gt; [1] 3 1 5 2</span></span>
+<span id="cb25-23"><a href="r言語の基本.html#cb25-23" tabindex="-1"></a><span class="co">#&gt;      京都 大阪 名古屋</span></span>
+<span id="cb25-24"><a href="r言語の基本.html#cb25-24" tabindex="-1"></a><span class="co">#&gt; 2012    1    3      5</span></span>
+<span id="cb25-25"><a href="r言語の基本.html#cb25-25" tabindex="-1"></a><span class="co">#&gt; 2013    6    2     10</span></span>
+<span id="cb25-26"><a href="r言語の基本.html#cb25-26" tabindex="-1"></a><span class="co">#&gt;      京都 大阪 名古屋</span></span>
+<span id="cb25-27"><a href="r言語の基本.html#cb25-27" tabindex="-1"></a><span class="co">#&gt; 2012    1    3      5</span></span>
+<span id="cb25-28"><a href="r言語の基本.html#cb25-28" tabindex="-1"></a><span class="co">#&gt; 2013    6    2     10</span></span></code></pre></div>
+</div>
+<div id="二項演算" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> 二項演算<a href="r言語の基本.html#二項演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r言語の基本.html#cb26-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>)</span>
+<span id="cb26-2"><a href="r言語の基本.html#cb26-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb26-3"><a href="r言語の基本.html#cb26-3" tabindex="-1"></a>x <span class="sc">+</span> y</span>
+<span id="cb26-4"><a href="r言語の基本.html#cb26-4" tabindex="-1"></a>x <span class="sc">*</span> y</span>
+<span id="cb26-5"><a href="r言語の基本.html#cb26-5" tabindex="-1"></a>x<span class="sc">/</span>y</span>
+<span id="cb26-6"><a href="r言語の基本.html#cb26-6" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb26-7"><a href="r言語の基本.html#cb26-7" tabindex="-1"></a>x <span class="sc">&lt;</span> y</span>
+<span id="cb26-8"><a href="r言語の基本.html#cb26-8" tabindex="-1"></a><span class="co">#&gt; [1] -2  4  4  0</span></span>
+<span id="cb26-9"><a href="r言語の基本.html#cb26-9" tabindex="-1"></a><span class="co">#&gt; [1] -3  3 -5 -4</span></span>
+<span id="cb26-10"><a href="r言語の基本.html#cb26-10" tabindex="-1"></a><span class="co">#&gt; [1] -0.3333333  3.0000000 -5.0000000 -1.0000000</span></span>
+<span id="cb26-11"><a href="r言語の基本.html#cb26-11" tabindex="-1"></a><span class="co">#&gt; [1]  1  9 25  4</span></span>
+<span id="cb26-12"><a href="r言語の基本.html#cb26-12" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+</div>
+<div id="論理演算" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> 論理演算<a href="r言語の基本.html#論理演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r言語の基本.html#cb27-1" tabindex="-1"></a>lx <span class="ot">&lt;-</span> <span class="fu">c</span>(T, T, F)</span>
+<span id="cb27-2"><a href="r言語の基本.html#cb27-2" tabindex="-1"></a>ly <span class="ot">&lt;-</span> <span class="fu">c</span>(F, F, F)</span>
+<span id="cb27-3"><a href="r言語の基本.html#cb27-3" tabindex="-1"></a>lx <span class="sc">&amp;</span> ly</span>
+<span id="cb27-4"><a href="r言語の基本.html#cb27-4" tabindex="-1"></a>lx <span class="sc">&amp;&amp;</span> ly  <span class="co"># 最初の要素間の論理演算が成り立つと, 以降の演算は行わない</span></span>
+<span id="cb27-5"><a href="r言語の基本.html#cb27-5" tabindex="-1"></a>lx <span class="sc">|</span> ly</span>
+<span id="cb27-6"><a href="r言語の基本.html#cb27-6" tabindex="-1"></a>lx <span class="sc">||</span> ly  <span class="co"># 最初の要素間の論理演算が成り立つと, 以降の演算は行わない</span></span>
+<span id="cb27-7"><a href="r言語の基本.html#cb27-7" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE FALSE</span></span>
+<span id="cb27-8"><a href="r言語の基本.html#cb27-8" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb27-9"><a href="r言語の基本.html#cb27-9" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></span>
+<span id="cb27-10"><a href="r言語の基本.html#cb27-10" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+</div>
+<div id="条件式" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> 条件式<a href="r言語の基本.html#条件式" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r言語の基本.html#cb28-1" tabindex="-1"></a><span class="co"># ==, &gt;, &lt;, &gt;=, &lt;= &amp;&amp;, ||</span></span></code></pre></div>
+</div>
+<div id="行列演算" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> 行列演算<a href="r言語の基本.html#行列演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r言語の基本.html#cb29-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb29-2"><a href="r言語の基本.html#cb29-2" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb29-3"><a href="r言語の基本.html#cb29-3" tabindex="-1"></a>A <span class="sc">%*%</span> B  <span class="co"># 行列の積</span></span>
+<span id="cb29-4"><a href="r言語の基本.html#cb29-4" tabindex="-1"></a><span class="co"># diag\t# 対角行列 solve\t# 逆行列</span></span>
+<span id="cb29-5"><a href="r言語の基本.html#cb29-5" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb29-6"><a href="r言語の基本.html#cb29-6" tabindex="-1"></a><span class="co">#&gt; [1,]    6   -9</span></span>
+<span id="cb29-7"><a href="r言語の基本.html#cb29-7" tabindex="-1"></a><span class="co">#&gt; [2,]    9  -12</span></span>
+<span id="cb29-8"><a href="r言語の基本.html#cb29-8" tabindex="-1"></a><span class="co">#&gt; [3,]   12  -15</span></span></code></pre></div>
+</div>
+<div id="基本数学関数" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> 基本数学関数<a href="r言語の基本.html#基本数学関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code># sum; sqrt; abs
+# exp; log; log10; log2; sin; cos
+# round; ceiling; floor</code></pre>
+</div>
+<div id="基本統計量" class="section level3 hasAnchor" number="2.2.11">
+<h3><span class="header-section-number">2.2.11</span> 基本統計量<a href="r言語の基本.html#基本統計量" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code># mean, max; min; range; median; quantile
+# var; sd
+# summary
+# table
+# cov; cor</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r言語の基本.html#cb32-1" tabindex="-1"></a>統計 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;好き&quot;</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="st">&quot;嫌い&quot;</span>, <span class="dv">7</span>))</span>
+<span id="cb32-2"><a href="r言語の基本.html#cb32-2" tabindex="-1"></a>数学 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;好き&quot;</span>, <span class="dv">6</span>), <span class="fu">rep</span>(<span class="st">&quot;嫌い&quot;</span>, <span class="dv">9</span>))</span>
+<span id="cb32-3"><a href="r言語の基本.html#cb32-3" tabindex="-1"></a><span class="fu">table</span>(統計, 数学)  <span class="co"># クロス集計表, ベクトルは同一長</span></span>
+<span id="cb32-4"><a href="r言語の基本.html#cb32-4" tabindex="-1"></a><span class="co">#&gt;       数学</span></span>
+<span id="cb32-5"><a href="r言語の基本.html#cb32-5" tabindex="-1"></a><span class="co">#&gt; 統計 好き 嫌い</span></span>
+<span id="cb32-6"><a href="r言語の基本.html#cb32-6" tabindex="-1"></a><span class="co">#&gt;   好き    6    2</span></span>
+<span id="cb32-7"><a href="r言語の基本.html#cb32-7" tabindex="-1"></a><span class="co">#&gt;   嫌い    0    7</span></span></code></pre></div>
+</div>
+<div id="その他便利な関数" class="section level3 hasAnchor" number="2.2.12">
+<h3><span class="header-section-number">2.2.12</span> その他便利な関数<a href="r言語の基本.html#その他便利な関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r言語の基本.html#cb33-1" tabindex="-1"></a><span class="co"># sweep scale ifelse</span></span>
+<span id="cb33-2"><a href="r言語の基本.html#cb33-2" tabindex="-1"></a><span class="fu">ifelse</span>(統計 <span class="sc">==</span> <span class="st">&quot;好き&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb33-3"><a href="r言語の基本.html#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="r言語の基本.html#cb33-4" tabindex="-1"></a><span class="co"># apply (X, MARGIN, FUN, ...)</span></span>
+<span id="cb33-5"><a href="r言語の基本.html#cb33-5" tabindex="-1"></a><span class="fu">apply</span>(ccc, <span class="dv">1</span>, sum)</span>
+<span id="cb33-6"><a href="r言語の基本.html#cb33-6" tabindex="-1"></a><span class="fu">apply</span>(ccc, <span class="dv">2</span>, sum)</span>
+<span id="cb33-7"><a href="r言語の基本.html#cb33-7" tabindex="-1"></a><span class="fu">colMeans</span>(ccc)</span>
+<span id="cb33-8"><a href="r言語の基本.html#cb33-8" tabindex="-1"></a><span class="fu">rowMeans</span>(ccc)</span>
+<span id="cb33-9"><a href="r言語の基本.html#cb33-9" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0</span></span>
+<span id="cb33-10"><a href="r言語の基本.html#cb33-10" tabindex="-1"></a><span class="co">#&gt; 2012 2013 </span></span>
+<span id="cb33-11"><a href="r言語の基本.html#cb33-11" tabindex="-1"></a><span class="co">#&gt;    9   18 </span></span>
+<span id="cb33-12"><a href="r言語の基本.html#cb33-12" tabindex="-1"></a><span class="co">#&gt;   大阪   京都 名古屋 </span></span>
+<span id="cb33-13"><a href="r言語の基本.html#cb33-13" tabindex="-1"></a><span class="co">#&gt;      5      7     15 </span></span>
+<span id="cb33-14"><a href="r言語の基本.html#cb33-14" tabindex="-1"></a><span class="co">#&gt;   大阪   京都 名古屋 </span></span>
+<span id="cb33-15"><a href="r言語の基本.html#cb33-15" tabindex="-1"></a><span class="co">#&gt;    2.5    3.5    7.5 </span></span>
+<span id="cb33-16"><a href="r言語の基本.html#cb33-16" tabindex="-1"></a><span class="co">#&gt; 2012 2013 </span></span>
+<span id="cb33-17"><a href="r言語の基本.html#cb33-17" tabindex="-1"></a><span class="co">#&gt;    3    6</span></span></code></pre></div>
+</div>
+<div id="データの可視化" class="section level3 hasAnchor" number="2.2.13">
+<h3><span class="header-section-number">2.2.13</span> データの可視化<a href="r言語の基本.html#データの可視化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r言語の基本.html#cb34-1" tabindex="-1"></a><span class="co"># 棒グラフ</span></span>
+<span id="cb34-2"><a href="r言語の基本.html#cb34-2" tabindex="-1"></a><span class="fu">barplot</span>(ccc)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r言語の基本.html#cb35-1" tabindex="-1"></a><span class="fu">barplot</span>(ccc, <span class="at">beside =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-2.png" width="75%" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r言語の基本.html#cb36-1" tabindex="-1"></a><span class="fu">barplot</span>(ccc, <span class="at">beside =</span> T, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lavender&quot;</span>), <span class="at">main =</span> <span class="st">&quot;test&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-3.png" width="75%" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r言語の基本.html#cb37-1" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="r言語の基本.html#cb37-2" tabindex="-1"></a><span class="co"># apply(ccc, 1, pie) pie hist 折れ線グラフ</span></span>
+<span id="cb37-3"><a href="r言語の基本.html#cb37-3" tabindex="-1"></a><span class="co"># (行列の各列(変数)の同時プロット)</span></span>
+<span id="cb37-4"><a href="r言語の基本.html#cb37-4" tabindex="-1"></a><span class="fu">matplot</span>(ccc, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-4.png" width="75%" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r言語の基本.html#cb38-1" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">t</span>(ccc), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-5.png" width="75%" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r言語の基本.html#cb39-1" tabindex="-1"></a></span>
+<span id="cb39-2"><a href="r言語の基本.html#cb39-2" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
+<span id="cb39-3"><a href="r言語の基本.html#cb39-3" tabindex="-1"></a><span class="fu">boxplot</span>(ccc)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-6.png" width="75%" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r言語の基本.html#cb40-1" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">t</span>(ccc))</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-7.png" width="75%" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r言語の基本.html#cb41-1" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="r言語の基本.html#cb41-2" tabindex="-1"></a><span class="co"># 散布図 plot</span></span>
+<span id="cb41-3"><a href="r言語の基本.html#cb41-3" tabindex="-1"></a><span class="fu">pairs</span>(ccc)</span></code></pre></div>
+<p><img src="_main_files/figure-html/plot-8.png" width="75%" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r言語の基本.html#cb42-1" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="r言語の基本.html#cb42-2" tabindex="-1"></a><span class="co"># install.packages(&#39;car&#39;) library(car) scatterplot(ccc)</span></span>
+<span id="cb42-3"><a href="r言語の基本.html#cb42-3" tabindex="-1"></a><span class="co"># install.packages(&#39;scatterplot3d&#39;); library(scatterplot3d)</span></span>
+<span id="cb42-4"><a href="r言語の基本.html#cb42-4" tabindex="-1"></a><span class="co"># scatterplot3d</span></span>
+<span id="cb42-5"><a href="r言語の基本.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="r言語の基本.html#cb42-6" tabindex="-1"></a><span class="co"># その他のグラフ coplot; mosaic plot; stars; faces; persp; image;</span></span>
+<span id="cb42-7"><a href="r言語の基本.html#cb42-7" tabindex="-1"></a><span class="co"># contour</span></span>
+<span id="cb42-8"><a href="r言語の基本.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="r言語の基本.html#cb42-9" tabindex="-1"></a><span class="co"># その他 windows()\t\t#新しいグラフィック・ウィンドウを開く</span></span>
+<span id="cb42-10"><a href="r言語の基本.html#cb42-10" tabindex="-1"></a><span class="co"># par(mfrow = c(2, 2))</span></span>
+<span id="cb42-11"><a href="r言語の基本.html#cb42-11" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="r言語の基本.html#cb42-12" tabindex="-1"></a><span class="co"># より洗練されたグラフ. やや難易度が高い. cf. [3], p.79</span></span>
+<span id="cb42-13"><a href="r言語の基本.html#cb42-13" tabindex="-1"></a><span class="co"># install.packages(&#39;ggplot2&#39;, dependencies = T) library(ggplot2)</span></span></code></pre></div>
+</div>
+<div id="確率分布" class="section level3 hasAnchor" number="2.2.14">
+<h3><span class="header-section-number">2.2.14</span> 確率分布<a href="r言語の基本.html#確率分布" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code># dxxx(q)       # 確率密度, q:確率点
+# pxxx(q)       # 累積確率, q:確率点
+# qxxx(p)       # 確率点, p:確率
+# rxxx(n)       # 乱数, n:個数
+# ------------------------------------------------------------------
+# xxx部分:
+# unif(x, min, max)     # 一様分布
+# norm(x, mean, sd) # 正規分布
+# exp(x, rate)          # 指数分布
+# binom(x, size, prob)      # ２項分布
+# pois(x, lambda)       # ポアソン分布
+# t(x, df)          # t分布
+# chisq(x, df)          # カイ2乗分布
+# f(x, df1, df2)        # F分布</code></pre>
+<pre><code>curve(xを含んだ式, from = xの左端点, to = xの右端点)
+# 関数のグラフ描画</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r言語の基本.html#cb45-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>)</span>
+<span id="cb45-2"><a href="r言語の基本.html#cb45-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">add =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/prob_dist-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r言語の基本.html#cb46-1" tabindex="-1"></a><span class="co"># 問：t分布(自由度4)の形状は?</span></span></code></pre></div>
+</div>
+<div id="ファイル入出力" class="section level3 hasAnchor" number="2.2.15">
+<h3><span class="header-section-number">2.2.15</span> ファイル入出力<a href="r言語の基本.html#ファイル入出力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="テキストファイル読み込み" class="section level4 hasAnchor" number="2.2.15.1">
+<h4><span class="header-section-number">2.2.15.1</span> テキストファイル読み込み<a href="r言語の基本.html#テキストファイル読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>ファイル読み込み用のR関数には, ファイルの格納場所 (パス) とファイル名を知らせる必要がある</li>
+<li>パスを省略すると, 現在のディレクトリ (getwd関数で確認可能) 下でファイルを探す. もし, 存在しなければ, エラーとなる</li>
+<li>ここでは, あらかじめ, 各自のPCのデスクトップ上に, “BS_2022”という名前のフォルダ (ディレクトリ) を作成していると想定</li>
+<li>ファイルは, カンマ(, )で区切られたcsv形式や, タブで区切られたtsv形式の テキストファイルであるとする.</li>
+</ul>
+<pre><code>data1 &lt;- read.table(&quot;/[パス名]/ファイル名&quot;, header = T, row.names = 1)
+# オプション
+# header = T: 1行目が列ラベル
+# row.names = 1: 1列目が行ラベル</code></pre>
+<ul>
+<li>または, file.path関数を使ってファイルの格納されているパス(経路)を指定しても良い.</li>
+</ul>
+<pre><code># ユーザー(yamada)が, デスクトップ(Desktop)フォルダの下に授業用フォルダ(BS_2022)を作成した場合のパスの指定
+fpath &lt;- file.path(&quot;~&quot;, &quot;Desktop&quot;, &quot;BS_2022&quot;)
+# または
+fpath &lt;- file.path(&quot;Users&quot;, &quot;yamada&quot;, &quot;Desktop&quot;, &quot;BS_2022&quot;)
+#
+ifile &lt;- file.path(fpath, &quot;)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r言語の基本.html#cb49-1" tabindex="-1"></a><span class="co"># 例えば, data1 &lt;-</span></span>
+<span id="cb49-2"><a href="r言語の基本.html#cb49-2" tabindex="-1"></a><span class="co"># read.table(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep</span></span>
+<span id="cb49-3"><a href="r言語の基本.html#cb49-3" tabindex="-1"></a><span class="co"># = &#39;, &#39;) または data1 &lt;-</span></span>
+<span id="cb49-4"><a href="r言語の基本.html#cb49-4" tabindex="-1"></a><span class="co"># read.csv(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, header</span></span>
+<span id="cb49-5"><a href="r言語の基本.html#cb49-5" tabindex="-1"></a><span class="co"># = T, row.names = 1)</span></span>
+<span id="cb49-6"><a href="r言語の基本.html#cb49-6" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="r言語の基本.html#cb49-7" tabindex="-1"></a><span class="co"># 代替的に data2 &lt;-</span></span>
+<span id="cb49-8"><a href="r言語の基本.html#cb49-8" tabindex="-1"></a><span class="co"># scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep = &#39;,</span></span>
+<span id="cb49-9"><a href="r言語の基本.html#cb49-9" tabindex="-1"></a><span class="co"># &#39;) matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;,</span></span>
+<span id="cb49-10"><a href="r言語の基本.html#cb49-10" tabindex="-1"></a><span class="co"># sep = &#39;, &#39;), 3, 4, byrow = T)</span></span>
+<span id="cb49-11"><a href="r言語の基本.html#cb49-11" tabindex="-1"></a><span class="co"># matrix(scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;, sep</span></span>
+<span id="cb49-12"><a href="r言語の基本.html#cb49-12" tabindex="-1"></a><span class="co"># = &#39;, &#39;), 3, 4)</span></span>
+<span id="cb49-13"><a href="r言語の基本.html#cb49-13" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="r言語の基本.html#cb49-14" tabindex="-1"></a><span class="co"># scan()において, 数値, 文字が混在している場合,</span></span>
+<span id="cb49-15"><a href="r言語の基本.html#cb49-15" tabindex="-1"></a><span class="co"># 列ごとにデータ属性を指定する必要 data2.txt a 1 2 b 2 3 c 3 4</span></span>
+<span id="cb49-16"><a href="r言語の基本.html#cb49-16" tabindex="-1"></a><span class="co"># data3 &lt;- scan(&#39;/Users/[アカウント名]/Desktop/BS_2022/data.txt&#39;,</span></span>
+<span id="cb49-17"><a href="r言語の基本.html#cb49-17" tabindex="-1"></a><span class="co"># sep = &#39;, &#39;, list(x = &#39;&#39;, y = 0, z = 0)) data.frame(data2)\t\t#</span></span>
+<span id="cb49-18"><a href="r言語の基本.html#cb49-18" tabindex="-1"></a><span class="co"># データフレーム化</span></span>
+<span id="cb49-19"><a href="r言語の基本.html#cb49-19" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="r言語の基本.html#cb49-20" tabindex="-1"></a><span class="co"># パスを指定せずに,</span></span>
+<span id="cb49-21"><a href="r言語の基本.html#cb49-21" tabindex="-1"></a><span class="co"># テキストファイルの置かれているフォルダに移動してから</span></span>
+<span id="cb49-22"><a href="r言語の基本.html#cb49-22" tabindex="-1"></a><span class="co"># ファイル名のみを使って読み込んでも良い</span></span>
+<span id="cb49-23"><a href="r言語の基本.html#cb49-23" tabindex="-1"></a><span class="co"># setwd(&#39;/Users/[アカウント名]/Desktop/BS_2022&#39;)</span></span>
+<span id="cb49-24"><a href="r言語の基本.html#cb49-24" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb49-25"><a href="r言語の基本.html#cb49-25" tabindex="-1"></a></span>
+<span id="cb49-26"><a href="r言語の基本.html#cb49-26" tabindex="-1"></a><span class="co"># パッケージ&#39;foreign&#39;により, SAS,</span></span>
+<span id="cb49-27"><a href="r言語の基本.html#cb49-27" tabindex="-1"></a><span class="co"># SPSS等のファイル形式のデータの読み込みが可能</span></span></code></pre></div>
+</div>
+<div id="テキストファイル書き出し" class="section level4 hasAnchor" number="2.2.15.2">
+<h4><span class="header-section-number">2.2.15.2</span> テキストファイル書き出し<a href="r言語の基本.html#テキストファイル書き出し" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>write(data3, &quot;/[パス名]/ファイル名&quot;)</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r言語の基本.html#cb51-1" tabindex="-1"></a><span class="co"># 例えば, write.table(data3,</span></span>
+<span id="cb51-2"><a href="r言語の基本.html#cb51-2" tabindex="-1"></a><span class="co"># &#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;)</span></span>
+<span id="cb51-3"><a href="r言語の基本.html#cb51-3" tabindex="-1"></a><span class="co"># write.table(data3,</span></span>
+<span id="cb51-4"><a href="r言語の基本.html#cb51-4" tabindex="-1"></a><span class="co"># &#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;, append =</span></span>
+<span id="cb51-5"><a href="r言語の基本.html#cb51-5" tabindex="-1"></a><span class="co"># T) write.csv()</span></span>
+<span id="cb51-6"><a href="r言語の基本.html#cb51-6" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="r言語の基本.html#cb51-7" tabindex="-1"></a><span class="co"># sink(&#39;/Users/[アカウント名]/Desktop/BS_2022/data3_out1.txt&#39;)</span></span>
+<span id="cb51-8"><a href="r言語の基本.html#cb51-8" tabindex="-1"></a>data1</span>
+<span id="cb51-9"><a href="r言語の基本.html#cb51-9" tabindex="-1"></a>data2</span>
+<span id="cb51-10"><a href="r言語の基本.html#cb51-10" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
