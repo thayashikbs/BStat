@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 分散分析 (ANOVA) | ビジネス統計</title>
+  <meta name="description" content="4 分散分析 (ANOVA) | ビジネス統計" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 分散分析 (ANOVA) | ビジネス統計" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 分散分析 (ANOVA) | ビジネス統計" />
+  
+  
+  
+
+<meta name="author" content="林 高樹" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="仮説検定.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#コースの目的"><i class="fa fa-check"></i><b>1.1</b> コースの目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#統計学統計的手法の学習について"><i class="fa fa-check"></i><b>1.2</b> 統計学/統計的手法の学習について</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#学習の目標"><i class="fa fa-check"></i>学習の目標</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習方法"><i class="fa fa-check"></i>統計学/統計的手法の学習方法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習ステップ"><i class="fa fa-check"></i>統計学/統計的手法の学習ステップ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#ビジネス応用における統計学の最近の趨勢"><i class="fa fa-check"></i><b>1.3</b> ビジネス応用における統計学の最近の趨勢</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#本書内の記載の注意点"><i class="fa fa-check"></i><b>1.4</b> 本書内の記載の注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r言語の基本.html"><a href="r言語の基本.html"><i class="fa fa-check"></i><b>2</b> R言語の基本</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#rの基本プログラミング"><i class="fa fa-check"></i><b>2.1</b> Rの基本プログラミング</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r言語の基本.html"><a href="r言語の基本.html#基本操作"><i class="fa fa-check"></i><b>2.1.1</b> 基本操作</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本構文"><i class="fa fa-check"></i><b>2.1.2</b> 基本構文</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r言語の基本.html"><a href="r言語の基本.html#自作関数"><i class="fa fa-check"></i><b>2.1.3</b> 自作関数</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r言語の基本.html"><a href="r言語の基本.html#パッケージのインストール-読み込み"><i class="fa fa-check"></i><b>2.1.4</b> パッケージのインストール &amp; 読み込み</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r言語の基本.html"><a href="r言語の基本.html#ヘルプ"><i class="fa fa-check"></i><b>2.1.5</b> ヘルプ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの型や構造"><i class="fa fa-check"></i><b>2.2</b> データの型や構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#データの値の種類-データ型"><i class="fa fa-check"></i><b>2.2.1</b> データの値の種類 (“データ型”)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの配列の仕方-データ構造"><i class="fa fa-check"></i><b>2.2.2</b> データの配列の仕方 (“データ構造”)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトル"><i class="fa fa-check"></i><b>2.2.3</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#行列"><i class="fa fa-check"></i><b>2.2.4</b> 行列</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#データフレーム"><i class="fa fa-check"></i><b>2.2.6</b> データフレーム</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#データの操作演算"><i class="fa fa-check"></i><b>2.3</b> データの操作・演算</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトルの結合-ソート"><i class="fa fa-check"></i><b>2.3.1</b> ベクトルの結合, ソート</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r言語の基本.html"><a href="r言語の基本.html#二項演算"><i class="fa fa-check"></i><b>2.3.2</b> 二項演算</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r言語の基本.html"><a href="r言語の基本.html#論理演算"><i class="fa fa-check"></i><b>2.3.3</b> 論理演算</a></li>
+<li class="chapter" data-level="2.3.4" data-path="r言語の基本.html"><a href="r言語の基本.html#条件式"><i class="fa fa-check"></i><b>2.3.4</b> 条件式</a></li>
+<li class="chapter" data-level="2.3.5" data-path="r言語の基本.html"><a href="r言語の基本.html#行列演算"><i class="fa fa-check"></i><b>2.3.5</b> 行列演算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#r関数"><i class="fa fa-check"></i><b>2.4</b> R関数</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r言語の基本.html"><a href="r言語の基本.html#数学基本関数"><i class="fa fa-check"></i><b>2.4.1</b> 数学基本関数</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本統計量の計算"><i class="fa fa-check"></i><b>2.4.2</b> 基本統計量の計算</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r言語の基本.html"><a href="r言語の基本.html#確率分布"><i class="fa fa-check"></i><b>2.4.3</b> 確率分布</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r言語の基本.html"><a href="r言語の基本.html#その他便利な関数"><i class="fa fa-check"></i><b>2.4.4</b> その他便利な関数</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#データの可視化"><i class="fa fa-check"></i><b>2.5</b> データの可視化</a></li>
+<li class="chapter" data-level="2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#ファイル入出力"><i class="fa fa-check"></i><b>2.6</b> ファイル入出力</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル読み込み"><i class="fa fa-check"></i><b>2.6.1</b> テキストファイル読み込み</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル書き出し"><i class="fa fa-check"></i><b>2.6.2</b> テキストファイル書き出し</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="仮説検定.html"><a href="仮説検定.html"><i class="fa fa-check"></i><b>3</b> 仮説検定</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#パート1-平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> パート1: 平均値の差の検定</a></li>
+<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#パート2-カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> パート2: カイ二乗検定</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="仮説検定.html"><a href="仮説検定.html#独立性検定"><i class="fa fa-check"></i><b>3.2.1</b> 独立性検定</a></li>
+<li class="chapter" data-level="3.2.2" data-path="仮説検定.html"><a href="仮説検定.html#適合度検定"><i class="fa fa-check"></i><b>3.2.2</b> 適合度検定</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="仮説検定.html"><a href="仮説検定.html#パート3-事例統計テストデータ"><i class="fa fa-check"></i><b>3.3</b> パート3: 事例(統計テストデータ)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="分散分析-anova.html"><a href="分散分析-anova.html"><i class="fa fa-check"></i><b>4</b> 分散分析 (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="分散分析-anova.html"><a href="分散分析-anova.html#分散分析-操作編"><i class="fa fa-check"></i><b>4.1</b> 分散分析 (操作編)</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="分散分析-anova.html"><a href="分散分析-anova.html#元配置anova"><i class="fa fa-check"></i><b>4.1.1</b> 1元配置ANOVA</a></li>
+<li class="chapter" data-level="4.1.2" data-path="分散分析-anova.html"><a href="分散分析-anova.html#元配置anova-1"><i class="fa fa-check"></i><b>4.1.2</b> 2元配置ANOVA</a></li>
+<li class="chapter" data-level="4.1.3" data-path="分散分析-anova.html"><a href="分散分析-anova.html#分析例"><i class="fa fa-check"></i><b>4.1.3</b> 分析例</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ビジネス統計</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="分散分析-anova" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> 分散分析 (ANOVA)<a href="分散分析-anova.html#分散分析-anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="分散分析-操作編" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 分散分析 (操作編)<a href="分散分析-anova.html#分散分析-操作編" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="元配置anova" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 1元配置ANOVA<a href="分散分析-anova.html#元配置anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="分散分析-anova.html#cb155-1" tabindex="-1"></a><span class="co"># 仮想データセットの作成 (数値例1) グループ数: k=3</span></span>
+<span id="cb155-2"><a href="分散分析-anova.html#cb155-2" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb155-3"><a href="分散分析-anova.html#cb155-3" tabindex="-1"></a>ttt1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb155-4"><a href="分散分析-anova.html#cb155-4" tabindex="-1"></a>ttt2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">4</span>)</span>
+<span id="cb155-5"><a href="分散分析-anova.html#cb155-5" tabindex="-1"></a>ttt3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb155-6"><a href="分散分析-anova.html#cb155-6" tabindex="-1"></a></span>
+<span id="cb155-7"><a href="分散分析-anova.html#cb155-7" tabindex="-1"></a><span class="co"># 縦型に整形</span></span>
+<span id="cb155-8"><a href="分散分析-anova.html#cb155-8" tabindex="-1"></a>dat1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">grp =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;ttt1&quot;</span>, <span class="fu">length</span>(ttt1)), <span class="fu">rep</span>(<span class="st">&quot;ttt2&quot;</span>, <span class="fu">length</span>(ttt2)),</span>
+<span id="cb155-9"><a href="分散分析-anova.html#cb155-9" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="st">&quot;ttt3&quot;</span>, <span class="fu">length</span>(ttt3))), <span class="at">resp =</span> <span class="fu">c</span>(ttt1, ttt2, ttt3))</span>
+<span id="cb155-10"><a href="分散分析-anova.html#cb155-10" tabindex="-1"></a></span>
+<span id="cb155-11"><a href="分散分析-anova.html#cb155-11" tabindex="-1"></a><span class="co"># ANOVAの実行</span></span>
+<span id="cb155-12"><a href="分散分析-anova.html#cb155-12" tabindex="-1"></a>res_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(resp <span class="sc">~</span> grp, <span class="at">data =</span> dat1)</span>
+<span id="cb155-13"><a href="分散分析-anova.html#cb155-13" tabindex="-1"></a></span>
+<span id="cb155-14"><a href="分散分析-anova.html#cb155-14" tabindex="-1"></a><span class="co"># 実行結果の表示</span></span>
+<span id="cb155-15"><a href="分散分析-anova.html#cb155-15" tabindex="-1"></a><span class="fu">summary</span>(res_aov)</span>
+<span id="cb155-16"><a href="分散分析-anova.html#cb155-16" tabindex="-1"></a><span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)   </span></span>
+<span id="cb155-17"><a href="分散分析-anova.html#cb155-17" tabindex="-1"></a><span class="co">#&gt; grp          2  47.13  23.567   8.887 0.0074 **</span></span>
+<span id="cb155-18"><a href="分散分析-anova.html#cb155-18" tabindex="-1"></a><span class="co">#&gt; Residuals    9  23.87   2.652                  </span></span>
+<span id="cb155-19"><a href="分散分析-anova.html#cb155-19" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb155-20"><a href="分散分析-anova.html#cb155-20" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="分散分析-anova.html#cb156-1" tabindex="-1"></a><span class="co"># 確認用 (飛ばしてOK)</span></span>
+<span id="cb156-2"><a href="分散分析-anova.html#cb156-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb156-3"><a href="分散分析-anova.html#cb156-3" tabindex="-1"></a><span class="co"># 全体平方和 (SST) の計算</span></span>
+<span id="cb156-4"><a href="分散分析-anova.html#cb156-4" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat1<span class="sc">$</span>resp)  <span class="co"># 全体平均</span></span>
+<span id="cb156-5"><a href="分散分析-anova.html#cb156-5" tabindex="-1"></a><span class="co"># (mean(dat1$resp^2) - avg^2) * length(dat1$resp)</span></span>
+<span id="cb156-6"><a href="分散分析-anova.html#cb156-6" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">sum</span>((dat1<span class="sc">$</span>resp <span class="sc">-</span> avg)<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># 全体平方和</span></span>
+<span id="cb156-7"><a href="分散分析-anova.html#cb156-7" tabindex="-1"></a></span>
+<span id="cb156-8"><a href="分散分析-anova.html#cb156-8" tabindex="-1"></a><span class="co"># 群内平方和 (SSW) の計算 (※) 発展的なコード library(tidyverse)</span></span>
+<span id="cb156-9"><a href="分散分析-anova.html#cb156-9" tabindex="-1"></a>ssw_j <span class="ot">&lt;-</span> dat1 <span class="sc">%&gt;%</span></span>
+<span id="cb156-10"><a href="分散分析-anova.html#cb156-10" tabindex="-1"></a>  <span class="fu">group_by</span>(grp) <span class="sc">%&gt;%</span></span>
+<span id="cb156-11"><a href="分散分析-anova.html#cb156-11" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ssq =</span> (<span class="fu">mean</span>(resp<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">mean</span>(resp)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">length</span>(resp))</span>
+<span id="cb156-12"><a href="分散分析-anova.html#cb156-12" tabindex="-1"></a>ssw <span class="ot">&lt;-</span> <span class="fu">sum</span>(ssw_j<span class="sc">$</span>ssq)  <span class="co"># 群内平方和</span></span>
+<span id="cb156-13"><a href="分散分析-anova.html#cb156-13" tabindex="-1"></a></span>
+<span id="cb156-14"><a href="分散分析-anova.html#cb156-14" tabindex="-1"></a><span class="co"># 群間平方和 (SSB) の計算</span></span>
+<span id="cb156-15"><a href="分散分析-anova.html#cb156-15" tabindex="-1"></a>n_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(ttt1), <span class="fu">length</span>(ttt2), <span class="fu">length</span>(ttt3))</span>
+<span id="cb156-16"><a href="分散分析-anova.html#cb156-16" tabindex="-1"></a>avg_j <span class="ot">&lt;-</span> dat1 <span class="sc">%&gt;%</span></span>
+<span id="cb156-17"><a href="分散分析-anova.html#cb156-17" tabindex="-1"></a>  <span class="fu">group_by</span>(grp) <span class="sc">%&gt;%</span></span>
+<span id="cb156-18"><a href="分散分析-anova.html#cb156-18" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(resp))</span>
+<span id="cb156-19"><a href="分散分析-anova.html#cb156-19" tabindex="-1"></a>ssb <span class="ot">&lt;-</span> <span class="fu">sum</span>((avg_j<span class="sc">$</span>avg <span class="sc">-</span> avg)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> n_vec)  <span class="co"># 群間平方和</span></span>
+<span id="cb156-20"><a href="分散分析-anova.html#cb156-20" tabindex="-1"></a><span class="co"># または,</span></span>
+<span id="cb156-21"><a href="分散分析-anova.html#cb156-21" tabindex="-1"></a>ssb <span class="ot">&lt;-</span> sst <span class="sc">-</span> ssw  <span class="co"># 群間平方和</span></span>
+<span id="cb156-22"><a href="分散分析-anova.html#cb156-22" tabindex="-1"></a></span>
+<span id="cb156-23"><a href="分散分析-anova.html#cb156-23" tabindex="-1"></a><span class="co"># 自由度 (df) SST: length(dat1$resp) - 1, SSB: K - 1, SSW: length(dat1$resp) -</span></span>
+<span id="cb156-24"><a href="分散分析-anova.html#cb156-24" tabindex="-1"></a><span class="co"># K</span></span>
+<span id="cb156-25"><a href="分散分析-anova.html#cb156-25" tabindex="-1"></a></span>
+<span id="cb156-26"><a href="分散分析-anova.html#cb156-26" tabindex="-1"></a><span class="co"># 平均平方和の計算</span></span>
+<span id="cb156-27"><a href="分散分析-anova.html#cb156-27" tabindex="-1"></a>msb <span class="ot">&lt;-</span> ssb<span class="sc">/</span>(k <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb156-28"><a href="分散分析-anova.html#cb156-28" tabindex="-1"></a>msw <span class="ot">&lt;-</span> ssw<span class="sc">/</span>(<span class="fu">length</span>(dat1<span class="sc">$</span>resp) <span class="sc">-</span> k)</span>
+<span id="cb156-29"><a href="分散分析-anova.html#cb156-29" tabindex="-1"></a></span>
+<span id="cb156-30"><a href="分散分析-anova.html#cb156-30" tabindex="-1"></a><span class="co"># F値の計算</span></span>
+<span id="cb156-31"><a href="分散分析-anova.html#cb156-31" tabindex="-1"></a>f_val <span class="ot">&lt;-</span> msb<span class="sc">/</span>msw</span>
+<span id="cb156-32"><a href="分散分析-anova.html#cb156-32" tabindex="-1"></a><span class="co"># p値の計算</span></span>
+<span id="cb156-33"><a href="分散分析-anova.html#cb156-33" tabindex="-1"></a><span class="fu">pf</span>(f_val, k <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">length</span>(dat1<span class="sc">$</span>resp) <span class="sc">-</span> k, <span class="at">lower.tail =</span> F)</span>
+<span id="cb156-34"><a href="分散分析-anova.html#cb156-34" tabindex="-1"></a><span class="co">#&gt; [1] 0.007402874</span></span></code></pre></div>
+</div>
+<div id="元配置anova-1" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 2元配置ANOVA<a href="分散分析-anova.html#元配置anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="分散分析-anova.html#cb157-1" tabindex="-1"></a><span class="co"># 仮想データセットの作成 (数値例2)</span></span>
+<span id="cb157-2"><a href="分散分析-anova.html#cb157-2" tabindex="-1"></a>fctA_val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a1&quot;</span>, <span class="st">&quot;a2&quot;</span>, <span class="st">&quot;a3&quot;</span>, <span class="st">&quot;a4&quot;</span>)</span>
+<span id="cb157-3"><a href="分散分析-anova.html#cb157-3" tabindex="-1"></a>fctB_val <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b2&quot;</span>, <span class="st">&quot;b3&quot;</span>)</span>
+<span id="cb157-4"><a href="分散分析-anova.html#cb157-4" tabindex="-1"></a>val <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb157-5"><a href="分散分析-anova.html#cb157-5" tabindex="-1"></a><span class="fu">colnames</span>(val) <span class="ot">&lt;-</span> fctB_val</span>
+<span id="cb157-6"><a href="分散分析-anova.html#cb157-6" tabindex="-1"></a><span class="fu">rownames</span>(val) <span class="ot">&lt;-</span> fctA_val</span>
+<span id="cb157-7"><a href="分散分析-anova.html#cb157-7" tabindex="-1"></a></span>
+<span id="cb157-8"><a href="分散分析-anova.html#cb157-8" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(val) <span class="sc">%&gt;%</span></span>
+<span id="cb157-9"><a href="分散分析-anova.html#cb157-9" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">&quot;fctA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb157-10"><a href="分散分析-anova.html#cb157-10" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> b1<span class="sc">:</span>b3, <span class="at">names_to =</span> <span class="st">&quot;fctB&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;resp&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb157-11"><a href="分散分析-anova.html#cb157-11" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb157-12"><a href="分散分析-anova.html#cb157-12" tabindex="-1"></a></span>
+<span id="cb157-13"><a href="分散分析-anova.html#cb157-13" tabindex="-1"></a><span class="co"># SST sum((val - mean(val))^2)</span></span>
+<span id="cb157-14"><a href="分散分析-anova.html#cb157-14" tabindex="-1"></a></span>
+<span id="cb157-15"><a href="分散分析-anova.html#cb157-15" tabindex="-1"></a><span class="co"># ANOVAの実行</span></span>
+<span id="cb157-16"><a href="分散分析-anova.html#cb157-16" tabindex="-1"></a>res_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(resp <span class="sc">~</span> fctA <span class="sc">+</span> fctB, <span class="at">data =</span> dat2)</span>
+<span id="cb157-17"><a href="分散分析-anova.html#cb157-17" tabindex="-1"></a></span>
+<span id="cb157-18"><a href="分散分析-anova.html#cb157-18" tabindex="-1"></a><span class="co"># 実行結果の表示</span></span>
+<span id="cb157-19"><a href="分散分析-anova.html#cb157-19" tabindex="-1"></a><span class="fu">summary</span>(res_aov)</span>
+<span id="cb157-20"><a href="分散分析-anova.html#cb157-20" tabindex="-1"></a><span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span></span>
+<span id="cb157-21"><a href="分散分析-anova.html#cb157-21" tabindex="-1"></a><span class="co">#&gt; fctA         3  12.67   4.222   4.343 0.05988 . </span></span>
+<span id="cb157-22"><a href="分散分析-anova.html#cb157-22" tabindex="-1"></a><span class="co">#&gt; fctB         2  32.17  16.083  16.543 0.00362 **</span></span>
+<span id="cb157-23"><a href="分散分析-anova.html#cb157-23" tabindex="-1"></a><span class="co">#&gt; Residuals    6   5.83   0.972                   </span></span>
+<span id="cb157-24"><a href="分散分析-anova.html#cb157-24" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb157-25"><a href="分散分析-anova.html#cb157-25" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb157-26"><a href="分散分析-anova.html#cb157-26" tabindex="-1"></a><span class="co"># interactionなし res_aov &lt;- aov(resp ~ fctA * fctB, data = dat2)</span></span>
+<span id="cb157-27"><a href="分散分析-anova.html#cb157-27" tabindex="-1"></a><span class="co"># summary(res_aov)</span></span></code></pre></div>
+</div>
+<div id="分析例" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> 分析例<a href="分散分析-anova.html#分析例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データ1-2業種口コミサイト仮想データ" class="section level4 unnumbered hasAnchor">
+<h4>データ1: 2業種口コミサイト(仮想データ)<a href="分散分析-anova.html#データ1-2業種口コミサイト仮想データ" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>t検定と結果の比較を行う.</p>
+<ul>
+<li>データの読み込み, 並べ替え</li>
+</ul>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="分散分析-anova.html#cb158-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dat_1-1.csv&quot;</span>)</span>
+<span id="cb158-2"><a href="分散分析-anova.html#cb158-2" tabindex="-1"></a><span class="co"># 口コミサイト(仮想データ) 2つの業種(A, B), 各20社</span></span>
+<span id="cb158-3"><a href="分散分析-anova.html#cb158-3" tabindex="-1"></a><span class="co"># 各企業に対する(元)従業員による平均評価点(1--5)</span></span>
+<span id="cb158-4"><a href="分散分析-anova.html#cb158-4" tabindex="-1"></a><span class="fu">head</span>(x)</span>
+<span id="cb158-5"><a href="分散分析-anova.html#cb158-5" tabindex="-1"></a><span class="co">#&gt;       A     B</span></span>
+<span id="cb158-6"><a href="分散分析-anova.html#cb158-6" tabindex="-1"></a><span class="co">#&gt; 1 2.257 4.065</span></span>
+<span id="cb158-7"><a href="分散分析-anova.html#cb158-7" tabindex="-1"></a><span class="co">#&gt; 2 4.273 4.771</span></span>
+<span id="cb158-8"><a href="分散分析-anova.html#cb158-8" tabindex="-1"></a><span class="co">#&gt; 3 4.205 2.793</span></span>
+<span id="cb158-9"><a href="分散分析-anova.html#cb158-9" tabindex="-1"></a><span class="co">#&gt; 4 3.251 3.003</span></span>
+<span id="cb158-10"><a href="分散分析-anova.html#cb158-10" tabindex="-1"></a><span class="co">#&gt; 5 1.534 3.250</span></span>
+<span id="cb158-11"><a href="分散分析-anova.html#cb158-11" tabindex="-1"></a><span class="co">#&gt; 6 3.327 3.390</span></span>
+<span id="cb158-12"><a href="分散分析-anova.html#cb158-12" tabindex="-1"></a></span>
+<span id="cb158-13"><a href="分散分析-anova.html#cb158-13" tabindex="-1"></a><span class="co"># xの整形 (横型 → 縦型)</span></span>
+<span id="cb158-14"><a href="分散分析-anova.html#cb158-14" tabindex="-1"></a>xvec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">as.matrix</span>(x))  <span class="co"># xをベクトル化</span></span>
+<span id="cb158-15"><a href="分散分析-anova.html#cb158-15" tabindex="-1"></a>yvec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">&quot;B&quot;</span>, <span class="dv">20</span>))</span>
+<span id="cb158-16"><a href="分散分析-anova.html#cb158-16" tabindex="-1"></a>xdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">score =</span> xvec, <span class="at">type =</span> yvec)</span>
+<span id="cb158-17"><a href="分散分析-anova.html#cb158-17" tabindex="-1"></a><span class="fu">str</span>(xdf)</span>
+<span id="cb158-18"><a href="分散分析-anova.html#cb158-18" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    40 obs. of  2 variables:</span></span>
+<span id="cb158-19"><a href="分散分析-anova.html#cb158-19" tabindex="-1"></a><span class="co">#&gt;  $ score: num  2.26 4.27 4.21 3.25 1.53 ...</span></span>
+<span id="cb158-20"><a href="分散分析-anova.html#cb158-20" tabindex="-1"></a><span class="co">#&gt;  $ type : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...</span></span>
+<span id="cb158-21"><a href="分散分析-anova.html#cb158-21" tabindex="-1"></a>xdf<span class="sc">$</span>score</span>
+<span id="cb158-22"><a href="分散分析-anova.html#cb158-22" tabindex="-1"></a><span class="co">#&gt;  [1] 2.257 4.273 4.205 3.251 1.534 3.327 3.596 3.421 2.544 2.110 2.262 2.550</span></span>
+<span id="cb158-23"><a href="分散分析-anova.html#cb158-23" tabindex="-1"></a><span class="co">#&gt; [13] 2.790 2.033 3.688 3.440 3.797 3.644 2.906 1.230 4.065 4.771 2.793 3.003</span></span>
+<span id="cb158-24"><a href="分散分析-anova.html#cb158-24" tabindex="-1"></a><span class="co">#&gt; [25] 3.250 3.390 2.834 2.171 4.654 3.051 4.789 4.373 3.325 3.028 4.127 2.796</span></span>
+<span id="cb158-25"><a href="分散分析-anova.html#cb158-25" tabindex="-1"></a><span class="co">#&gt; [37] 2.015 4.379 3.380 3.793</span></span>
+<span id="cb158-26"><a href="分散分析-anova.html#cb158-26" tabindex="-1"></a>xdf[, <span class="st">&quot;score&quot;</span>]</span>
+<span id="cb158-27"><a href="分散分析-anova.html#cb158-27" tabindex="-1"></a><span class="co">#&gt;  [1] 2.257 4.273 4.205 3.251 1.534 3.327 3.596 3.421 2.544 2.110 2.262 2.550</span></span>
+<span id="cb158-28"><a href="分散分析-anova.html#cb158-28" tabindex="-1"></a><span class="co">#&gt; [13] 2.790 2.033 3.688 3.440 3.797 3.644 2.906 1.230 4.065 4.771 2.793 3.003</span></span>
+<span id="cb158-29"><a href="分散分析-anova.html#cb158-29" tabindex="-1"></a><span class="co">#&gt; [25] 3.250 3.390 2.834 2.171 4.654 3.051 4.789 4.373 3.325 3.028 4.127 2.796</span></span>
+<span id="cb158-30"><a href="分散分析-anova.html#cb158-30" tabindex="-1"></a><span class="co">#&gt; [37] 2.015 4.379 3.380 3.793</span></span>
+<span id="cb158-31"><a href="分散分析-anova.html#cb158-31" tabindex="-1"></a>xdf[, <span class="dv">1</span>]</span>
+<span id="cb158-32"><a href="分散分析-anova.html#cb158-32" tabindex="-1"></a><span class="co">#&gt;  [1] 2.257 4.273 4.205 3.251 1.534 3.327 3.596 3.421 2.544 2.110 2.262 2.550</span></span>
+<span id="cb158-33"><a href="分散分析-anova.html#cb158-33" tabindex="-1"></a><span class="co">#&gt; [13] 2.790 2.033 3.688 3.440 3.797 3.644 2.906 1.230 4.065 4.771 2.793 3.003</span></span>
+<span id="cb158-34"><a href="分散分析-anova.html#cb158-34" tabindex="-1"></a><span class="co">#&gt; [25] 3.250 3.390 2.834 2.171 4.654 3.051 4.789 4.373 3.325 3.028 4.127 2.796</span></span>
+<span id="cb158-35"><a href="分散分析-anova.html#cb158-35" tabindex="-1"></a><span class="co">#&gt; [37] 2.015 4.379 3.380 3.793</span></span>
+<span id="cb158-36"><a href="分散分析-anova.html#cb158-36" tabindex="-1"></a></span>
+<span id="cb158-37"><a href="分散分析-anova.html#cb158-37" tabindex="-1"></a><span class="co"># 代替的方法 stack(x)</span></span>
+<span id="cb158-38"><a href="分散分析-anova.html#cb158-38" tabindex="-1"></a></span>
+<span id="cb158-39"><a href="分散分析-anova.html#cb158-39" tabindex="-1"></a><span class="do">## library(tidyverse) gather関数(横型→縦型), spread関数(縦型→横型)</span></span></code></pre></div>
+<ul>
+<li>1元ANOVAの実行</li>
+</ul>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="分散分析-anova.html#cb159-1" tabindex="-1"></a><span class="co"># 1元ANOVA</span></span>
+<span id="cb159-2"><a href="分散分析-anova.html#cb159-2" tabindex="-1"></a><span class="fu">attach</span>(xdf)</span>
+<span id="cb159-3"><a href="分散分析-anova.html#cb159-3" tabindex="-1"></a>res_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> type)</span>
+<span id="cb159-4"><a href="分散分析-anova.html#cb159-4" tabindex="-1"></a><span class="fu">summary</span>(res_aov)</span>
+<span id="cb159-5"><a href="分散分析-anova.html#cb159-5" tabindex="-1"></a></span>
+<span id="cb159-6"><a href="分散分析-anova.html#cb159-6" tabindex="-1"></a><span class="do">### 代替アプローチ (1)</span></span>
+<span id="cb159-7"><a href="分散分析-anova.html#cb159-7" tabindex="-1"></a><span class="fu">oneway.test</span>(score <span class="sc">~</span> type)</span>
+<span id="cb159-8"><a href="分散分析-anova.html#cb159-8" tabindex="-1"></a><span class="co"># デフォルト：等分散を仮定しない</span></span>
+<span id="cb159-9"><a href="分散分析-anova.html#cb159-9" tabindex="-1"></a></span>
+<span id="cb159-10"><a href="分散分析-anova.html#cb159-10" tabindex="-1"></a><span class="fu">oneway.test</span>(score <span class="sc">~</span> type, <span class="at">var.equal =</span> T)</span>
+<span id="cb159-11"><a href="分散分析-anova.html#cb159-11" tabindex="-1"></a><span class="co"># 等分散を仮定</span></span>
+<span id="cb159-12"><a href="分散分析-anova.html#cb159-12" tabindex="-1"></a></span>
+<span id="cb159-13"><a href="分散分析-anova.html#cb159-13" tabindex="-1"></a><span class="do">### 代替アプローチ (2)</span></span>
+<span id="cb159-14"><a href="分散分析-anova.html#cb159-14" tabindex="-1"></a>res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> type)</span>
+<span id="cb159-15"><a href="分散分析-anova.html#cb159-15" tabindex="-1"></a>res_anova <span class="ot">&lt;-</span> <span class="fu">anova</span>(res_lm)</span>
+<span id="cb159-16"><a href="分散分析-anova.html#cb159-16" tabindex="-1"></a>res_anova  <span class="co"># summary()を使わずに出力</span></span>
+<span id="cb159-17"><a href="分散分析-anova.html#cb159-17" tabindex="-1"></a></span>
+<span id="cb159-18"><a href="分散分析-anova.html#cb159-18" tabindex="-1"></a><span class="fu">detach</span>(xdf)</span>
+<span id="cb159-19"><a href="分散分析-anova.html#cb159-19" tabindex="-1"></a></span>
+<span id="cb159-20"><a href="分散分析-anova.html#cb159-20" tabindex="-1"></a><span class="co"># 等分散検定</span></span>
+<span id="cb159-21"><a href="分散分析-anova.html#cb159-21" tabindex="-1"></a><span class="fu">var.test</span>(x<span class="sc">$</span>A, x<span class="sc">$</span>B)</span>
+<span id="cb159-22"><a href="分散分析-anova.html#cb159-22" tabindex="-1"></a><span class="fu">boxplot</span>(x)</span>
+<span id="cb159-23"><a href="分散分析-anova.html#cb159-23" tabindex="-1"></a></span>
+<span id="cb159-24"><a href="分散分析-anova.html#cb159-24" tabindex="-1"></a><span class="co"># t検定との比較</span></span>
+<span id="cb159-25"><a href="分散分析-anova.html#cb159-25" tabindex="-1"></a><span class="fu">t.test</span>(x<span class="sc">$</span>A, x<span class="sc">$</span>B)</span>
+<span id="cb159-26"><a href="分散分析-anova.html#cb159-26" tabindex="-1"></a><span class="fu">t.test</span>(x<span class="sc">$</span>A, x<span class="sc">$</span>B, <span class="at">var.equal =</span> T)</span>
+<span id="cb159-27"><a href="分散分析-anova.html#cb159-27" tabindex="-1"></a><span class="do">## t.test(x$A, x$B, paired=T)</span></span></code></pre></div>
+</div>
+<div id="データ2-統計小テストデータ" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> データ2: 統計小テストデータ<a href="分散分析-anova.html#データ2-統計小テストデータ" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>year(学年), MF(性別:男性1女性2), AS(文理:文系1その他2理系3), math(数学履修年数), work(勤務年数), stat(統計学経験0-2), MS(経営科学好き嫌い0-3), s4(4級相当得点), s3(3級相当得点), s2(2級相当得点)</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="分散分析-anova.html#cb161-1" tabindex="-1"></a>testdat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;BS_stattest.csv&quot;</span>, <span class="at">header =</span> F)</span>
+<span id="cb161-2"><a href="分散分析-anova.html#cb161-2" tabindex="-1"></a><span class="fu">colnames</span>(testdat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;MF&quot;</span>, <span class="st">&quot;AS&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;work&quot;</span>, <span class="st">&quot;stat&quot;</span>, <span class="st">&quot;MS&quot;</span>, <span class="st">&quot;s4&quot;</span>, <span class="st">&quot;s3&quot;</span>,</span>
+<span id="cb161-3"><a href="分散分析-anova.html#cb161-3" tabindex="-1"></a>  <span class="st">&quot;s2&quot;</span>)</span>
+<span id="cb161-4"><a href="分散分析-anova.html#cb161-4" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="分散分析-anova.html#cb161-5" tabindex="-1"></a><span class="co"># 総合得点の計算, 列に追加</span></span>
+<span id="cb161-6"><a href="分散分析-anova.html#cb161-6" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">apply</span>(testdat[, <span class="fu">c</span>(<span class="st">&quot;s4&quot;</span>, <span class="st">&quot;s3&quot;</span>, <span class="st">&quot;s2&quot;</span>)], <span class="dv">1</span>, sum)</span>
+<span id="cb161-7"><a href="分散分析-anova.html#cb161-7" tabindex="-1"></a>testdat2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(testdat, score)</span>
+<span id="cb161-8"><a href="分散分析-anova.html#cb161-8" tabindex="-1"></a></span>
+<span id="cb161-9"><a href="分散分析-anova.html#cb161-9" tabindex="-1"></a><span class="co"># モダンな方法 library(tidyverse) testdat2 &lt;- testdat %&gt;% mutate(score = s4 +</span></span>
+<span id="cb161-10"><a href="分散分析-anova.html#cb161-10" tabindex="-1"></a><span class="co"># s3 + s2)</span></span>
+<span id="cb161-11"><a href="分散分析-anova.html#cb161-11" tabindex="-1"></a></span>
+<span id="cb161-12"><a href="分散分析-anova.html#cb161-12" tabindex="-1"></a><span class="fu">str</span>(testdat2)</span>
+<span id="cb161-13"><a href="分散分析-anova.html#cb161-13" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    37 obs. of  11 variables:</span></span>
+<span id="cb161-14"><a href="分散分析-anova.html#cb161-14" tabindex="-1"></a><span class="co">#&gt;  $ year : int  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb161-15"><a href="分散分析-anova.html#cb161-15" tabindex="-1"></a><span class="co">#&gt;  $ MF   : int  1 1 1 1 2 1 1 1 1 1 ...</span></span>
+<span id="cb161-16"><a href="分散分析-anova.html#cb161-16" tabindex="-1"></a><span class="co">#&gt;  $ AS   : int  1 2 1 1 1 1 1 1 1 3 ...</span></span>
+<span id="cb161-17"><a href="分散分析-anova.html#cb161-17" tabindex="-1"></a><span class="co">#&gt;  $ math : int  13 6 8 7 5 5 5 6 8 10 ...</span></span>
+<span id="cb161-18"><a href="分散分析-anova.html#cb161-18" tabindex="-1"></a><span class="co">#&gt;  $ work : int  7 6 4 4 1 5 4 7 0 8 ...</span></span>
+<span id="cb161-19"><a href="分散分析-anova.html#cb161-19" tabindex="-1"></a><span class="co">#&gt;  $ stat : int  1 0 1 0 0 0 0 0 0 0 ...</span></span>
+<span id="cb161-20"><a href="分散分析-anova.html#cb161-20" tabindex="-1"></a><span class="co">#&gt;  $ MS   : int  2 3 1 1 1 1 0 1 1 2 ...</span></span>
+<span id="cb161-21"><a href="分散分析-anova.html#cb161-21" tabindex="-1"></a><span class="co">#&gt;  $ s4   : int  7 8 7 7 7 5 5 7 8 7 ...</span></span>
+<span id="cb161-22"><a href="分散分析-anova.html#cb161-22" tabindex="-1"></a><span class="co">#&gt;  $ s3   : int  8 8 6 9 5 8 3 7 6 8 ...</span></span>
+<span id="cb161-23"><a href="分散分析-anova.html#cb161-23" tabindex="-1"></a><span class="co">#&gt;  $ s2   : int  7 8 6 7 4 7 2 6 7 5 ...</span></span>
+<span id="cb161-24"><a href="分散分析-anova.html#cb161-24" tabindex="-1"></a><span class="co">#&gt;  $ score: int  22 24 19 23 16 20 10 20 21 20 ...</span></span>
+<span id="cb161-25"><a href="分散分析-anova.html#cb161-25" tabindex="-1"></a><span class="co"># → 得点以外の変数も数値(整数)で入力されている</span></span>
+<span id="cb161-26"><a href="分散分析-anova.html#cb161-26" tabindex="-1"></a></span>
+<span id="cb161-27"><a href="分散分析-anova.html#cb161-27" tabindex="-1"></a><span class="co"># 分割表(クロス集計表)</span></span>
+<span id="cb161-28"><a href="分散分析-anova.html#cb161-28" tabindex="-1"></a><span class="fu">table</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;AS&quot;</span>)])</span>
+<span id="cb161-29"><a href="分散分析-anova.html#cb161-29" tabindex="-1"></a><span class="co">#&gt;    AS</span></span>
+<span id="cb161-30"><a href="分散分析-anova.html#cb161-30" tabindex="-1"></a><span class="co">#&gt; MF   1  2  3</span></span>
+<span id="cb161-31"><a href="分散分析-anova.html#cb161-31" tabindex="-1"></a><span class="co">#&gt;   1 17  3  9</span></span>
+<span id="cb161-32"><a href="分散分析-anova.html#cb161-32" tabindex="-1"></a><span class="co">#&gt;   2  4  1  3</span></span>
+<span id="cb161-33"><a href="分散分析-anova.html#cb161-33" tabindex="-1"></a></span>
+<span id="cb161-34"><a href="分散分析-anova.html#cb161-34" tabindex="-1"></a><span class="co"># 相関係数</span></span>
+<span id="cb161-35"><a href="分散分析-anova.html#cb161-35" tabindex="-1"></a><span class="fu">cor</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;math&quot;</span>, <span class="st">&quot;s2&quot;</span>)])</span>
+<span id="cb161-36"><a href="分散分析-anova.html#cb161-36" tabindex="-1"></a><span class="co">#&gt;            math         s2</span></span>
+<span id="cb161-37"><a href="分散分析-anova.html#cb161-37" tabindex="-1"></a><span class="co">#&gt; math 1.00000000 0.04241976</span></span>
+<span id="cb161-38"><a href="分散分析-anova.html#cb161-38" tabindex="-1"></a><span class="co">#&gt; s2   0.04241976 1.00000000</span></span>
+<span id="cb161-39"><a href="分散分析-anova.html#cb161-39" tabindex="-1"></a><span class="fu">cor</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;MS&quot;</span>, <span class="st">&quot;s4&quot;</span>, <span class="st">&quot;s3&quot;</span>, <span class="st">&quot;s2&quot;</span>)])</span>
+<span id="cb161-40"><a href="分散分析-anova.html#cb161-40" tabindex="-1"></a><span class="co">#&gt;           MS        s4        s3        s2</span></span>
+<span id="cb161-41"><a href="分散分析-anova.html#cb161-41" tabindex="-1"></a><span class="co">#&gt; MS 1.0000000 0.2592955 0.4922877 0.2600562</span></span>
+<span id="cb161-42"><a href="分散分析-anova.html#cb161-42" tabindex="-1"></a><span class="co">#&gt; s4 0.2592955 1.0000000 0.1315443 0.1245631</span></span>
+<span id="cb161-43"><a href="分散分析-anova.html#cb161-43" tabindex="-1"></a><span class="co">#&gt; s3 0.4922877 0.1315443 1.0000000 0.6435060</span></span>
+<span id="cb161-44"><a href="分散分析-anova.html#cb161-44" tabindex="-1"></a><span class="co">#&gt; s2 0.2600562 0.1245631 0.6435060 1.0000000</span></span>
+<span id="cb161-45"><a href="分散分析-anova.html#cb161-45" tabindex="-1"></a><span class="fu">cor</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;MS&quot;</span>, <span class="st">&quot;math&quot;</span>)])</span>
+<span id="cb161-46"><a href="分散分析-anova.html#cb161-46" tabindex="-1"></a><span class="co">#&gt;             MS      math</span></span>
+<span id="cb161-47"><a href="分散分析-anova.html#cb161-47" tabindex="-1"></a><span class="co">#&gt; MS   1.0000000 0.2864297</span></span>
+<span id="cb161-48"><a href="分散分析-anova.html#cb161-48" tabindex="-1"></a><span class="co">#&gt; math 0.2864297 1.0000000</span></span>
+<span id="cb161-49"><a href="分散分析-anova.html#cb161-49" tabindex="-1"></a></span>
+<span id="cb161-50"><a href="分散分析-anova.html#cb161-50" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
+<span id="cb161-51"><a href="分散分析-anova.html#cb161-51" tabindex="-1"></a><span class="fu">attach</span>(testdat2)</span>
+<span id="cb161-52"><a href="分散分析-anova.html#cb161-52" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb161-53"><a href="分散分析-anova.html#cb161-53" tabindex="-1"></a><span class="fu">boxplot</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MF))  <span class="co"># 2-level factor</span></span>
+<span id="cb161-54"><a href="分散分析-anova.html#cb161-54" tabindex="-1"></a><span class="fu">boxplot</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS))  <span class="co"># 4-level factor</span></span></code></pre></div>
+<p><img src="032-anova_files/figure-html/anova3-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="分散分析-anova.html#cb162-1" tabindex="-1"></a></span>
+<span id="cb162-2"><a href="分散分析-anova.html#cb162-2" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">table</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;AS&quot;</span>)])</span>
+<span id="cb162-3"><a href="分散分析-anova.html#cb162-3" tabindex="-1"></a><span class="fu">chisq.test</span>(aaa)</span>
+<span id="cb162-4"><a href="分散分析-anova.html#cb162-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb162-5"><a href="分散分析-anova.html#cb162-5" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test</span></span>
+<span id="cb162-6"><a href="分散分析-anova.html#cb162-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb162-7"><a href="分散分析-anova.html#cb162-7" tabindex="-1"></a><span class="co">#&gt; data:  aaa</span></span>
+<span id="cb162-8"><a href="分散分析-anova.html#cb162-8" tabindex="-1"></a><span class="co">#&gt; X-squared = 0.18986, df = 2, p-value = 0.9094</span></span>
+<span id="cb162-9"><a href="分散分析-anova.html#cb162-9" tabindex="-1"></a>aaa <span class="ot">&lt;-</span> <span class="fu">table</span>(testdat2[, <span class="fu">c</span>(<span class="st">&quot;MS&quot;</span>, <span class="st">&quot;AS&quot;</span>)])</span>
+<span id="cb162-10"><a href="分散分析-anova.html#cb162-10" tabindex="-1"></a><span class="fu">chisq.test</span>(aaa)</span>
+<span id="cb162-11"><a href="分散分析-anova.html#cb162-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb162-12"><a href="分散分析-anova.html#cb162-12" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test</span></span>
+<span id="cb162-13"><a href="分散分析-anova.html#cb162-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb162-14"><a href="分散分析-anova.html#cb162-14" tabindex="-1"></a><span class="co">#&gt; data:  aaa</span></span>
+<span id="cb162-15"><a href="分散分析-anova.html#cb162-15" tabindex="-1"></a><span class="co">#&gt; X-squared = 16.044, df = 6, p-value = 0.01352</span></span></code></pre></div>
+<ul>
+<li>1元ANOVA</li>
+</ul>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="分散分析-anova.html#cb163-1" tabindex="-1"></a><span class="co"># 1-way ANOVA</span></span>
+<span id="cb163-2"><a href="分散分析-anova.html#cb163-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS)))</span>
+<span id="cb163-3"><a href="分散分析-anova.html#cb163-3" tabindex="-1"></a><span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></span>
+<span id="cb163-4"><a href="分散分析-anova.html#cb163-4" tabindex="-1"></a><span class="co">#&gt; factor(MS)   3  108.2   36.07   3.282 0.0329 *</span></span>
+<span id="cb163-5"><a href="分散分析-anova.html#cb163-5" tabindex="-1"></a><span class="co">#&gt; Residuals   33  362.7   10.99                 </span></span>
+<span id="cb163-6"><a href="分散分析-anova.html#cb163-6" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb163-7"><a href="分散分析-anova.html#cb163-7" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb163-8"><a href="分散分析-anova.html#cb163-8" tabindex="-1"></a></span>
+<span id="cb163-9"><a href="分散分析-anova.html#cb163-9" tabindex="-1"></a><span class="co"># 代替的アプローチ</span></span>
+<span id="cb163-10"><a href="分散分析-anova.html#cb163-10" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS)))</span>
+<span id="cb163-11"><a href="分散分析-anova.html#cb163-11" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb163-12"><a href="分散分析-anova.html#cb163-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb163-13"><a href="分散分析-anova.html#cb163-13" tabindex="-1"></a><span class="co">#&gt; Response: score</span></span>
+<span id="cb163-14"><a href="分散分析-anova.html#cb163-14" tabindex="-1"></a><span class="co">#&gt;            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb163-15"><a href="分散分析-anova.html#cb163-15" tabindex="-1"></a><span class="co">#&gt; factor(MS)  3 108.22  36.074  3.2817 0.03293 *</span></span>
+<span id="cb163-16"><a href="分散分析-anova.html#cb163-16" tabindex="-1"></a><span class="co">#&gt; Residuals  33 362.75  10.992                  </span></span>
+<span id="cb163-17"><a href="分散分析-anova.html#cb163-17" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb163-18"><a href="分散分析-anova.html#cb163-18" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<ul>
+<li>2元ANOVA</li>
+</ul>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="分散分析-anova.html#cb164-1" tabindex="-1"></a><span class="do">### 2-way ANOVA 交互作用プロット</span></span>
+<span id="cb164-2"><a href="分散分析-anova.html#cb164-2" tabindex="-1"></a><span class="fu">interaction.plot</span>(<span class="fu">factor</span>(MS), <span class="fu">factor</span>(MF), score)</span></code></pre></div>
+<p><img src="032-anova_files/figure-html/anova5-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="分散分析-anova.html#cb165-1" tabindex="-1"></a></span>
+<span id="cb165-2"><a href="分散分析-anova.html#cb165-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS) <span class="sc">+</span> <span class="fu">factor</span>(MF)))  <span class="co"># 主効果項のみ (交互作用項なし)</span></span>
+<span id="cb165-3"><a href="分散分析-anova.html#cb165-3" tabindex="-1"></a><span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></span>
+<span id="cb165-4"><a href="分散分析-anova.html#cb165-4" tabindex="-1"></a><span class="co">#&gt; factor(MS)   3  108.2   36.07   3.571 0.0246 *</span></span>
+<span id="cb165-5"><a href="分散分析-anova.html#cb165-5" tabindex="-1"></a><span class="co">#&gt; factor(MF)   1   39.5   39.49   3.909 0.0567 .</span></span>
+<span id="cb165-6"><a href="分散分析-anova.html#cb165-6" tabindex="-1"></a><span class="co">#&gt; Residuals   32  323.3   10.10                 </span></span>
+<span id="cb165-7"><a href="分散分析-anova.html#cb165-7" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb165-8"><a href="分散分析-anova.html#cb165-8" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb165-9"><a href="分散分析-anova.html#cb165-9" tabindex="-1"></a></span>
+<span id="cb165-10"><a href="分散分析-anova.html#cb165-10" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS) <span class="sc">*</span> <span class="fu">factor</span>(MF)))  <span class="co"># 交互作用項有</span></span>
+<span id="cb165-11"><a href="分散分析-anova.html#cb165-11" tabindex="-1"></a><span class="co">#&gt;                       Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></span>
+<span id="cb165-12"><a href="分散分析-anova.html#cb165-12" tabindex="-1"></a><span class="co">#&gt; factor(MS)             3 108.22   36.07   3.727 0.0217 *</span></span>
+<span id="cb165-13"><a href="分散分析-anova.html#cb165-13" tabindex="-1"></a><span class="co">#&gt; factor(MF)             1  39.49   39.49   4.080 0.0524 .</span></span>
+<span id="cb165-14"><a href="分散分析-anova.html#cb165-14" tabindex="-1"></a><span class="co">#&gt; factor(MS):factor(MF)  2  32.92   16.46   1.701 0.1997  </span></span>
+<span id="cb165-15"><a href="分散分析-anova.html#cb165-15" tabindex="-1"></a><span class="co">#&gt; Residuals             30 290.35    9.68                 </span></span>
+<span id="cb165-16"><a href="分散分析-anova.html#cb165-16" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb165-17"><a href="分散分析-anova.html#cb165-17" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb165-18"><a href="分散分析-anova.html#cb165-18" tabindex="-1"></a></span>
+<span id="cb165-19"><a href="分散分析-anova.html#cb165-19" tabindex="-1"></a><span class="co"># 代替的アプローチ</span></span>
+<span id="cb165-20"><a href="分散分析-anova.html#cb165-20" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS) <span class="sc">+</span> <span class="fu">factor</span>(AS)))  <span class="co"># 主効果項のみ (交互作用項なし)</span></span>
+<span id="cb165-21"><a href="分散分析-anova.html#cb165-21" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb165-22"><a href="分散分析-anova.html#cb165-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb165-23"><a href="分散分析-anova.html#cb165-23" tabindex="-1"></a><span class="co">#&gt; Response: score</span></span>
+<span id="cb165-24"><a href="分散分析-anova.html#cb165-24" tabindex="-1"></a><span class="co">#&gt;            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb165-25"><a href="分散分析-anova.html#cb165-25" tabindex="-1"></a><span class="co">#&gt; factor(MS)  3 108.22  36.074  3.3147 0.03267 *</span></span>
+<span id="cb165-26"><a href="分散分析-anova.html#cb165-26" tabindex="-1"></a><span class="co">#&gt; factor(AS)  2  25.38  12.689  1.1659 0.32493  </span></span>
+<span id="cb165-27"><a href="分散分析-anova.html#cb165-27" tabindex="-1"></a><span class="co">#&gt; Residuals  31 337.37  10.883                  </span></span>
+<span id="cb165-28"><a href="分散分析-anova.html#cb165-28" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb165-29"><a href="分散分析-anova.html#cb165-29" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb165-30"><a href="分散分析-anova.html#cb165-30" tabindex="-1"></a></span>
+<span id="cb165-31"><a href="分散分析-anova.html#cb165-31" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(score <span class="sc">~</span> <span class="fu">factor</span>(AS) <span class="sc">+</span> <span class="fu">factor</span>(MS)))  <span class="co"># 分解順の影響</span></span>
+<span id="cb165-32"><a href="分散分析-anova.html#cb165-32" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb165-33"><a href="分散分析-anova.html#cb165-33" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb165-34"><a href="分散分析-anova.html#cb165-34" tabindex="-1"></a><span class="co">#&gt; Response: score</span></span>
+<span id="cb165-35"><a href="分散分析-anova.html#cb165-35" tabindex="-1"></a><span class="co">#&gt;            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb165-36"><a href="分散分析-anova.html#cb165-36" tabindex="-1"></a><span class="co">#&gt; factor(AS)  2   3.50   1.748  0.1607 0.85229  </span></span>
+<span id="cb165-37"><a href="分散分析-anova.html#cb165-37" tabindex="-1"></a><span class="co">#&gt; factor(MS)  3 130.10  43.368  3.9849 0.01642 *</span></span>
+<span id="cb165-38"><a href="分散分析-anova.html#cb165-38" tabindex="-1"></a><span class="co">#&gt; Residuals  31 337.37  10.883                  </span></span>
+<span id="cb165-39"><a href="分散分析-anova.html#cb165-39" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb165-40"><a href="分散分析-anova.html#cb165-40" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb165-41"><a href="分散分析-anova.html#cb165-41" tabindex="-1"></a></span>
+<span id="cb165-42"><a href="分散分析-anova.html#cb165-42" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS) <span class="sc">*</span> <span class="fu">factor</span>(AS)))  <span class="co"># 交互作用項有</span></span>
+<span id="cb165-43"><a href="分散分析-anova.html#cb165-43" tabindex="-1"></a><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span id="cb165-44"><a href="分散分析-anova.html#cb165-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb165-45"><a href="分散分析-anova.html#cb165-45" tabindex="-1"></a><span class="co">#&gt; Response: score</span></span>
+<span id="cb165-46"><a href="分散分析-anova.html#cb165-46" tabindex="-1"></a><span class="co">#&gt;                       Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
+<span id="cb165-47"><a href="分散分析-anova.html#cb165-47" tabindex="-1"></a><span class="co">#&gt; factor(MS)             3 108.22  36.074  3.3063 0.03397 *</span></span>
+<span id="cb165-48"><a href="分散分析-anova.html#cb165-48" tabindex="-1"></a><span class="co">#&gt; factor(AS)             2  25.38  12.689  1.1629 0.32672  </span></span>
+<span id="cb165-49"><a href="分散分析-anova.html#cb165-49" tabindex="-1"></a><span class="co">#&gt; factor(MS):factor(AS)  2  20.96  10.478  0.9603 0.39460  </span></span>
+<span id="cb165-50"><a href="分散分析-anova.html#cb165-50" tabindex="-1"></a><span class="co">#&gt; Residuals             29 316.42  10.911                  </span></span>
+<span id="cb165-51"><a href="分散分析-anova.html#cb165-51" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb165-52"><a href="分散分析-anova.html#cb165-52" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb165-53"><a href="分散分析-anova.html#cb165-53" tabindex="-1"></a></span>
+<span id="cb165-54"><a href="分散分析-anova.html#cb165-54" tabindex="-1"></a><span class="fu">lm</span>(score <span class="sc">~</span> <span class="fu">factor</span>(MS) <span class="sc">+</span> <span class="fu">factor</span>(MF))</span>
+<span id="cb165-55"><a href="分散分析-anova.html#cb165-55" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb165-56"><a href="分散分析-anova.html#cb165-56" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb165-57"><a href="分散分析-anova.html#cb165-57" tabindex="-1"></a><span class="co">#&gt; lm(formula = score ~ factor(MS) + factor(MF))</span></span>
+<span id="cb165-58"><a href="分散分析-anova.html#cb165-58" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb165-59"><a href="分散分析-anova.html#cb165-59" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb165-60"><a href="分散分析-anova.html#cb165-60" tabindex="-1"></a><span class="co">#&gt; (Intercept)  factor(MS)1  factor(MS)2  factor(MS)3  factor(MF)2  </span></span>
+<span id="cb165-61"><a href="分散分析-anova.html#cb165-61" tabindex="-1"></a><span class="co">#&gt;      15.552        2.693        3.820        8.448       -2.604</span></span>
+<span id="cb165-62"><a href="分散分析-anova.html#cb165-62" tabindex="-1"></a></span>
+<span id="cb165-63"><a href="分散分析-anova.html#cb165-63" tabindex="-1"></a><span class="fu">detach</span>(testdat2)</span></code></pre></div>
+<ul>
+<li>(自主課題) 対応のある分散分析の実行: 山田・杉澤・村井 (2008)『Rによるやさしい統計学』「第7章 分散分析」を参照せよ.</li>
+</ul>
+</div>
+<div id="データ3-経営科学アンケート" class="section level4 unnumbered hasAnchor">
+<h4>データ3: 経営科学アンケート<a href="分散分析-anova.html#データ3-経営科学アンケート" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>グループ(group), 負荷(workload), 難易度(difficulty), 有用性(usefulness), 貢献度(contribution), 数学スキル(Math), エクセルスキル(Excel), 文理(AS), 業務経験(Work), 性別(MF)</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="分散分析-anova.html#cb167-1" tabindex="-1"></a>testdat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;FB_dist.csv&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb167-2"><a href="分散分析-anova.html#cb167-2" tabindex="-1"></a><span class="fu">attach</span>(testdat)</span>
+<span id="cb167-3"><a href="分散分析-anova.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="分散分析-anova.html#cb167-4" tabindex="-1"></a><span class="co"># 実行1</span></span>
+<span id="cb167-5"><a href="分散分析-anova.html#cb167-5" tabindex="-1"></a><span class="fu">aov</span>(difficulty <span class="sc">~</span> Math)</span>
+<span id="cb167-6"><a href="分散分析-anova.html#cb167-6" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb167-7"><a href="分散分析-anova.html#cb167-7" tabindex="-1"></a><span class="co">#&gt;    aov(formula = difficulty ~ Math)</span></span>
+<span id="cb167-8"><a href="分散分析-anova.html#cb167-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb167-9"><a href="分散分析-anova.html#cb167-9" tabindex="-1"></a><span class="co">#&gt; Terms:</span></span>
+<span id="cb167-10"><a href="分散分析-anova.html#cb167-10" tabindex="-1"></a><span class="co">#&gt;                     Math Residuals</span></span>
+<span id="cb167-11"><a href="分散分析-anova.html#cb167-11" tabindex="-1"></a><span class="co">#&gt; Sum of Squares  20.02254  52.62250</span></span>
+<span id="cb167-12"><a href="分散分析-anova.html#cb167-12" tabindex="-1"></a><span class="co">#&gt; Deg. of Freedom        1       113</span></span>
+<span id="cb167-13"><a href="分散分析-anova.html#cb167-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb167-14"><a href="分散分析-anova.html#cb167-14" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 0.6824118</span></span>
+<span id="cb167-15"><a href="分散分析-anova.html#cb167-15" tabindex="-1"></a><span class="co">#&gt; Estimated effects may be unbalanced</span></span>
+<span id="cb167-16"><a href="分散分析-anova.html#cb167-16" tabindex="-1"></a></span>
+<span id="cb167-17"><a href="分散分析-anova.html#cb167-17" tabindex="-1"></a><span class="co"># anova(lm(difficulty ~ Math))</span></span>
+<span id="cb167-18"><a href="分散分析-anova.html#cb167-18" tabindex="-1"></a></span>
+<span id="cb167-19"><a href="分散分析-anova.html#cb167-19" tabindex="-1"></a><span class="co"># 実行2</span></span>
+<span id="cb167-20"><a href="分散分析-anova.html#cb167-20" tabindex="-1"></a><span class="fu">aov</span>(difficulty <span class="sc">~</span> <span class="fu">factor</span>(Math))</span>
+<span id="cb167-21"><a href="分散分析-anova.html#cb167-21" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb167-22"><a href="分散分析-anova.html#cb167-22" tabindex="-1"></a><span class="co">#&gt;    aov(formula = difficulty ~ factor(Math))</span></span>
+<span id="cb167-23"><a href="分散分析-anova.html#cb167-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb167-24"><a href="分散分析-anova.html#cb167-24" tabindex="-1"></a><span class="co">#&gt; Terms:</span></span>
+<span id="cb167-25"><a href="分散分析-anova.html#cb167-25" tabindex="-1"></a><span class="co">#&gt;                 factor(Math) Residuals</span></span>
+<span id="cb167-26"><a href="分散分析-anova.html#cb167-26" tabindex="-1"></a><span class="co">#&gt; Sum of Squares      21.81657  50.82847</span></span>
+<span id="cb167-27"><a href="分散分析-anova.html#cb167-27" tabindex="-1"></a><span class="co">#&gt; Deg. of Freedom            4       110</span></span>
+<span id="cb167-28"><a href="分散分析-anova.html#cb167-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb167-29"><a href="分散分析-anova.html#cb167-29" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 0.6797624</span></span>
+<span id="cb167-30"><a href="分散分析-anova.html#cb167-30" tabindex="-1"></a><span class="co">#&gt; Estimated effects may be unbalanced</span></span>
+<span id="cb167-31"><a href="分散分析-anova.html#cb167-31" tabindex="-1"></a></span>
+<span id="cb167-32"><a href="分散分析-anova.html#cb167-32" tabindex="-1"></a><span class="co"># anova(lm(difficulty ~ factor(Math)))</span></span>
+<span id="cb167-33"><a href="分散分析-anova.html#cb167-33" tabindex="-1"></a></span>
+<span id="cb167-34"><a href="分散分析-anova.html#cb167-34" tabindex="-1"></a><span class="fu">detach</span>(testdat)</span></code></pre></div>
+<ul>
+<li>(自主課題) 対応のある分散分析の実行を試みよ.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="仮説検定.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
