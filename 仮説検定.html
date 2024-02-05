@@ -190,13 +190,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="仮説検定.html"><a href="仮説検定.html"><i class="fa fa-check"></i><b>3</b> 仮説検定</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#パート1-平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> パート1: 平均値の差の検定</a></li>
-<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#パート2-カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> パート2: カイ二乗検定</a>
+<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> 平均値の差の検定</a></li>
+<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> カイ二乗検定</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="仮説検定.html"><a href="仮説検定.html#独立性検定"><i class="fa fa-check"></i><b>3.2.1</b> 独立性検定</a></li>
 <li class="chapter" data-level="3.2.2" data-path="仮説検定.html"><a href="仮説検定.html#適合度検定"><i class="fa fa-check"></i><b>3.2.2</b> 適合度検定</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="仮説検定.html"><a href="仮説検定.html#パート3-事例統計テストデータ"><i class="fa fa-check"></i><b>3.3</b> パート3: 事例(統計テストデータ)</a></li>
+<li class="chapter" data-level="3.3" data-path="仮説検定.html"><a href="仮説検定.html#分析例-統計テストデータ"><i class="fa fa-check"></i><b>3.3</b> 分析例: 統計テストデータ</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="分散分析-anova.html"><a href="分散分析-anova.html"><i class="fa fa-check"></i><b>4</b> 分散分析 (ANOVA)</a>
 <ul>
@@ -247,8 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="仮説検定" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> 仮説検定<a href="仮説検定.html#仮説検定" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="パート1-平均値の差の検定" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> パート1: 平均値の差の検定<a href="仮説検定.html#パート1-平均値の差の検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="平均値の差の検定" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 平均値の差の検定<a href="仮説検定.html#平均値の差の検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre><code># t.test(x, y = NULL, 
 #    alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;), 
 #    mu = 0, paired = FALSE, var.equal = FALSE, 
@@ -391,8 +391,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb142-9"><a href="仮説検定.html#cb142-9" tabindex="-1"></a></span>
 <span id="cb142-10"><a href="仮説検定.html#cb142-10" tabindex="-1"></a><span class="fu">detach</span>(x)</span></code></pre></div>
 </div>
-<div id="パート2-カイ二乗検定" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> パート2: カイ二乗検定<a href="仮説検定.html#パート2-カイ二乗検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="カイ二乗検定" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> カイ二乗検定<a href="仮説検定.html#カイ二乗検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre><code># chisq.test(x, y = NULL, correct = TRUE, 
 #      p = rep(1 / length(x), length(x)), rescale.p = FALSE, simulate.p.value = FALSE, B = 2000)
 # chisq.test performs chi-squared contingency table tests and goodness-of-fit tests.</code></pre>
@@ -499,8 +499,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb146-15"><a href="仮説検定.html#cb146-15" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chisq, <span class="dv">3</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="パート3-事例統計テストデータ" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> パート3: 事例(統計テストデータ)<a href="仮説検定.html#パート3-事例統計テストデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="分析例-統計テストデータ" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 分析例: 統計テストデータ<a href="仮説検定.html#分析例-統計テストデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="仮説検定.html#cb147-1" tabindex="-1"></a>testdat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;BS_stattest.csv&quot;</span>, <span class="at">header =</span> F)</span>
 <span id="cb147-2"><a href="仮説検定.html#cb147-2" tabindex="-1"></a><span class="co"># year(学年), MF(性別:男性1女性2), AS(文理:文系1その他2理系3),</span></span>
 <span id="cb147-3"><a href="仮説検定.html#cb147-3" tabindex="-1"></a><span class="co"># math(数学履修年数), work(勤務年数), stat(統計学経験0-2),</span></span>

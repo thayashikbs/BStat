@@ -190,13 +190,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="仮説検定.html"><a href="仮説検定.html"><i class="fa fa-check"></i><b>3</b> 仮説検定</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#パート1-平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> パート1: 平均値の差の検定</a></li>
-<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#パート2-カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> パート2: カイ二乗検定</a>
+<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> 平均値の差の検定</a></li>
+<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> カイ二乗検定</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="仮説検定.html"><a href="仮説検定.html#独立性検定"><i class="fa fa-check"></i><b>3.2.1</b> 独立性検定</a></li>
 <li class="chapter" data-level="3.2.2" data-path="仮説検定.html"><a href="仮説検定.html#適合度検定"><i class="fa fa-check"></i><b>3.2.2</b> 適合度検定</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="仮説検定.html"><a href="仮説検定.html#パート3-事例統計テストデータ"><i class="fa fa-check"></i><b>3.3</b> パート3: 事例(統計テストデータ)</a></li>
+<li class="chapter" data-level="3.3" data-path="仮説検定.html"><a href="仮説検定.html#分析例-統計テストデータ"><i class="fa fa-check"></i><b>3.3</b> 分析例: 統計テストデータ</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="分散分析-anova.html"><a href="分散分析-anova.html"><i class="fa fa-check"></i><b>4</b> 分散分析 (ANOVA)</a>
 <ul>
@@ -338,20 +338,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="データ2-ボストン市内住宅物件価格データ" class="section level3 unnumbered hasAnchor">
 <h3>データ2: ボストン市内住宅物件価格データ<a href="線形回帰分析.html#データ2-ボストン市内住宅物件価格データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>- Boston Housingデータ
-  - crim: 町ごとの一人当たりの犯罪率
-  - zn: 25,000平方フィート以上の土地に区画された住宅地の割合
+  - crim: 町ごとの一人当たり犯罪率
+  - zn: 25,000平方フィート以上の住宅用地の割合
   - indus: 町ごとの非小売業の土地の割合
-  - chas: チャールズ川に境界を接する場合は1, それ以外は0のダミー変数
-  - nox: 窒素酸化物濃度（1000万分の1単位で表記）
-  - rm: 住居ごとの平均部屋数
-  - age: 1940年以前に建設された所有者占有ユニットの割合
-  - dis: ボストンの5つの雇用センターまでの重み付けされた距離
-  - rad: 放射状の高速道路へのアクセス指数
-  - tax: 10,000ドルごとの全額財産税率
-  - ptratio: 町ごとの生徒と教師の比率
-  - b: 1000(B - 0.63)^2, ここでBは町ごとの黒人の割合
+  - chas: チャールズ川のダミー変数 (川に接している場合は1, さもなくば0)
+  - nox: 窒素酸化物濃度（1000万ppm）
+  - rm: 1住居当たりの平均部屋数
+  - age: 1940年以前に建設された住戸の持ち家比率
+  - dis: ボストンの5つの雇用センターまでの距離の加重平均
+  - rad: 放射状高速道路へのアクセス指数
+  - tax: 10,000米ドル当たりの固定資産税率
+  -  ptratio: 町ごとの生徒数・教師数比率
+  - b: 1000(B - 0.63)^2 (Bは町ごとの黒人の割合)
   - lstat: 低所得者層の割合
-  - medv: 所有者占有住宅の中央値（1000ドル単位）
+  - medv: 持ち家住宅の中央値（1000ドル単位）
 - 506件 x 14変数 (オリジナル版)
 - source: http://lib.stat.cmu.edu/datasets/boston</code></pre>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="線形回帰分析.html#cb178-1" tabindex="-1"></a>housing <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;boston_housing.csv&quot;</span>, <span class="at">header =</span> T)</span></code></pre></div>
@@ -769,20 +769,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="データセット3-高速道路事故データ" class="section level3 unnumbered hasAnchor">
 <h3>データセット#3: 高速道路事故データ<a href="線形回帰分析.html#データセット3-高速道路事故データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>- Hoffstedt’s Highway accident data
-  - adt: 平均日別交通量（千台）
-  - trks: トータル交通量に対するトラックの割合（パーセント）
-  - lane: 交通レーンの合計数
-  - acpt: 1マイルあたりのアクセスポイントの数
-  - sigs: 1マイルあたりの信号交差点の数
-  - itg: 1マイルあたりの高速道路型交差点の数
-  - slim: 1973年の速度制限
-  - len: ハイウェイセグメントの長さ（マイル単位）
-  - lwid: レーン幅（フィート単位）
-  - shld: 道路の外側ショルダーの幅（フィート単位）
-  - htype: 道路の種類または道路の資金調達源を示すインジケーター.
-    &quot;mc&quot;: 主要コレクター, &quot;fai&quot;: 連邦間高速道路,
-    &quot;pa&quot;: (地域・都市間) 主要幹線道路, &quot;ma&quot;; (地域・都市内) 主要幹線道路
-  - rate: 1973年の発生事故率（百万車両マイル当たり）
+  - adt：1日の平均交通量（単位：千台)
+  - trks：総交通量に占めるトラック交通量の割合
+  - lane：交通の総車線数
+  - acpt：1マイルあたりのアクセスポイント数
+  - sigs: 1マイルあたりの信号付きインターチェンジの数
+  - itg：1マイルあたりの高速道路型インターチェンジの数
+  - slim：1973年の制限速度
+  - lwid: 車線幅（フィート単位） 
+  - shld: 車道の外側路肩の幅（フィート単位)
+  - htype: 道路の種類または道路の財源を示す指標:
+    &quot;mc&quot;: メジャーコレクター (major collector), &quot;fai&quot;: 州間 (interstate) 高速道路, &quot;pa&quot;: 地域・都市間主要幹線 (principal arterial) 道路, &quot;ma&quot;; 地域・都市内主要幹線 (major arterial) 道路
+  - rate: 1973年の事故発生率（百万車両マイル当たり）
 - 注) htypeは4-水準因子
 - 参考文献: Weisberg (2014), Applied Linear Regression, 4th Ed., Wiley.</code></pre>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="線形回帰分析.html#cb187-1" tabindex="-1"></a><span class="fu">library</span>(alr4)</span>
