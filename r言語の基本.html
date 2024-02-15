@@ -227,6 +227,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="線形回帰分析.html"><a href="線形回帰分析.html#データセット4-株式市場"><i class="fa fa-check"></i>データセット#4: 株式市場</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="線形回帰分析.html"><a href="線形回帰分析.html#線形モデル"><i class="fa fa-check"></i><b>5.5</b> 線形モデル</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰分析.html"><a href="線形回帰分析.html#因子モデルの例-交互作用なし"><i class="fa fa-check"></i>2因子モデルの例 (交互作用なし)</a></li>
+<li class="chapter" data-level="" data-path="線形回帰分析.html"><a href="線形回帰分析.html#因子モデルの例-交互作用有り"><i class="fa fa-check"></i>2因子モデルの例 (交互作用有り)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html"><i class="fa fa-check"></i><b>6</b> ロジット/ブロビット回帰分析</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#ロジット回帰分析の基本操作"><i class="fa fa-check"></i><b>6.1</b> ロジット回帰分析の基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#ロジットモデル-シミュレーションデータ"><i class="fa fa-check"></i>ロジットモデル: シミュレーションデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データ分析例"><i class="fa fa-check"></i><b>6.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-1-販売プロモーションデータ-仮想"><i class="fa fa-check"></i>データセット (1): 販売プロモーション・データ (仮想)</a></li>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-2-個人ローンデフォルトデータ-仮想"><i class="fa fa-check"></i>データセット (2): 個人ローン・デフォルト・データ (仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#関数factorについて"><i class="fa fa-check"></i><b>6.3</b> 関数<code>factor()</code>について</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#rでのfactor関数の使い方"><i class="fa fa-check"></i>Rでのfactor関数の使い方</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -678,12 +699,12 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <span id="cb94-14"><a href="r言語の基本.html#cb94-14" tabindex="-1"></a>lm_res[<span class="st">&quot;coefficients&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] TRUE
 ## (Intercept)         xxx 
-##   0.3708639   0.3989432 
+##   0.7149629   0.4631773 
 ## (Intercept)         xxx 
-##   0.3708639   0.3989432 
+##   0.7149629   0.4631773 
 ## $coefficients
 ## (Intercept)         xxx 
-##   0.3708639   0.3989432</code></pre>
+##   0.7149629   0.4631773</code></pre>
 </div>
 <div id="データフレーム" class="section level3 hasAnchor" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1053,6 +1074,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
