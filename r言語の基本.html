@@ -244,7 +244,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-1-販売プロモーションデータ-仮想"><i class="fa fa-check"></i>データセット (1): 販売プロモーション・データ (仮想)</a></li>
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-2-個人ローンデフォルトデータ-仮想"><i class="fa fa-check"></i>データセット (2): 個人ローン・デフォルト・データ (仮想)</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#関数factorについて"><i class="fa fa-check"></i><b>6.3</b> 関数<code>factor()</code>について</a>
+<li class="chapter" data-level="6.3" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#疑似r2の計算"><i class="fa fa-check"></i><b>6.3</b> 疑似R2の計算</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージdesctoolsの利用"><i class="fa fa-check"></i>パッケージDescToolsの利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージpsclの利用"><i class="fa fa-check"></i>パッケージpsclの利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージperformanceの利用"><i class="fa fa-check"></i>パッケージperformanceの利用</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#関数factorについて"><i class="fa fa-check"></i><b>6.4</b> 関数<code>factor()</code>について</a>
 <ul>
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#rでのfactor関数の使い方"><i class="fa fa-check"></i>Rでのfactor関数の使い方</a></li>
 </ul></li>
@@ -699,12 +705,12 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <span id="cb94-14"><a href="r言語の基本.html#cb94-14" tabindex="-1"></a>lm_res[<span class="st">&quot;coefficients&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] TRUE
 ## (Intercept)         xxx 
-##   0.7149629   0.4631773 
+##  -0.7206263   0.5456986 
 ## (Intercept)         xxx 
-##   0.7149629   0.4631773 
+##  -0.7206263   0.5456986 
 ## $coefficients
 ## (Intercept)         xxx 
-##   0.7149629   0.4631773</code></pre>
+##  -0.7206263   0.5456986</code></pre>
 </div>
 <div id="データフレーム" class="section level3 hasAnchor" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>

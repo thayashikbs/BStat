@@ -244,7 +244,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-1-販売プロモーションデータ-仮想"><i class="fa fa-check"></i>データセット (1): 販売プロモーション・データ (仮想)</a></li>
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#データセット-2-個人ローンデフォルトデータ-仮想"><i class="fa fa-check"></i>データセット (2): 個人ローン・デフォルト・データ (仮想)</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#関数factorについて"><i class="fa fa-check"></i><b>6.3</b> 関数<code>factor()</code>について</a>
+<li class="chapter" data-level="6.3" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#疑似r2の計算"><i class="fa fa-check"></i><b>6.3</b> 疑似R2の計算</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージdesctoolsの利用"><i class="fa fa-check"></i>パッケージDescToolsの利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージpsclの利用"><i class="fa fa-check"></i>パッケージpsclの利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#パッケージperformanceの利用"><i class="fa fa-check"></i>パッケージperformanceの利用</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#関数factorについて"><i class="fa fa-check"></i><b>6.4</b> 関数<code>factor()</code>について</a>
 <ul>
 <li class="chapter" data-level="" data-path="ロジットブロビット回帰分析.html"><a href="ロジットブロビット回帰分析.html#rでのfactor関数の使い方"><i class="fa fa-check"></i>Rでのfactor関数の使い方</a></li>
 </ul></li>
@@ -709,12 +715,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb231-4"><a href="ロジットブロビット回帰分析.html#cb231-4" tabindex="-1"></a><span class="co">#&gt; (Intercept) -21.713657994 -7.721969240</span></span>
 <span id="cb231-5"><a href="ロジットブロビット回帰分析.html#cb231-5" tabindex="-1"></a><span class="co">#&gt; ローン残高    0.002743950  0.007642011</span></span>
 <span id="cb231-6"><a href="ロジットブロビット回帰分析.html#cb231-6" tabindex="-1"></a><span class="co">#&gt; 収入         -0.005498298  0.003877354</span></span>
-<span id="cb231-7"><a href="ロジットブロビット回帰分析.html#cb231-7" tabindex="-1"></a><span class="co">#&gt; 職種B        -1.917922786  3.862413416</span></span></code></pre></div>
+<span id="cb231-7"><a href="ロジットブロビット回帰分析.html#cb231-7" tabindex="-1"></a><span class="co">#&gt; 職種B        -1.917922786  3.862413416</span></span>
+<span id="cb231-8"><a href="ロジットブロビット回帰分析.html#cb231-8" tabindex="-1"></a></span>
+<span id="cb231-9"><a href="ロジットブロビット回帰分析.html#cb231-9" tabindex="-1"></a><span class="fu">detach</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="疑似r2の計算" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 疑似R2の計算<a href="ロジットブロビット回帰分析.html#疑似r2の計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ロジットブロビット回帰分析.html#cb232-1" tabindex="-1"></a><span class="co"># ロジット回帰</span></span>
+<span id="cb232-2"><a href="ロジットブロビット回帰分析.html#cb232-2" tabindex="-1"></a>res_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(デフォルト <span class="sc">~</span> ローン残高 <span class="sc">+</span> 収入 <span class="sc">+</span> 職種, <span class="at">family =</span> binomial,</span>
+<span id="cb232-3"><a href="ロジットブロビット回帰分析.html#cb232-3" tabindex="-1"></a>  <span class="at">data =</span> default)</span>
+<span id="cb232-4"><a href="ロジットブロビット回帰分析.html#cb232-4" tabindex="-1"></a><span class="co"># summary(res_glm)</span></span></code></pre></div>
+<div id="パッケージdesctoolsの利用" class="section level3 unnumbered hasAnchor">
+<h3>パッケージDescToolsの利用<a href="ロジットブロビット回帰分析.html#パッケージdesctoolsの利用" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>DescTools::PseudoR2()
+- usage: PseudoR2(x, which = NULL)
+  - which: 計算したい疑似R2. 
+    選択肢: &quot;McFadden&quot;(デフォルト), &quot;McFaddenAdj&quot;, &quot;CoxSnell&quot;, &quot;Nagelkerke&quot;, &quot;AldrichNelson&quot;, &quot;VeallZimmermann&quot;, &quot;Efron&quot;, &quot;McKelveyZavoina&quot;, &quot;Tjur&quot;, &quot;all&quot;.</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="ロジットブロビット回帰分析.html#cb234-1" tabindex="-1"></a><span class="co"># 疑似R2の計算</span></span>
+<span id="cb234-2"><a href="ロジットブロビット回帰分析.html#cb234-2" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb234-3"><a href="ロジットブロビット回帰分析.html#cb234-3" tabindex="-1"></a><span class="fu">PseudoR2</span>(res_glm)  <span class="co"># McFadden (デフォルト)</span></span>
+<span id="cb234-4"><a href="ロジットブロビット回帰分析.html#cb234-4" tabindex="-1"></a><span class="co">#&gt;  McFadden </span></span>
+<span id="cb234-5"><a href="ロジットブロビット回帰分析.html#cb234-5" tabindex="-1"></a><span class="co">#&gt; 0.5430468</span></span>
+<span id="cb234-6"><a href="ロジットブロビット回帰分析.html#cb234-6" tabindex="-1"></a><span class="fu">PseudoR2</span>(res_glm, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)  <span class="co"># Cox-Snell</span></span>
+<span id="cb234-7"><a href="ロジットブロビット回帰分析.html#cb234-7" tabindex="-1"></a><span class="co">#&gt;  CoxSnell </span></span>
+<span id="cb234-8"><a href="ロジットブロビット回帰分析.html#cb234-8" tabindex="-1"></a><span class="co">#&gt; 0.4277647</span></span>
+<span id="cb234-9"><a href="ロジットブロビット回帰分析.html#cb234-9" tabindex="-1"></a><span class="fu">PseudoR2</span>(res_glm, <span class="at">which =</span> <span class="st">&quot;Nagelkerke&quot;</span>)  <span class="co"># Nagelkerke</span></span>
+<span id="cb234-10"><a href="ロジットブロビット回帰分析.html#cb234-10" tabindex="-1"></a><span class="co">#&gt; Nagelkerke </span></span>
+<span id="cb234-11"><a href="ロジットブロビット回帰分析.html#cb234-11" tabindex="-1"></a><span class="co">#&gt;  0.6660436</span></span>
+<span id="cb234-12"><a href="ロジットブロビット回帰分析.html#cb234-12" tabindex="-1"></a><span class="fu">PseudoR2</span>(res_glm, <span class="at">which =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb234-13"><a href="ロジットブロビット回帰分析.html#cb234-13" tabindex="-1"></a><span class="co">#&gt;        McFadden     McFaddenAdj        CoxSnell      Nagelkerke   AldrichNelson </span></span>
+<span id="cb234-14"><a href="ロジットブロビット回帰分析.html#cb234-14" tabindex="-1"></a><span class="co">#&gt;       0.5430468       0.4652192       0.4277647       0.6660436       0.3582359 </span></span>
+<span id="cb234-15"><a href="ロジットブロビット回帰分析.html#cb234-15" tabindex="-1"></a><span class="co">#&gt; VeallZimmermann           Efron McKelveyZavoina            Tjur             AIC </span></span>
+<span id="cb234-16"><a href="ロジットブロビット回帰分析.html#cb234-16" tabindex="-1"></a><span class="co">#&gt;       0.7067438       0.5736644       0.8515845       0.5589555      54.9708332 </span></span>
+<span id="cb234-17"><a href="ロジットブロビット回帰分析.html#cb234-17" tabindex="-1"></a><span class="co">#&gt;             BIC          logLik         logLik0              G2 </span></span>
+<span id="cb234-18"><a href="ロジットブロビット回帰分析.html#cb234-18" tabindex="-1"></a><span class="co">#&gt;      65.3915139     -23.4854166     -51.3956671      55.8205010</span></span></code></pre></div>
+</div>
+<div id="パッケージpsclの利用" class="section level3 unnumbered hasAnchor">
+<h3>パッケージpsclの利用<a href="ロジットブロビット回帰分析.html#パッケージpsclの利用" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>pscl::pR2()
+- 以下を出力:
+- llh: The log-likelihood from the fitted model
+- llhNull: The log-likelihood from the intercept-only restricted model
+- G2: Minus two times the difference in the log-likelihoods
+- McFadden: McFadden&#39;s pseudo r-squared
+- r2ML: Maximum likelihood pseudo r-squared
+- r2CU: Cragg and Uhler&#39;s pseudo r-squared</code></pre>
+<!--
+GPT-4:
+pR2関数: psclパッケージに含まれるpR2関数は、ロジスティック回帰モデルに対する疑似R^2の計算をサポートしています。McFaddenのR^2、Cox and SnellのR^2、NagelkerkeのR^2など、複数の疑似R^2の指標を提供します。
+とあるので, r2ML → Cox-Snell, r2CU → Nagelkerke,  に対応していると思われる
+-->
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ロジットブロビット回帰分析.html#cb236-1" tabindex="-1"></a><span class="co"># install.packages(&#39;pscl&#39;)</span></span>
+<span id="cb236-2"><a href="ロジットブロビット回帰分析.html#cb236-2" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb236-3"><a href="ロジットブロビット回帰分析.html#cb236-3" tabindex="-1"></a></span>
+<span id="cb236-4"><a href="ロジットブロビット回帰分析.html#cb236-4" tabindex="-1"></a><span class="co"># 疑似R2の計算</span></span>
+<span id="cb236-5"><a href="ロジットブロビット回帰分析.html#cb236-5" tabindex="-1"></a>pscl<span class="sc">::</span><span class="fu">pR2</span>(res_glm)</span>
+<span id="cb236-6"><a href="ロジットブロビット回帰分析.html#cb236-6" tabindex="-1"></a><span class="co">#&gt; fitting null model for pseudo-r2</span></span>
+<span id="cb236-7"><a href="ロジットブロビット回帰分析.html#cb236-7" tabindex="-1"></a><span class="co">#&gt;         llh     llhNull          G2    McFadden        r2ML        r2CU </span></span>
+<span id="cb236-8"><a href="ロジットブロビット回帰分析.html#cb236-8" tabindex="-1"></a><span class="co">#&gt; -23.4854166 -51.3956671  55.8205010   0.5430468   0.4277647   0.6660436</span></span></code></pre></div>
+</div>
+<div id="パッケージperformanceの利用" class="section level3 unnumbered hasAnchor">
+<h3>パッケージperformanceの利用<a href="ロジットブロビット回帰分析.html#パッケージperformanceの利用" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>performance::r2()
+- モデルに応じて適切な疑似R2を選んで出力:
+  - Logistic models: Tjur&#39;s R2
+  - General linear models: Nagelkerke&#39;s R2
+  - Multinomial Logit: McFadden&#39;s R2
+  - Models with zero-inflation: R2 for zero-inflated models
+  - Mixed models: Nakagawa&#39;s R2
+  - Bayesian models: R2 bayes</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="ロジットブロビット回帰分析.html#cb238-1" tabindex="-1"></a><span class="co"># install.packages(&#39;performance&#39;)</span></span>
+<span id="cb238-2"><a href="ロジットブロビット回帰分析.html#cb238-2" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb238-3"><a href="ロジットブロビット回帰分析.html#cb238-3" tabindex="-1"></a></span>
+<span id="cb238-4"><a href="ロジットブロビット回帰分析.html#cb238-4" tabindex="-1"></a><span class="co"># 疑似R2の計算</span></span>
+<span id="cb238-5"><a href="ロジットブロビット回帰分析.html#cb238-5" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">r2</span>(res_glm)</span>
+<span id="cb238-6"><a href="ロジットブロビット回帰分析.html#cb238-6" tabindex="-1"></a><span class="co">#&gt; # R2 for Logistic Regression</span></span>
+<span id="cb238-7"><a href="ロジットブロビット回帰分析.html#cb238-7" tabindex="-1"></a><span class="co">#&gt;   Tjur&#39;s R2: 0.559</span></span></code></pre></div>
 
 </div>
 </div>
-<div id="関数factorについて" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> 関数<code>factor()</code>について<a href="ロジットブロビット回帰分析.html#関数factorについて" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="関数factorについて" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> 関数<code>factor()</code>について<a href="ロジットブロビット回帰分析.html#関数factorについて" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Rの初心者向けに関数<code>factor()</code>の使い方に関する簡単な説明を行う.</p>
 <hr />
 <div id="rでのfactor関数の使い方" class="section level3 unnumbered hasAnchor">
@@ -722,67 +804,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>関数<code>factor()</code>は, カテゴリーデータ（文字列や整数を値に持つベクトル）を因子型（factor）に変換するために使用される.</p>
 <div id="ベクトルを因子に変換する" class="section level4 unnumbered hasAnchor">
 <h4>1. ベクトルを因子に変換する<a href="ロジットブロビット回帰分析.html#ベクトルを因子に変換する" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ロジットブロビット回帰分析.html#cb232-1" tabindex="-1"></a><span class="co"># サンプルのカテゴリーデータ</span></span>
-<span id="cb232-2"><a href="ロジットブロビット回帰分析.html#cb232-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>)</span>
-<span id="cb232-3"><a href="ロジットブロビット回帰分析.html#cb232-3" tabindex="-1"></a></span>
-<span id="cb232-4"><a href="ロジットブロビット回帰分析.html#cb232-4" tabindex="-1"></a><span class="co"># ベクトルを因子に変換する</span></span>
-<span id="cb232-5"><a href="ロジットブロビット回帰分析.html#cb232-5" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender)</span>
-<span id="cb232-6"><a href="ロジットブロビット回帰分析.html#cb232-6" tabindex="-1"></a></span>
-<span id="cb232-7"><a href="ロジットブロビット回帰分析.html#cb232-7" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
-<span id="cb232-8"><a href="ロジットブロビット回帰分析.html#cb232-8" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
-<span id="cb232-9"><a href="ロジットブロビット回帰分析.html#cb232-9" tabindex="-1"></a><span class="co">#&gt; [1] male   female female male   male  </span></span>
-<span id="cb232-10"><a href="ロジットブロビット回帰分析.html#cb232-10" tabindex="-1"></a><span class="co">#&gt; Levels: female male</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="ロジットブロビット回帰分析.html#cb239-1" tabindex="-1"></a><span class="co"># サンプルのカテゴリーデータ</span></span>
+<span id="cb239-2"><a href="ロジットブロビット回帰分析.html#cb239-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>)</span>
+<span id="cb239-3"><a href="ロジットブロビット回帰分析.html#cb239-3" tabindex="-1"></a></span>
+<span id="cb239-4"><a href="ロジットブロビット回帰分析.html#cb239-4" tabindex="-1"></a><span class="co"># ベクトルを因子に変換する</span></span>
+<span id="cb239-5"><a href="ロジットブロビット回帰分析.html#cb239-5" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender)</span>
+<span id="cb239-6"><a href="ロジットブロビット回帰分析.html#cb239-6" tabindex="-1"></a></span>
+<span id="cb239-7"><a href="ロジットブロビット回帰分析.html#cb239-7" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
+<span id="cb239-8"><a href="ロジットブロビット回帰分析.html#cb239-8" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
+<span id="cb239-9"><a href="ロジットブロビット回帰分析.html#cb239-9" tabindex="-1"></a><span class="co">#&gt; [1] male   female female male   male  </span></span>
+<span id="cb239-10"><a href="ロジットブロビット回帰分析.html#cb239-10" tabindex="-1"></a><span class="co">#&gt; Levels: female male</span></span></code></pre></div>
 </div>
 <div id="水準カテゴリーの指定" class="section level4 unnumbered hasAnchor">
 <h4>2. 水準（カテゴリー）の指定<a href="ロジットブロビット回帰分析.html#水準カテゴリーの指定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="ロジットブロビット回帰分析.html#cb233-1" tabindex="-1"></a><span class="co"># 水準（カテゴリー）を指定して因子に変換する</span></span>
-<span id="cb233-2"><a href="ロジットブロビット回帰分析.html#cb233-2" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span>
-<span id="cb233-3"><a href="ロジットブロビット回帰分析.html#cb233-3" tabindex="-1"></a></span>
-<span id="cb233-4"><a href="ロジットブロビット回帰分析.html#cb233-4" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
-<span id="cb233-5"><a href="ロジットブロビット回帰分析.html#cb233-5" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
-<span id="cb233-6"><a href="ロジットブロビット回帰分析.html#cb233-6" tabindex="-1"></a><span class="co">#&gt; [1] male   female female male   male  </span></span>
-<span id="cb233-7"><a href="ロジットブロビット回帰分析.html#cb233-7" tabindex="-1"></a><span class="co">#&gt; Levels: male female</span></span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="ロジットブロビット回帰分析.html#cb240-1" tabindex="-1"></a><span class="co"># 水準（カテゴリー）を指定して因子に変換する</span></span>
+<span id="cb240-2"><a href="ロジットブロビット回帰分析.html#cb240-2" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span>
+<span id="cb240-3"><a href="ロジットブロビット回帰分析.html#cb240-3" tabindex="-1"></a></span>
+<span id="cb240-4"><a href="ロジットブロビット回帰分析.html#cb240-4" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
+<span id="cb240-5"><a href="ロジットブロビット回帰分析.html#cb240-5" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
+<span id="cb240-6"><a href="ロジットブロビット回帰分析.html#cb240-6" tabindex="-1"></a><span class="co">#&gt; [1] male   female female male   male  </span></span>
+<span id="cb240-7"><a href="ロジットブロビット回帰分析.html#cb240-7" tabindex="-1"></a><span class="co">#&gt; Levels: male female</span></span></code></pre></div>
 </div>
 <div id="因子ラベルの指定" class="section level4 unnumbered hasAnchor">
 <h4>3. 因子ラベルの指定<a href="ロジットブロビット回帰分析.html#因子ラベルの指定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="ロジットブロビット回帰分析.html#cb234-1" tabindex="-1"></a><span class="co"># 因子ラベルを指定しながら因子に変換する</span></span>
-<span id="cb234-2"><a href="ロジットブロビット回帰分析.html#cb234-2" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span>
-<span id="cb234-3"><a href="ロジットブロビット回帰分析.html#cb234-3" tabindex="-1"></a></span>
-<span id="cb234-4"><a href="ロジットブロビット回帰分析.html#cb234-4" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
-<span id="cb234-5"><a href="ロジットブロビット回帰分析.html#cb234-5" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
-<span id="cb234-6"><a href="ロジットブロビット回帰分析.html#cb234-6" tabindex="-1"></a><span class="co">#&gt; [1] &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span></span>
-<span id="cb234-7"><a href="ロジットブロビット回帰分析.html#cb234-7" tabindex="-1"></a><span class="co">#&gt; Levels: male female</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="ロジットブロビット回帰分析.html#cb241-1" tabindex="-1"></a><span class="co"># 因子ラベルを指定しながら因子に変換する</span></span>
+<span id="cb241-2"><a href="ロジットブロビット回帰分析.html#cb241-2" tabindex="-1"></a>gender_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span>
+<span id="cb241-3"><a href="ロジットブロビット回帰分析.html#cb241-3" tabindex="-1"></a></span>
+<span id="cb241-4"><a href="ロジットブロビット回帰分析.html#cb241-4" tabindex="-1"></a><span class="co"># 変換後の因子の表示</span></span>
+<span id="cb241-5"><a href="ロジットブロビット回帰分析.html#cb241-5" tabindex="-1"></a><span class="fu">print</span>(gender_factor)</span>
+<span id="cb241-6"><a href="ロジットブロビット回帰分析.html#cb241-6" tabindex="-1"></a><span class="co">#&gt; [1] &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span></span>
+<span id="cb241-7"><a href="ロジットブロビット回帰分析.html#cb241-7" tabindex="-1"></a><span class="co">#&gt; Levels: male female</span></span></code></pre></div>
 </div>
 <div id="因子の利用" class="section level4 unnumbered hasAnchor">
 <h4>4. 因子の利用<a href="ロジットブロビット回帰分析.html#因子の利用" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Rのデータフレーム (data.frame) は, 行列の形をしているが, 実際は, 長さは等しいものの 異なる”データ型”のベクトルを要素に持つリスト (list) である.
 因子に変換されたデータは, データフレーム内でカテゴリー変数として保持することで, 統計解析や可視化などで利用される.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="ロジットブロビット回帰分析.html#cb235-1" tabindex="-1"></a><span class="co"># サンプルのカテゴリーデータ</span></span>
-<span id="cb235-2"><a href="ロジットブロビット回帰分析.html#cb235-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>)</span>
-<span id="cb235-3"><a href="ロジットブロビット回帰分析.html#cb235-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)</span>
-<span id="cb235-4"><a href="ロジットブロビット回帰分析.html#cb235-4" tabindex="-1"></a></span>
-<span id="cb235-5"><a href="ロジットブロビット回帰分析.html#cb235-5" tabindex="-1"></a><span class="co"># データフレームの作成</span></span>
-<span id="cb235-6"><a href="ロジットブロビット回帰分析.html#cb235-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> <span class="fu">factor</span>(gender), <span class="at">age =</span> age)</span>
-<span id="cb235-7"><a href="ロジットブロビット回帰分析.html#cb235-7" tabindex="-1"></a>df</span>
-<span id="cb235-8"><a href="ロジットブロビット回帰分析.html#cb235-8" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
-<span id="cb235-9"><a href="ロジットブロビット回帰分析.html#cb235-9" tabindex="-1"></a><span class="co">#&gt; 1   male  25</span></span>
-<span id="cb235-10"><a href="ロジットブロビット回帰分析.html#cb235-10" tabindex="-1"></a><span class="co">#&gt; 2 female  30</span></span>
-<span id="cb235-11"><a href="ロジットブロビット回帰分析.html#cb235-11" tabindex="-1"></a><span class="co">#&gt; 3 female  35</span></span>
-<span id="cb235-12"><a href="ロジットブロビット回帰分析.html#cb235-12" tabindex="-1"></a><span class="co">#&gt; 4   male  40</span></span>
-<span id="cb235-13"><a href="ロジットブロビット回帰分析.html#cb235-13" tabindex="-1"></a><span class="co">#&gt; 5   male  45</span></span>
-<span id="cb235-14"><a href="ロジットブロビット回帰分析.html#cb235-14" tabindex="-1"></a></span>
-<span id="cb235-15"><a href="ロジットブロビット回帰分析.html#cb235-15" tabindex="-1"></a><span class="co"># データフレームの要約</span></span>
-<span id="cb235-16"><a href="ロジットブロビット回帰分析.html#cb235-16" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
-<span id="cb235-17"><a href="ロジットブロビット回帰分析.html#cb235-17" tabindex="-1"></a><span class="co">#&gt;     gender       age    </span></span>
-<span id="cb235-18"><a href="ロジットブロビット回帰分析.html#cb235-18" tabindex="-1"></a><span class="co">#&gt;  female:2   Min.   :25  </span></span>
-<span id="cb235-19"><a href="ロジットブロビット回帰分析.html#cb235-19" tabindex="-1"></a><span class="co">#&gt;  male  :3   1st Qu.:30  </span></span>
-<span id="cb235-20"><a href="ロジットブロビット回帰分析.html#cb235-20" tabindex="-1"></a><span class="co">#&gt;             Median :35  </span></span>
-<span id="cb235-21"><a href="ロジットブロビット回帰分析.html#cb235-21" tabindex="-1"></a><span class="co">#&gt;             Mean   :35  </span></span>
-<span id="cb235-22"><a href="ロジットブロビット回帰分析.html#cb235-22" tabindex="-1"></a><span class="co">#&gt;             3rd Qu.:40  </span></span>
-<span id="cb235-23"><a href="ロジットブロビット回帰分析.html#cb235-23" tabindex="-1"></a><span class="co">#&gt;             Max.   :45</span></span>
-<span id="cb235-24"><a href="ロジットブロビット回帰分析.html#cb235-24" tabindex="-1"></a></span>
-<span id="cb235-25"><a href="ロジットブロビット回帰分析.html#cb235-25" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
-<span id="cb235-26"><a href="ロジットブロビット回帰分析.html#cb235-26" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="ロジットブロビット回帰分析.html#cb242-1" tabindex="-1"></a><span class="co"># サンプルのカテゴリーデータ</span></span>
+<span id="cb242-2"><a href="ロジットブロビット回帰分析.html#cb242-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>)</span>
+<span id="cb242-3"><a href="ロジットブロビット回帰分析.html#cb242-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)</span>
+<span id="cb242-4"><a href="ロジットブロビット回帰分析.html#cb242-4" tabindex="-1"></a></span>
+<span id="cb242-5"><a href="ロジットブロビット回帰分析.html#cb242-5" tabindex="-1"></a><span class="co"># データフレームの作成</span></span>
+<span id="cb242-6"><a href="ロジットブロビット回帰分析.html#cb242-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> <span class="fu">factor</span>(gender), <span class="at">age =</span> age)</span>
+<span id="cb242-7"><a href="ロジットブロビット回帰分析.html#cb242-7" tabindex="-1"></a>df</span>
+<span id="cb242-8"><a href="ロジットブロビット回帰分析.html#cb242-8" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
+<span id="cb242-9"><a href="ロジットブロビット回帰分析.html#cb242-9" tabindex="-1"></a><span class="co">#&gt; 1   male  25</span></span>
+<span id="cb242-10"><a href="ロジットブロビット回帰分析.html#cb242-10" tabindex="-1"></a><span class="co">#&gt; 2 female  30</span></span>
+<span id="cb242-11"><a href="ロジットブロビット回帰分析.html#cb242-11" tabindex="-1"></a><span class="co">#&gt; 3 female  35</span></span>
+<span id="cb242-12"><a href="ロジットブロビット回帰分析.html#cb242-12" tabindex="-1"></a><span class="co">#&gt; 4   male  40</span></span>
+<span id="cb242-13"><a href="ロジットブロビット回帰分析.html#cb242-13" tabindex="-1"></a><span class="co">#&gt; 5   male  45</span></span>
+<span id="cb242-14"><a href="ロジットブロビット回帰分析.html#cb242-14" tabindex="-1"></a></span>
+<span id="cb242-15"><a href="ロジットブロビット回帰分析.html#cb242-15" tabindex="-1"></a><span class="co"># データフレームの要約</span></span>
+<span id="cb242-16"><a href="ロジットブロビット回帰分析.html#cb242-16" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb242-17"><a href="ロジットブロビット回帰分析.html#cb242-17" tabindex="-1"></a><span class="co">#&gt;     gender       age    </span></span>
+<span id="cb242-18"><a href="ロジットブロビット回帰分析.html#cb242-18" tabindex="-1"></a><span class="co">#&gt;  female:2   Min.   :25  </span></span>
+<span id="cb242-19"><a href="ロジットブロビット回帰分析.html#cb242-19" tabindex="-1"></a><span class="co">#&gt;  male  :3   1st Qu.:30  </span></span>
+<span id="cb242-20"><a href="ロジットブロビット回帰分析.html#cb242-20" tabindex="-1"></a><span class="co">#&gt;             Median :35  </span></span>
+<span id="cb242-21"><a href="ロジットブロビット回帰分析.html#cb242-21" tabindex="-1"></a><span class="co">#&gt;             Mean   :35  </span></span>
+<span id="cb242-22"><a href="ロジットブロビット回帰分析.html#cb242-22" tabindex="-1"></a><span class="co">#&gt;             3rd Qu.:40  </span></span>
+<span id="cb242-23"><a href="ロジットブロビット回帰分析.html#cb242-23" tabindex="-1"></a><span class="co">#&gt;             Max.   :45</span></span>
+<span id="cb242-24"><a href="ロジットブロビット回帰分析.html#cb242-24" tabindex="-1"></a></span>
+<span id="cb242-25"><a href="ロジットブロビット回帰分析.html#cb242-25" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
+<span id="cb242-26"><a href="ロジットブロビット回帰分析.html#cb242-26" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
 <p><img src="072-factor_files/figure-html/unnamed-chunk-6-1.png" width="75%" /></p>
 <p>Rにおける標準的な統計解析や可視化を行う場合には,
 関数<code>factor()</code>を使うことで, カテゴリー変数はR内部で適正に処理されるため
@@ -791,56 +873,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>関数<code>lm()</code>や<code>glm()</code>等においては, 文字列を値に持つカテゴリー変数は明示的に<code>factor()</code>を使って因子型に
 変換せずとも, Rは因子型と解釈して関数を実行するが, もしそのカテゴリー変数が整数値 (例, <code>gender &lt;- c(1, 2, 2, 1, 1)</code>) を持つ場合には, <code>factor()</code>を使って
 変換しないと, 意図とは異なる結果やエラーを生じることになる</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ロジットブロビット回帰分析.html#cb236-1" tabindex="-1"></a><span class="co"># カテゴリーデータが整数値で記録されている場合</span></span>
-<span id="cb236-2"><a href="ロジットブロビット回帰分析.html#cb236-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb236-3"><a href="ロジットブロビット回帰分析.html#cb236-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)</span>
-<span id="cb236-4"><a href="ロジットブロビット回帰分析.html#cb236-4" tabindex="-1"></a></span>
-<span id="cb236-5"><a href="ロジットブロビット回帰分析.html#cb236-5" tabindex="-1"></a><span class="co"># データフレームの作成</span></span>
-<span id="cb236-6"><a href="ロジットブロビット回帰分析.html#cb236-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> gender, <span class="at">age =</span> age)</span>
-<span id="cb236-7"><a href="ロジットブロビット回帰分析.html#cb236-7" tabindex="-1"></a>df</span>
-<span id="cb236-8"><a href="ロジットブロビット回帰分析.html#cb236-8" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
-<span id="cb236-9"><a href="ロジットブロビット回帰分析.html#cb236-9" tabindex="-1"></a><span class="co">#&gt; 1      1  25</span></span>
-<span id="cb236-10"><a href="ロジットブロビット回帰分析.html#cb236-10" tabindex="-1"></a><span class="co">#&gt; 2      2  30</span></span>
-<span id="cb236-11"><a href="ロジットブロビット回帰分析.html#cb236-11" tabindex="-1"></a><span class="co">#&gt; 3      2  35</span></span>
-<span id="cb236-12"><a href="ロジットブロビット回帰分析.html#cb236-12" tabindex="-1"></a><span class="co">#&gt; 4      1  40</span></span>
-<span id="cb236-13"><a href="ロジットブロビット回帰分析.html#cb236-13" tabindex="-1"></a><span class="co">#&gt; 5      1  45</span></span>
-<span id="cb236-14"><a href="ロジットブロビット回帰分析.html#cb236-14" tabindex="-1"></a></span>
-<span id="cb236-15"><a href="ロジットブロビット回帰分析.html#cb236-15" tabindex="-1"></a><span class="co"># データフレームの要約?</span></span>
-<span id="cb236-16"><a href="ロジットブロビット回帰分析.html#cb236-16" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
-<span id="cb236-17"><a href="ロジットブロビット回帰分析.html#cb236-17" tabindex="-1"></a><span class="co">#&gt;      gender         age    </span></span>
-<span id="cb236-18"><a href="ロジットブロビット回帰分析.html#cb236-18" tabindex="-1"></a><span class="co">#&gt;  Min.   :1.0   Min.   :25  </span></span>
-<span id="cb236-19"><a href="ロジットブロビット回帰分析.html#cb236-19" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:1.0   1st Qu.:30  </span></span>
-<span id="cb236-20"><a href="ロジットブロビット回帰分析.html#cb236-20" tabindex="-1"></a><span class="co">#&gt;  Median :1.0   Median :35  </span></span>
-<span id="cb236-21"><a href="ロジットブロビット回帰分析.html#cb236-21" tabindex="-1"></a><span class="co">#&gt;  Mean   :1.4   Mean   :35  </span></span>
-<span id="cb236-22"><a href="ロジットブロビット回帰分析.html#cb236-22" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:2.0   3rd Qu.:40  </span></span>
-<span id="cb236-23"><a href="ロジットブロビット回帰分析.html#cb236-23" tabindex="-1"></a><span class="co">#&gt;  Max.   :2.0   Max.   :45</span></span>
-<span id="cb236-24"><a href="ロジットブロビット回帰分析.html#cb236-24" tabindex="-1"></a></span>
-<span id="cb236-25"><a href="ロジットブロビット回帰分析.html#cb236-25" tabindex="-1"></a><span class="co"># 箱ひげ図?</span></span>
-<span id="cb236-26"><a href="ロジットブロビット回帰分析.html#cb236-26" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="ロジットブロビット回帰分析.html#cb243-1" tabindex="-1"></a><span class="co"># カテゴリーデータが整数値で記録されている場合</span></span>
+<span id="cb243-2"><a href="ロジットブロビット回帰分析.html#cb243-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb243-3"><a href="ロジットブロビット回帰分析.html#cb243-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)</span>
+<span id="cb243-4"><a href="ロジットブロビット回帰分析.html#cb243-4" tabindex="-1"></a></span>
+<span id="cb243-5"><a href="ロジットブロビット回帰分析.html#cb243-5" tabindex="-1"></a><span class="co"># データフレームの作成</span></span>
+<span id="cb243-6"><a href="ロジットブロビット回帰分析.html#cb243-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> gender, <span class="at">age =</span> age)</span>
+<span id="cb243-7"><a href="ロジットブロビット回帰分析.html#cb243-7" tabindex="-1"></a>df</span>
+<span id="cb243-8"><a href="ロジットブロビット回帰分析.html#cb243-8" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
+<span id="cb243-9"><a href="ロジットブロビット回帰分析.html#cb243-9" tabindex="-1"></a><span class="co">#&gt; 1      1  25</span></span>
+<span id="cb243-10"><a href="ロジットブロビット回帰分析.html#cb243-10" tabindex="-1"></a><span class="co">#&gt; 2      2  30</span></span>
+<span id="cb243-11"><a href="ロジットブロビット回帰分析.html#cb243-11" tabindex="-1"></a><span class="co">#&gt; 3      2  35</span></span>
+<span id="cb243-12"><a href="ロジットブロビット回帰分析.html#cb243-12" tabindex="-1"></a><span class="co">#&gt; 4      1  40</span></span>
+<span id="cb243-13"><a href="ロジットブロビット回帰分析.html#cb243-13" tabindex="-1"></a><span class="co">#&gt; 5      1  45</span></span>
+<span id="cb243-14"><a href="ロジットブロビット回帰分析.html#cb243-14" tabindex="-1"></a></span>
+<span id="cb243-15"><a href="ロジットブロビット回帰分析.html#cb243-15" tabindex="-1"></a><span class="co"># データフレームの要約?</span></span>
+<span id="cb243-16"><a href="ロジットブロビット回帰分析.html#cb243-16" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb243-17"><a href="ロジットブロビット回帰分析.html#cb243-17" tabindex="-1"></a><span class="co">#&gt;      gender         age    </span></span>
+<span id="cb243-18"><a href="ロジットブロビット回帰分析.html#cb243-18" tabindex="-1"></a><span class="co">#&gt;  Min.   :1.0   Min.   :25  </span></span>
+<span id="cb243-19"><a href="ロジットブロビット回帰分析.html#cb243-19" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:1.0   1st Qu.:30  </span></span>
+<span id="cb243-20"><a href="ロジットブロビット回帰分析.html#cb243-20" tabindex="-1"></a><span class="co">#&gt;  Median :1.0   Median :35  </span></span>
+<span id="cb243-21"><a href="ロジットブロビット回帰分析.html#cb243-21" tabindex="-1"></a><span class="co">#&gt;  Mean   :1.4   Mean   :35  </span></span>
+<span id="cb243-22"><a href="ロジットブロビット回帰分析.html#cb243-22" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:2.0   3rd Qu.:40  </span></span>
+<span id="cb243-23"><a href="ロジットブロビット回帰分析.html#cb243-23" tabindex="-1"></a><span class="co">#&gt;  Max.   :2.0   Max.   :45</span></span>
+<span id="cb243-24"><a href="ロジットブロビット回帰分析.html#cb243-24" tabindex="-1"></a></span>
+<span id="cb243-25"><a href="ロジットブロビット回帰分析.html#cb243-25" tabindex="-1"></a><span class="co"># 箱ひげ図?</span></span>
+<span id="cb243-26"><a href="ロジットブロビット回帰分析.html#cb243-26" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
 <p><img src="072-factor_files/figure-html/unnamed-chunk-7-1.png" width="75%" /></p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ロジットブロビット回帰分析.html#cb237-1" tabindex="-1"></a><span class="co"># 適切な処理: 関数factor()の使用</span></span>
-<span id="cb237-2"><a href="ロジットブロビット回帰分析.html#cb237-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>,</span>
-<span id="cb237-3"><a href="ロジットブロビット回帰分析.html#cb237-3" tabindex="-1"></a>  <span class="st">&quot;female&quot;</span>)), <span class="at">age =</span> age)</span>
-<span id="cb237-4"><a href="ロジットブロビット回帰分析.html#cb237-4" tabindex="-1"></a>df</span>
-<span id="cb237-5"><a href="ロジットブロビット回帰分析.html#cb237-5" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
-<span id="cb237-6"><a href="ロジットブロビット回帰分析.html#cb237-6" tabindex="-1"></a><span class="co">#&gt; 1   male  25</span></span>
-<span id="cb237-7"><a href="ロジットブロビット回帰分析.html#cb237-7" tabindex="-1"></a><span class="co">#&gt; 2 female  30</span></span>
-<span id="cb237-8"><a href="ロジットブロビット回帰分析.html#cb237-8" tabindex="-1"></a><span class="co">#&gt; 3 female  35</span></span>
-<span id="cb237-9"><a href="ロジットブロビット回帰分析.html#cb237-9" tabindex="-1"></a><span class="co">#&gt; 4   male  40</span></span>
-<span id="cb237-10"><a href="ロジットブロビット回帰分析.html#cb237-10" tabindex="-1"></a><span class="co">#&gt; 5   male  45</span></span>
-<span id="cb237-11"><a href="ロジットブロビット回帰分析.html#cb237-11" tabindex="-1"></a></span>
-<span id="cb237-12"><a href="ロジットブロビット回帰分析.html#cb237-12" tabindex="-1"></a><span class="co"># データフレームの要約</span></span>
-<span id="cb237-13"><a href="ロジットブロビット回帰分析.html#cb237-13" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
-<span id="cb237-14"><a href="ロジットブロビット回帰分析.html#cb237-14" tabindex="-1"></a><span class="co">#&gt;     gender       age    </span></span>
-<span id="cb237-15"><a href="ロジットブロビット回帰分析.html#cb237-15" tabindex="-1"></a><span class="co">#&gt;  male  :3   Min.   :25  </span></span>
-<span id="cb237-16"><a href="ロジットブロビット回帰分析.html#cb237-16" tabindex="-1"></a><span class="co">#&gt;  female:2   1st Qu.:30  </span></span>
-<span id="cb237-17"><a href="ロジットブロビット回帰分析.html#cb237-17" tabindex="-1"></a><span class="co">#&gt;             Median :35  </span></span>
-<span id="cb237-18"><a href="ロジットブロビット回帰分析.html#cb237-18" tabindex="-1"></a><span class="co">#&gt;             Mean   :35  </span></span>
-<span id="cb237-19"><a href="ロジットブロビット回帰分析.html#cb237-19" tabindex="-1"></a><span class="co">#&gt;             3rd Qu.:40  </span></span>
-<span id="cb237-20"><a href="ロジットブロビット回帰分析.html#cb237-20" tabindex="-1"></a><span class="co">#&gt;             Max.   :45</span></span>
-<span id="cb237-21"><a href="ロジットブロビット回帰分析.html#cb237-21" tabindex="-1"></a></span>
-<span id="cb237-22"><a href="ロジットブロビット回帰分析.html#cb237-22" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
-<span id="cb237-23"><a href="ロジットブロビット回帰分析.html#cb237-23" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="ロジットブロビット回帰分析.html#cb244-1" tabindex="-1"></a><span class="co"># 適切な処理: 関数factor()の使用</span></span>
+<span id="cb244-2"><a href="ロジットブロビット回帰分析.html#cb244-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gender =</span> <span class="fu">factor</span>(gender, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>,</span>
+<span id="cb244-3"><a href="ロジットブロビット回帰分析.html#cb244-3" tabindex="-1"></a>  <span class="st">&quot;female&quot;</span>)), <span class="at">age =</span> age)</span>
+<span id="cb244-4"><a href="ロジットブロビット回帰分析.html#cb244-4" tabindex="-1"></a>df</span>
+<span id="cb244-5"><a href="ロジットブロビット回帰分析.html#cb244-5" tabindex="-1"></a><span class="co">#&gt;   gender age</span></span>
+<span id="cb244-6"><a href="ロジットブロビット回帰分析.html#cb244-6" tabindex="-1"></a><span class="co">#&gt; 1   male  25</span></span>
+<span id="cb244-7"><a href="ロジットブロビット回帰分析.html#cb244-7" tabindex="-1"></a><span class="co">#&gt; 2 female  30</span></span>
+<span id="cb244-8"><a href="ロジットブロビット回帰分析.html#cb244-8" tabindex="-1"></a><span class="co">#&gt; 3 female  35</span></span>
+<span id="cb244-9"><a href="ロジットブロビット回帰分析.html#cb244-9" tabindex="-1"></a><span class="co">#&gt; 4   male  40</span></span>
+<span id="cb244-10"><a href="ロジットブロビット回帰分析.html#cb244-10" tabindex="-1"></a><span class="co">#&gt; 5   male  45</span></span>
+<span id="cb244-11"><a href="ロジットブロビット回帰分析.html#cb244-11" tabindex="-1"></a></span>
+<span id="cb244-12"><a href="ロジットブロビット回帰分析.html#cb244-12" tabindex="-1"></a><span class="co"># データフレームの要約</span></span>
+<span id="cb244-13"><a href="ロジットブロビット回帰分析.html#cb244-13" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb244-14"><a href="ロジットブロビット回帰分析.html#cb244-14" tabindex="-1"></a><span class="co">#&gt;     gender       age    </span></span>
+<span id="cb244-15"><a href="ロジットブロビット回帰分析.html#cb244-15" tabindex="-1"></a><span class="co">#&gt;  male  :3   Min.   :25  </span></span>
+<span id="cb244-16"><a href="ロジットブロビット回帰分析.html#cb244-16" tabindex="-1"></a><span class="co">#&gt;  female:2   1st Qu.:30  </span></span>
+<span id="cb244-17"><a href="ロジットブロビット回帰分析.html#cb244-17" tabindex="-1"></a><span class="co">#&gt;             Median :35  </span></span>
+<span id="cb244-18"><a href="ロジットブロビット回帰分析.html#cb244-18" tabindex="-1"></a><span class="co">#&gt;             Mean   :35  </span></span>
+<span id="cb244-19"><a href="ロジットブロビット回帰分析.html#cb244-19" tabindex="-1"></a><span class="co">#&gt;             3rd Qu.:40  </span></span>
+<span id="cb244-20"><a href="ロジットブロビット回帰分析.html#cb244-20" tabindex="-1"></a><span class="co">#&gt;             Max.   :45</span></span>
+<span id="cb244-21"><a href="ロジットブロビット回帰分析.html#cb244-21" tabindex="-1"></a></span>
+<span id="cb244-22"><a href="ロジットブロビット回帰分析.html#cb244-22" tabindex="-1"></a><span class="co"># 箱ひげ図</span></span>
+<span id="cb244-23"><a href="ロジットブロビット回帰分析.html#cb244-23" tabindex="-1"></a><span class="fu">plot</span>(age <span class="sc">~</span> gender, <span class="at">data =</span> df)</span></code></pre></div>
 <p><img src="072-factor_files/figure-html/unnamed-chunk-8-1.png" width="75%" /></p>
 <hr />
 
