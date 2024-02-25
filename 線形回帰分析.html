@@ -291,6 +291,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット3-自動車評価データ"><i class="fa fa-check"></i>データセット3: 自動車評価データ</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html"><i class="fa fa-check"></i><b>9</b> 主成分分析 (PCA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#基本操作-1"><i class="fa fa-check"></i><b>9.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット1-ソニー株価リターン-vs-パナソニック株価リターン"><i class="fa fa-check"></i>データセット1: ソニー株価リターン vs パナソニック株価リターン</a></li>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット2-従業員スキル評価データ仮想"><i class="fa fa-check"></i>データセット2: 従業員スキル評価データ(仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#種類のpca-相関行列ベース-vs-分散共分散行列ベース"><i class="fa fa-check"></i><b>9.2</b> 2種類のPCA: 相関行列ベース vs 分散共分散行列ベース</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット3-usarrests-data"><i class="fa fa-check"></i>データセット3: USArrests data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="探索的因子分析.html"><a href="探索的因子分析.html"><i class="fa fa-check"></i><b>10</b> 探索的因子分析</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="探索的因子分析.html"><a href="探索的因子分析.html#基本操作-2"><i class="fa fa-check"></i><b>10.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#データセット1-従業員評価データ-仮想"><i class="fa fa-check"></i>データセット1: 従業員評価データ (仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
+<li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -428,10 +449,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb180-5"><a href="線形回帰分析.html#cb180-5" tabindex="-1"></a><span class="co">#&gt; tax    0.58 -0.29  1.00  0.54</span></span>
 <span id="cb180-6"><a href="線形回帰分析.html#cb180-6" tabindex="-1"></a><span class="co">#&gt; lstat  0.46 -0.61  0.54  1.00</span></span>
 <span id="cb180-7"><a href="線形回帰分析.html#cb180-7" tabindex="-1"></a></span>
-<span id="cb180-8"><a href="線形回帰分析.html#cb180-8" tabindex="-1"></a><span class="co"># install.packages(dplyr)</span></span>
-<span id="cb180-9"><a href="線形回帰分析.html#cb180-9" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb180-10"><a href="線形回帰分析.html#cb180-10" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb180-11"><a href="線形回帰分析.html#cb180-11" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(<span class="fu">select</span>(housing, <span class="sc">-</span>chas)))  <span class="co"># corrplot, dplyr</span></span></code></pre></div>
+<span id="cb180-8"><a href="線形回帰分析.html#cb180-8" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb180-9"><a href="線形回帰分析.html#cb180-9" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(housing[, <span class="sc">-</span><span class="dv">4</span>]))  <span class="co"># corrplot</span></span></code></pre></div>
 <p><img src="040-linreg_files/figure-html/reg2-2-2.png" width="75%" /></p>
 <ul>
 <li>4変数に絞り込み</li>
