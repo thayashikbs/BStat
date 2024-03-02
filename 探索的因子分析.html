@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="主成分分析-pca.html"/>
-
+<link rel="next" href="クラスター分析.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -311,6 +311,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
 <li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="クラスター分析.html"><a href="クラスター分析.html"><i class="fa fa-check"></i><b>11</b> クラスター分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="クラスター分析.html"><a href="クラスター分析.html#基本操作-3"><i class="fa fa-check"></i><b>11.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#階層型クラスタリング"><i class="fa fa-check"></i>階層型クラスタリング</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#k-means法"><i class="fa fa-check"></i>k-means法</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#変数に対するクラスタリング"><i class="fa fa-check"></i>変数に対するクラスタリング</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="クラスター分析.html"><a href="クラスター分析.html#データ分析例-1"><i class="fa fa-check"></i><b>11.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-1-ワイン品質データ-再掲"><i class="fa fa-check"></i>データセット (1): ワイン品質データ (再掲)</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-2-id無し-posデータ"><i class="fa fa-check"></i>データセット (2): (ID無し) POSデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="クラスター分析.html"><a href="クラスター分析.html#発展的なクラスター分析"><i class="fa fa-check"></i><b>11.3</b> 発展的なクラスター分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数agnes"><i class="fa fa-check"></i>関数<code>agnes</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pheatmap"><i class="fa fa-check"></i>関数<code>pheatmap</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pam"><i class="fa fa-check"></i>関数<code>pam</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html"><i class="fa fa-check"></i><b>12</b> アソシエーション分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#基本操作-4"><i class="fa fa-check"></i><b>12.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#arulesパッケージの機能"><i class="fa fa-check"></i>arulesパッケージの機能</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#データ分析例-2"><i class="fa fa-check"></i><b>12.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#データセット-id無し-posデータ-再掲"><i class="fa fa-check"></i>データセット: (ID無し) POSデータ (再掲)</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -663,23 +694,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb347-5"><a href="探索的因子分析.html#cb347-5" tabindex="-1"></a><span class="co"># 主因子法の固有値を同時に表示</span></span>
 <span id="cb347-6"><a href="探索的因子分析.html#cb347-6" tabindex="-1"></a></span>
 <span id="cb347-7"><a href="探索的因子分析.html#cb347-7" tabindex="-1"></a><span class="co"># VSS (Very Simple Structure) 規準 Very Simple Structure criterion ( VSS) for</span></span>
-<span id="cb347-8"><a href="探索的因子分析.html#cb347-8" tabindex="-1"></a><span class="co"># estimating the optimal number of factors 最大となる因子数を探す (tokuten.vss</span></span>
+<span id="cb347-8"><a href="探索的因子分析.html#cb347-8" tabindex="-1"></a><span class="co"># estimating the optimal number of factors 最大となる因子数を探す (tokuten_vss</span></span>
 <span id="cb347-9"><a href="探索的因子分析.html#cb347-9" tabindex="-1"></a><span class="co"># &lt;- vss(tokuten, n = 5, rotate = &#39;oblimin&#39;, fm = &#39;wls&#39;)\t)\t# n: Number of</span></span>
 <span id="cb347-10"><a href="探索的因子分析.html#cb347-10" tabindex="-1"></a><span class="co"># factors to extract (&gt; (初期仮説の)因子数) デフォルト: # 因子数 n = 8, 回転</span></span>
 <span id="cb347-11"><a href="探索的因子分析.html#cb347-11" tabindex="-1"></a><span class="co"># rotate = &#39;varimax&#39; → VSS, MAP, その他の因子数決定基準の数値を表示</span></span>
-<span id="cb347-12"><a href="探索的因子分析.html#cb347-12" tabindex="-1"></a>tmp.vss <span class="ot">&lt;-</span> <span class="fu">vss</span>(tokuten, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
+<span id="cb347-12"><a href="探索的因子分析.html#cb347-12" tabindex="-1"></a>tmp_vss <span class="ot">&lt;-</span> <span class="fu">vss</span>(tokuten, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">fm =</span> <span class="st">&quot;ml&quot;</span>)</span></code></pre></div>
 <p><img src="110-fa_files/figure-html/unnamed-chunk-12-2.png" width="75%" /></p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="探索的因子分析.html#cb348-1" tabindex="-1"></a><span class="co"># VSS.plot(tmp.vss)</span></span>
-<span id="cb348-2"><a href="探索的因子分析.html#cb348-2" tabindex="-1"></a><span class="fu">print</span>(tmp.vss)</span>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="探索的因子分析.html#cb348-1" tabindex="-1"></a><span class="co"># VSS.plot(tmp_vss)</span></span>
+<span id="cb348-2"><a href="探索的因子分析.html#cb348-2" tabindex="-1"></a><span class="fu">print</span>(tmp_vss)</span>
 <span id="cb348-3"><a href="探索的因子分析.html#cb348-3" tabindex="-1"></a><span class="co">#&gt; Parallel analysis suggests that the number of factors =  1  and the number of components =  1 </span></span>
 <span id="cb348-4"><a href="探索的因子分析.html#cb348-4" tabindex="-1"></a><span class="co">#&gt; Call: fa.parallel(x = tokuten)</span></span>
 <span id="cb348-5"><a href="探索的因子分析.html#cb348-5" tabindex="-1"></a><span class="co">#&gt; Parallel analysis suggests that the number of factors =  1  and the number of components =  1 </span></span>
 <span id="cb348-6"><a href="探索的因子分析.html#cb348-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb348-7"><a href="探索的因子分析.html#cb348-7" tabindex="-1"></a><span class="co">#&gt;  Eigen Values of </span></span>
 <span id="cb348-8"><a href="探索的因子分析.html#cb348-8" tabindex="-1"></a><span class="co">#&gt;   Original factors Resampled data Simulated data Original components</span></span>
-<span id="cb348-9"><a href="探索的因子分析.html#cb348-9" tabindex="-1"></a><span class="co">#&gt; 1             2.78           1.02           1.01                2.96</span></span>
+<span id="cb348-9"><a href="探索的因子分析.html#cb348-9" tabindex="-1"></a><span class="co">#&gt; 1             2.78           1.02           1.08                2.96</span></span>
 <span id="cb348-10"><a href="探索的因子分析.html#cb348-10" tabindex="-1"></a><span class="co">#&gt;   Resampled components Simulated components</span></span>
-<span id="cb348-11"><a href="探索的因子分析.html#cb348-11" tabindex="-1"></a><span class="co">#&gt; 1                 1.49                 1.55</span></span>
+<span id="cb348-11"><a href="探索的因子分析.html#cb348-11" tabindex="-1"></a><span class="co">#&gt; 1                 1.53                  1.6</span></span>
 <span id="cb348-12"><a href="探索的因子分析.html#cb348-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb348-13"><a href="探索的因子分析.html#cb348-13" tabindex="-1"></a><span class="co">#&gt; Very Simple Structure</span></span>
 <span id="cb348-14"><a href="探索的因子分析.html#cb348-14" tabindex="-1"></a><span class="co">#&gt; Call: vss(x = tokuten, n = 4, fm = &quot;ml&quot;)</span></span>
@@ -722,8 +753,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="主成分分析-pca.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="主成分分析-pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="クラスター分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

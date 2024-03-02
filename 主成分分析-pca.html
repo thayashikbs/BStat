@@ -312,6 +312,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
 <li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="クラスター分析.html"><a href="クラスター分析.html"><i class="fa fa-check"></i><b>11</b> クラスター分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="クラスター分析.html"><a href="クラスター分析.html#基本操作-3"><i class="fa fa-check"></i><b>11.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#階層型クラスタリング"><i class="fa fa-check"></i>階層型クラスタリング</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#k-means法"><i class="fa fa-check"></i>k-means法</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#変数に対するクラスタリング"><i class="fa fa-check"></i>変数に対するクラスタリング</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="クラスター分析.html"><a href="クラスター分析.html#データ分析例-1"><i class="fa fa-check"></i><b>11.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-1-ワイン品質データ-再掲"><i class="fa fa-check"></i>データセット (1): ワイン品質データ (再掲)</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-2-id無し-posデータ"><i class="fa fa-check"></i>データセット (2): (ID無し) POSデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="クラスター分析.html"><a href="クラスター分析.html#発展的なクラスター分析"><i class="fa fa-check"></i><b>11.3</b> 発展的なクラスター分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数agnes"><i class="fa fa-check"></i>関数<code>agnes</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pheatmap"><i class="fa fa-check"></i>関数<code>pheatmap</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pam"><i class="fa fa-check"></i>関数<code>pam</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html"><i class="fa fa-check"></i><b>12</b> アソシエーション分析</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#基本操作-4"><i class="fa fa-check"></i><b>12.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#arulesパッケージの機能"><i class="fa fa-check"></i>arulesパッケージの機能</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#データ分析例-2"><i class="fa fa-check"></i><b>12.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="アソシエーション分析.html"><a href="アソシエーション分析.html#データセット-id無し-posデータ-再掲"><i class="fa fa-check"></i>データセット: (ID無し) POSデータ (再掲)</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -634,9 +665,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt;  Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
 #&gt;  3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
 #&gt;  Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="主成分分析-pca.html#cb327-1" tabindex="-1"></a><span class="co"># どちらが良いか?  (pc.cr1 &lt;- princomp(USArrests)) (pc.cr2 &lt;-</span></span>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="主成分分析-pca.html#cb327-1" tabindex="-1"></a><span class="co"># どちらが良いか?  (pc_cr1 &lt;- princomp(USArrests)) (pc_cr2 &lt;-</span></span>
 <span id="cb327-2"><a href="主成分分析-pca.html#cb327-2" tabindex="-1"></a><span class="co"># princomp(USArrests, cor = TRUE))</span></span>
-<span id="cb327-3"><a href="主成分分析-pca.html#cb327-3" tabindex="-1"></a>(pc.cr3 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests))</span>
+<span id="cb327-3"><a href="主成分分析-pca.html#cb327-3" tabindex="-1"></a>(pc_cr3 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests))</span>
 <span id="cb327-4"><a href="主成分分析-pca.html#cb327-4" tabindex="-1"></a><span class="co">#&gt; Standard deviations (1, .., p=4):</span></span>
 <span id="cb327-5"><a href="主成分分析-pca.html#cb327-5" tabindex="-1"></a><span class="co">#&gt; [1] 83.732400 14.212402  6.489426  2.482790</span></span>
 <span id="cb327-6"><a href="主成分分析-pca.html#cb327-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -646,7 +677,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb327-10"><a href="主成分分析-pca.html#cb327-10" tabindex="-1"></a><span class="co">#&gt; Assault  0.99522128 -0.05876003 -0.06756974  0.03893830</span></span>
 <span id="cb327-11"><a href="主成分分析-pca.html#cb327-11" tabindex="-1"></a><span class="co">#&gt; UrbanPop 0.04633575  0.97685748 -0.20054629 -0.05816914</span></span>
 <span id="cb327-12"><a href="主成分分析-pca.html#cb327-12" tabindex="-1"></a><span class="co">#&gt; Rape     0.07515550  0.20071807  0.97408059  0.07232502</span></span>
-<span id="cb327-13"><a href="主成分分析-pca.html#cb327-13" tabindex="-1"></a>(pc.cr4 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests, <span class="at">scale =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb327-13"><a href="主成分分析-pca.html#cb327-13" tabindex="-1"></a>(pc_cr4 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests, <span class="at">scale =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb327-14"><a href="主成分分析-pca.html#cb327-14" tabindex="-1"></a><span class="co">#&gt; Standard deviations (1, .., p=4):</span></span>
 <span id="cb327-15"><a href="主成分分析-pca.html#cb327-15" tabindex="-1"></a><span class="co">#&gt; [1] 1.5748783 0.9948694 0.5971291 0.4164494</span></span>
 <span id="cb327-16"><a href="主成分分析-pca.html#cb327-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -656,17 +687,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb327-20"><a href="主成分分析-pca.html#cb327-20" tabindex="-1"></a><span class="co">#&gt; Assault  -0.5831836  0.1879856 -0.2681484 -0.74340748</span></span>
 <span id="cb327-21"><a href="主成分分析-pca.html#cb327-21" tabindex="-1"></a><span class="co">#&gt; UrbanPop -0.2781909 -0.8728062 -0.3780158  0.13387773</span></span>
 <span id="cb327-22"><a href="主成分分析-pca.html#cb327-22" tabindex="-1"></a><span class="co">#&gt; Rape     -0.5434321 -0.1673186  0.8177779  0.08902432</span></span></code></pre></div>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="主成分分析-pca.html#cb328-1" tabindex="-1"></a><span class="fu">plot</span>(pc.cr3)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="主成分分析-pca.html#cb328-1" tabindex="-1"></a><span class="fu">plot</span>(pc_cr3)</span></code></pre></div>
 <p><img src="100-pca_files/figure-html/unnamed-chunk-10-1.png" width="75%" /></p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="主成分分析-pca.html#cb329-1" tabindex="-1"></a><span class="fu">summary</span>(pc.cr3)</span>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="主成分分析-pca.html#cb329-1" tabindex="-1"></a><span class="fu">summary</span>(pc_cr3)</span>
 <span id="cb329-2"><a href="主成分分析-pca.html#cb329-2" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
 <span id="cb329-3"><a href="主成分分析-pca.html#cb329-3" tabindex="-1"></a><span class="co">#&gt;                            PC1      PC2    PC3     PC4</span></span>
 <span id="cb329-4"><a href="主成分分析-pca.html#cb329-4" tabindex="-1"></a><span class="co">#&gt; Standard deviation     83.7324 14.21240 6.4894 2.48279</span></span>
 <span id="cb329-5"><a href="主成分分析-pca.html#cb329-5" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance  0.9655  0.02782 0.0058 0.00085</span></span>
 <span id="cb329-6"><a href="主成分分析-pca.html#cb329-6" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion   0.9655  0.99335 0.9991 1.00000</span></span>
-<span id="cb329-7"><a href="主成分分析-pca.html#cb329-7" tabindex="-1"></a><span class="fu">plot</span>(pc.cr4)</span></code></pre></div>
+<span id="cb329-7"><a href="主成分分析-pca.html#cb329-7" tabindex="-1"></a><span class="fu">plot</span>(pc_cr4)</span></code></pre></div>
 <p><img src="100-pca_files/figure-html/unnamed-chunk-10-2.png" width="75%" /></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="主成分分析-pca.html#cb330-1" tabindex="-1"></a><span class="fu">summary</span>(pc.cr4)</span>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="主成分分析-pca.html#cb330-1" tabindex="-1"></a><span class="fu">summary</span>(pc_cr4)</span>
 <span id="cb330-2"><a href="主成分分析-pca.html#cb330-2" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
 <span id="cb330-3"><a href="主成分分析-pca.html#cb330-3" tabindex="-1"></a><span class="co">#&gt;                           PC1    PC2     PC3     PC4</span></span>
 <span id="cb330-4"><a href="主成分分析-pca.html#cb330-4" tabindex="-1"></a><span class="co">#&gt; Standard deviation     1.5749 0.9949 0.59713 0.41645</span></span>
