@@ -397,7 +397,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb355-15"><a href="クラスター分析.html#cb355-15" tabindex="-1"></a></span>
 <span id="cb355-16"><a href="クラスター分析.html#cb355-16" tabindex="-1"></a><span class="co"># 距離の近い人を集めて、クラスターを形成 1:C1 = {tanaka, nakamura} 2:C2 =</span></span>
 <span id="cb355-17"><a href="クラスター分析.html#cb355-17" tabindex="-1"></a><span class="co"># {yamada, suzuki}, or C2 = {C1, matsui} or else??  --&gt; どちらが優先される?</span></span></code></pre></div>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="クラスター分析.html#cb356-1" tabindex="-1"></a><span class="co"># 最遠隣法(furthest negibhor method), 完全連結法(complete linkage method)</span></span>
+<p><code>hclust()</code>のデフォルト設定では, 距離尺度はユークリッド距離,
+クラスター結合方法は最遠隣法/完全連結法となっている.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="クラスター分析.html#cb356-1" tabindex="-1"></a><span class="co"># 最遠隣法/完全連結法</span></span>
 <span id="cb356-2"><a href="クラスター分析.html#cb356-2" tabindex="-1"></a>(tokuten_hc_1 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(tokuten_dist))  <span class="co"># method = &#39;complete&#39;</span></span>
 <span id="cb356-3"><a href="クラスター分析.html#cb356-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb356-4"><a href="クラスター分析.html#cb356-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
@@ -407,6 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb356-8"><a href="クラスター分析.html#cb356-8" tabindex="-1"></a><span class="co">#&gt; Distance         : euclidean </span></span>
 <span id="cb356-9"><a href="クラスター分析.html#cb356-9" tabindex="-1"></a><span class="co">#&gt; Number of objects: 9</span></span>
 <span id="cb356-10"><a href="クラスター分析.html#cb356-10" tabindex="-1"></a><span class="co"># summary(tokuten_hc_1)</span></span></code></pre></div>
+<p>出力オブジェクトの要素<code>$merge</code>にクラスター形成過程が格納されている.</p>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="クラスター分析.html#cb357-1" tabindex="-1"></a><span class="co"># クラスター形成履歴 マイナス付き =&gt; 個体番号. マイナス無し =&gt; クラスター番号</span></span>
 <span id="cb357-2"><a href="クラスター分析.html#cb357-2" tabindex="-1"></a>tokuten_hc_1<span class="sc">$</span>merge</span>
 <span id="cb357-3"><a href="クラスター分析.html#cb357-3" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
@@ -418,21 +421,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb357-9"><a href="クラスター分析.html#cb357-9" tabindex="-1"></a><span class="co">#&gt; [6,]    4    5</span></span>
 <span id="cb357-10"><a href="クラスター分析.html#cb357-10" tabindex="-1"></a><span class="co">#&gt; [7,]   -5    6</span></span>
 <span id="cb357-11"><a href="クラスター分析.html#cb357-11" tabindex="-1"></a><span class="co">#&gt; [8,]    2    7</span></span></code></pre></div>
+<p>また, 出力オブジェクトの要素<code>$height</code>には, クラスター間の結合が行われる際の距離が格納されている.</p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="クラスター分析.html#cb358-1" tabindex="-1"></a><span class="co"># デンドログラム (樹形図) の枝の高さ</span></span>
 <span id="cb358-2"><a href="クラスター分析.html#cb358-2" tabindex="-1"></a>tokuten_hc_1<span class="sc">$</span>height</span>
 <span id="cb358-3"><a href="クラスター分析.html#cb358-3" tabindex="-1"></a><span class="co">#&gt; [1]  9.273618  9.539392 11.224972 12.409674 13.928388 21.656408 30.903074</span></span>
 <span id="cb358-4"><a href="クラスター分析.html#cb358-4" tabindex="-1"></a><span class="co">#&gt; [8] 41.000000</span></span></code></pre></div>
+<p>このクラスター形成過程と結合距離を使うことでデンドログラムが作成される.
+デンドログラムは階層的クラスタリングの結果 (クラスターの形成過程) を視覚化するための有効なツールである.</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="クラスター分析.html#cb359-1" tabindex="-1"></a><span class="co"># デンドログラム</span></span>
 <span id="cb359-2"><a href="クラスター分析.html#cb359-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb359-3"><a href="クラスター分析.html#cb359-3" tabindex="-1"></a><span class="fu">plot</span>(tokuten_hc_1)</span>
 <span id="cb359-4"><a href="クラスター分析.html#cb359-4" tabindex="-1"></a><span class="fu">plot</span>(tokuten_hc_1, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>)  <span class="co"># 葉の位置(高さ)を揃える</span></span></code></pre></div>
 <p><img src="120-clust_files/figure-html/unnamed-chunk-8-1.png" width="75%" /></p>
+<p>階層クラスタリングを実施しデンドログラムを作成したあと,
+<code>cutree</code>にクラスター数を指定することで,
+木を剪定し (細かい枝を切り落とし) て望ましい数のクラスターに絞り込んで,
+個体がそれぞれ所属するクラスターに分類することができる.</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="クラスター分析.html#cb360-1" tabindex="-1"></a><span class="co"># 各個体の属するクラスター番号</span></span>
 <span id="cb360-2"><a href="クラスター分析.html#cb360-2" tabindex="-1"></a><span class="fu">cutree</span>(tokuten_hc_1, <span class="at">k =</span> <span class="dv">3</span>)  <span class="co"># k: クラスター数</span></span>
 <span id="cb360-3"><a href="クラスター分析.html#cb360-3" tabindex="-1"></a><span class="co">#&gt;   yamada   suzuki   tanaka nakamura     ohno   Matsui   takagi    miura </span></span>
 <span id="cb360-4"><a href="クラスター分析.html#cb360-4" tabindex="-1"></a><span class="co">#&gt;        1        1        2        2        3        2        2        2 </span></span>
 <span id="cb360-5"><a href="クラスター分析.html#cb360-5" tabindex="-1"></a><span class="co">#&gt;     sato </span></span>
 <span id="cb360-6"><a href="クラスター分析.html#cb360-6" tabindex="-1"></a><span class="co">#&gt;        2</span></span></code></pre></div>
+<p>次に, クラスター結合方法の相違によるデンドログラムの形状の違いをみてみよう.</p>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="クラスター分析.html#cb361-1" tabindex="-1"></a><span class="co"># 代替的手法</span></span>
 <span id="cb361-2"><a href="クラスター分析.html#cb361-2" tabindex="-1"></a>(tokuten_hc_2 <span class="ot">&lt;-</span> <span class="fu">hclust</span>(tokuten_dist, <span class="at">method =</span> <span class="st">&quot;single&quot;</span>))  <span class="co"># 最近隣法</span></span>
 <span id="cb361-3"><a href="クラスター分析.html#cb361-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -497,22 +508,22 @@ Rの標準パッケージの一つ<strong>stats</strong>に含まれる
 関数<code>kmeans()</code>を用いて実行することができる.</p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="クラスター分析.html#cb364-1" tabindex="-1"></a><span class="co"># k-means法</span></span>
 <span id="cb364-2"><a href="クラスター分析.html#cb364-2" tabindex="-1"></a>(tokuten_hc_k <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(tokuten, <span class="dv">3</span>))</span>
-<span id="cb364-3"><a href="クラスター分析.html#cb364-3" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 3 clusters of sizes 6, 1, 2</span></span>
+<span id="cb364-3"><a href="クラスター分析.html#cb364-3" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 3 clusters of sizes 2, 1, 6</span></span>
 <span id="cb364-4"><a href="クラスター分析.html#cb364-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-5"><a href="クラスター分析.html#cb364-5" tabindex="-1"></a><span class="co">#&gt; Cluster means:</span></span>
 <span id="cb364-6"><a href="クラスター分析.html#cb364-6" tabindex="-1"></a><span class="co">#&gt;   Expertise Analytics Leadership Presentation Communication</span></span>
-<span id="cb364-7"><a href="クラスター分析.html#cb364-7" tabindex="-1"></a><span class="co">#&gt; 1  75.33333  75.66667   80.16667     78.66667          79.5</span></span>
+<span id="cb364-7"><a href="クラスター分析.html#cb364-7" tabindex="-1"></a><span class="co">#&gt; 1  82.50000  85.00000   67.50000     66.50000          65.0</span></span>
 <span id="cb364-8"><a href="クラスター分析.html#cb364-8" tabindex="-1"></a><span class="co">#&gt; 2  88.00000  85.00000   85.00000     90.00000          91.0</span></span>
-<span id="cb364-9"><a href="クラスター分析.html#cb364-9" tabindex="-1"></a><span class="co">#&gt; 3  82.50000  85.00000   67.50000     66.50000          65.0</span></span>
+<span id="cb364-9"><a href="クラスター分析.html#cb364-9" tabindex="-1"></a><span class="co">#&gt; 3  75.33333  75.66667   80.16667     78.66667          79.5</span></span>
 <span id="cb364-10"><a href="クラスター分析.html#cb364-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-11"><a href="クラスター分析.html#cb364-11" tabindex="-1"></a><span class="co">#&gt; Clustering vector:</span></span>
 <span id="cb364-12"><a href="クラスター分析.html#cb364-12" tabindex="-1"></a><span class="co">#&gt;   yamada   suzuki   tanaka nakamura     ohno   Matsui   takagi    miura </span></span>
-<span id="cb364-13"><a href="クラスター分析.html#cb364-13" tabindex="-1"></a><span class="co">#&gt;        3        3        1        1        2        1        1        1 </span></span>
+<span id="cb364-13"><a href="クラスター分析.html#cb364-13" tabindex="-1"></a><span class="co">#&gt;        1        1        3        3        2        3        3        3 </span></span>
 <span id="cb364-14"><a href="クラスター分析.html#cb364-14" tabindex="-1"></a><span class="co">#&gt;     sato </span></span>
-<span id="cb364-15"><a href="クラスター分析.html#cb364-15" tabindex="-1"></a><span class="co">#&gt;        1 </span></span>
+<span id="cb364-15"><a href="クラスター分析.html#cb364-15" tabindex="-1"></a><span class="co">#&gt;        3 </span></span>
 <span id="cb364-16"><a href="クラスター分析.html#cb364-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-17"><a href="クラスター分析.html#cb364-17" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
-<span id="cb364-18"><a href="クラスター分析.html#cb364-18" tabindex="-1"></a><span class="co">#&gt; [1] 540.3333   0.0000  45.5000</span></span>
+<span id="cb364-18"><a href="クラスター分析.html#cb364-18" tabindex="-1"></a><span class="co">#&gt; [1]  45.5000   0.0000 540.3333</span></span>
 <span id="cb364-19"><a href="クラスター分析.html#cb364-19" tabindex="-1"></a><span class="co">#&gt;  (between_SS / total_SS =  72.9 %)</span></span>
 <span id="cb364-20"><a href="クラスター分析.html#cb364-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-21"><a href="クラスター分析.html#cb364-21" tabindex="-1"></a><span class="co">#&gt; Available components:</span></span>
@@ -521,26 +532,26 @@ Rの標準パッケージの一つ<strong>stats</strong>に含まれる
 <span id="cb364-24"><a href="クラスター分析.html#cb364-24" tabindex="-1"></a><span class="co">#&gt; [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</span></span>
 <span id="cb364-25"><a href="クラスター分析.html#cb364-25" tabindex="-1"></a>tokuten_hc_k<span class="sc">$</span>cluster</span>
 <span id="cb364-26"><a href="クラスター分析.html#cb364-26" tabindex="-1"></a><span class="co">#&gt;   yamada   suzuki   tanaka nakamura     ohno   Matsui   takagi    miura </span></span>
-<span id="cb364-27"><a href="クラスター分析.html#cb364-27" tabindex="-1"></a><span class="co">#&gt;        3        3        1        1        2        1        1        1 </span></span>
+<span id="cb364-27"><a href="クラスター分析.html#cb364-27" tabindex="-1"></a><span class="co">#&gt;        1        1        3        3        2        3        3        3 </span></span>
 <span id="cb364-28"><a href="クラスター分析.html#cb364-28" tabindex="-1"></a><span class="co">#&gt;     sato </span></span>
-<span id="cb364-29"><a href="クラスター分析.html#cb364-29" tabindex="-1"></a><span class="co">#&gt;        1</span></span>
+<span id="cb364-29"><a href="クラスター分析.html#cb364-29" tabindex="-1"></a><span class="co">#&gt;        3</span></span>
 <span id="cb364-30"><a href="クラスター分析.html#cb364-30" tabindex="-1"></a></span>
 <span id="cb364-31"><a href="クラスター分析.html#cb364-31" tabindex="-1"></a>(tokuten_hc_k <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(tokuten, <span class="dv">2</span>))</span>
-<span id="cb364-32"><a href="クラスター分析.html#cb364-32" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 2 clusters of sizes 7, 2</span></span>
+<span id="cb364-32"><a href="クラスター分析.html#cb364-32" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 2 clusters of sizes 2, 7</span></span>
 <span id="cb364-33"><a href="クラスター分析.html#cb364-33" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-34"><a href="クラスター分析.html#cb364-34" tabindex="-1"></a><span class="co">#&gt; Cluster means:</span></span>
 <span id="cb364-35"><a href="クラスター分析.html#cb364-35" tabindex="-1"></a><span class="co">#&gt;   Expertise Analytics Leadership Presentation Communication</span></span>
-<span id="cb364-36"><a href="クラスター分析.html#cb364-36" tabindex="-1"></a><span class="co">#&gt; 1  77.14286        77   80.85714     80.28571      81.14286</span></span>
-<span id="cb364-37"><a href="クラスター分析.html#cb364-37" tabindex="-1"></a><span class="co">#&gt; 2  82.50000        85   67.50000     66.50000      65.00000</span></span>
+<span id="cb364-36"><a href="クラスター分析.html#cb364-36" tabindex="-1"></a><span class="co">#&gt; 1  82.50000        85   67.50000     66.50000      65.00000</span></span>
+<span id="cb364-37"><a href="クラスター分析.html#cb364-37" tabindex="-1"></a><span class="co">#&gt; 2  77.14286        77   80.85714     80.28571      81.14286</span></span>
 <span id="cb364-38"><a href="クラスター分析.html#cb364-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-39"><a href="クラスター分析.html#cb364-39" tabindex="-1"></a><span class="co">#&gt; Clustering vector:</span></span>
 <span id="cb364-40"><a href="クラスター分析.html#cb364-40" tabindex="-1"></a><span class="co">#&gt;   yamada   suzuki   tanaka nakamura     ohno   Matsui   takagi    miura </span></span>
-<span id="cb364-41"><a href="クラスター分析.html#cb364-41" tabindex="-1"></a><span class="co">#&gt;        2        2        1        1        1        1        1        1 </span></span>
+<span id="cb364-41"><a href="クラスター分析.html#cb364-41" tabindex="-1"></a><span class="co">#&gt;        1        1        2        2        2        2        2        2 </span></span>
 <span id="cb364-42"><a href="クラスター分析.html#cb364-42" tabindex="-1"></a><span class="co">#&gt;     sato </span></span>
-<span id="cb364-43"><a href="クラスター分析.html#cb364-43" tabindex="-1"></a><span class="co">#&gt;        1 </span></span>
+<span id="cb364-43"><a href="クラスター分析.html#cb364-43" tabindex="-1"></a><span class="co">#&gt;        2 </span></span>
 <span id="cb364-44"><a href="クラスター分析.html#cb364-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-45"><a href="クラスター分析.html#cb364-45" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
-<span id="cb364-46"><a href="クラスター分析.html#cb364-46" tabindex="-1"></a><span class="co">#&gt; [1] 996.0  45.5</span></span>
+<span id="cb364-46"><a href="クラスター分析.html#cb364-46" tabindex="-1"></a><span class="co">#&gt; [1]  45.5 996.0</span></span>
 <span id="cb364-47"><a href="クラスター分析.html#cb364-47" tabindex="-1"></a><span class="co">#&gt;  (between_SS / total_SS =  51.9 %)</span></span>
 <span id="cb364-48"><a href="クラスター分析.html#cb364-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb364-49"><a href="クラスター分析.html#cb364-49" tabindex="-1"></a><span class="co">#&gt; Available components:</span></span>
@@ -549,9 +560,9 @@ Rの標準パッケージの一つ<strong>stats</strong>に含まれる
 <span id="cb364-52"><a href="クラスター分析.html#cb364-52" tabindex="-1"></a><span class="co">#&gt; [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</span></span>
 <span id="cb364-53"><a href="クラスター分析.html#cb364-53" tabindex="-1"></a>tokuten_hc_k<span class="sc">$</span>cluster</span>
 <span id="cb364-54"><a href="クラスター分析.html#cb364-54" tabindex="-1"></a><span class="co">#&gt;   yamada   suzuki   tanaka nakamura     ohno   Matsui   takagi    miura </span></span>
-<span id="cb364-55"><a href="クラスター分析.html#cb364-55" tabindex="-1"></a><span class="co">#&gt;        2        2        1        1        1        1        1        1 </span></span>
+<span id="cb364-55"><a href="クラスター分析.html#cb364-55" tabindex="-1"></a><span class="co">#&gt;        1        1        2        2        2        2        2        2 </span></span>
 <span id="cb364-56"><a href="クラスター分析.html#cb364-56" tabindex="-1"></a><span class="co">#&gt;     sato </span></span>
-<span id="cb364-57"><a href="クラスター分析.html#cb364-57" tabindex="-1"></a><span class="co">#&gt;        1</span></span></code></pre></div>
+<span id="cb364-57"><a href="クラスター分析.html#cb364-57" tabindex="-1"></a><span class="co">#&gt;        2</span></span></code></pre></div>
 </div>
 <div id="変数に対するクラスタリング" class="section level3 unnumbered hasAnchor">
 <h3>変数に対するクラスタリング<a href="クラスター分析.html#変数に対するクラスタリング" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -827,9 +838,11 @@ inversion現象の発生が確認される.</p>
 <p>つぎに, 顧客 (レシート) のクラスタリングを行う.
 変数の次元が大きい場合には, クラスタリングの実行に先立って,
 類似性を測る変数の次元を落とすのが効果的なことが多い.
-本データセットの商品分類数 (16) は, 大きいとは言えないが,
-デモンストレーションのため, 例えばPCAによる次元縮約によって
-事前に5つに絞り込んでおく.</p>
+本データセットの商品分類数 (16) は大きいとは言えないが,
+手順例を紹介する. ここでは, PCAによる次元縮約によって
+事前に5つに絞り込んでおく.
+(なお, “超高次元”の場合には, 通常のPCAはうまく機能しないことが
+理論的に示されているため, 別途対応が必要となる.)</p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="クラスター分析.html#cb385-1" tabindex="-1"></a><span class="co"># 変数(商品)に関して次元縮約pca実行 posdat_pc &lt;- prcomp(posdat)</span></span>
 <span id="cb385-2"><a href="クラスター分析.html#cb385-2" tabindex="-1"></a>posdat_pc <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(posdat, <span class="at">scale. =</span> T)  <span class="co"># 標準化</span></span>
 <span id="cb385-3"><a href="クラスター分析.html#cb385-3" tabindex="-1"></a><span class="fu">summary</span>(posdat_pc)</span>
@@ -879,6 +892,10 @@ inversion現象の発生が確認される.</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="クラスター分析.html#cb387-1" tabindex="-1"></a></span>
 <span id="cb387-2"><a href="クラスター分析.html#cb387-2" tabindex="-1"></a><span class="co"># pos_km5 &lt;- FitKMeans(posdat_score5, max.cluster = 20, seed = 1)</span></span>
 <span id="cb387-3"><a href="クラスター分析.html#cb387-3" tabindex="-1"></a><span class="co"># PlotHartigan(pos_km5)</span></span></code></pre></div>
+<p>上では, 顧客 (レシート) に対して階層クラスタリングを実施したが,
+件数の多い場合には, 注意が必要である.
+主な問題点は計算コストと可視化の困難さである. 階層的クラスタリングにおいて, データ点の数が非常に多い場合, 計算時間やメモリ消費が膨大になる可能性がある (全てのデータ点間で距離を計算し, これらの距離に基づいて段階的にクラスターを形成する必要性) .
+また, ですが、データポイントの数が多い場合、デンドログラムは非常に密集してしまい、個々のクラスターやクラスタリングの構造を解釈することが難しくなります。大規模なデータセットにおいては、デンドログラムから有益な情報を得ることはほとんど不可能になる</p>
 </div>
 </div>
 </div>
