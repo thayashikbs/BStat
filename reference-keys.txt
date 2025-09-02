@@ -35,3 +35,5 @@ r関数
 パッケージtidyverse
 q-rの初心者はtidyverseから勉強することは可能か
 tidyverseの基本
+仮説検定
+平均値の差の検定

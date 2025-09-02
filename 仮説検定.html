@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 仮説検定 | ビジネス統計</title>
+  <meta name="description" content="3 仮説検定 | ビジネス統計" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 仮説検定 | ビジネス統計" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 仮説検定 | ビジネス統計" />
+  
+  
+  
+
+<meta name="author" content="林 高樹" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r言語の基本.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#コースの目的"><i class="fa fa-check"></i><b>1.1</b> コースの目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#統計学統計的手法の学習について"><i class="fa fa-check"></i><b>1.2</b> 統計学/統計的手法の学習について</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#学習の目標"><i class="fa fa-check"></i>学習の目標</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習方法"><i class="fa fa-check"></i>統計学/統計的手法の学習方法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習ステップ"><i class="fa fa-check"></i>統計学/統計的手法の学習ステップ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#ビジネス応用における統計学の最近の趨勢"><i class="fa fa-check"></i><b>1.3</b> ビジネス応用における統計学の最近の趨勢</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#本書内の記載の注意点"><i class="fa fa-check"></i><b>1.4</b> 本書内の記載の注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r言語の基本.html"><a href="r言語の基本.html"><i class="fa fa-check"></i><b>2</b> R言語の基本</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#rの基本プログラミング"><i class="fa fa-check"></i><b>2.1</b> Rの基本プログラミング</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r言語の基本.html"><a href="r言語の基本.html#基本操作"><i class="fa fa-check"></i><b>2.1.1</b> 基本操作</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本構文"><i class="fa fa-check"></i><b>2.1.2</b> 基本構文</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r言語の基本.html"><a href="r言語の基本.html#自作関数"><i class="fa fa-check"></i><b>2.1.3</b> 自作関数</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r言語の基本.html"><a href="r言語の基本.html#パッケージのインストール-読み込み"><i class="fa fa-check"></i><b>2.1.4</b> パッケージのインストール &amp; 読み込み</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r言語の基本.html"><a href="r言語の基本.html#ヘルプ"><i class="fa fa-check"></i><b>2.1.5</b> ヘルプ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの型や構造"><i class="fa fa-check"></i><b>2.2</b> データの型や構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#データの値の種類-データ型"><i class="fa fa-check"></i><b>2.2.1</b> データの値の種類 (“データ型”)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの配列の仕方-データ構造"><i class="fa fa-check"></i><b>2.2.2</b> データの配列の仕方 (“データ構造”)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトル"><i class="fa fa-check"></i><b>2.2.3</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#行列"><i class="fa fa-check"></i><b>2.2.4</b> 行列</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#データフレーム"><i class="fa fa-check"></i><b>2.2.6</b> データフレーム</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#データの操作演算"><i class="fa fa-check"></i><b>2.3</b> データの操作・演算</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトルの結合-ソート"><i class="fa fa-check"></i><b>2.3.1</b> ベクトルの結合, ソート</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r言語の基本.html"><a href="r言語の基本.html#二項演算"><i class="fa fa-check"></i><b>2.3.2</b> 二項演算</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r言語の基本.html"><a href="r言語の基本.html#論理演算"><i class="fa fa-check"></i><b>2.3.3</b> 論理演算</a></li>
+<li class="chapter" data-level="2.3.4" data-path="r言語の基本.html"><a href="r言語の基本.html#条件式"><i class="fa fa-check"></i><b>2.3.4</b> 条件式</a></li>
+<li class="chapter" data-level="2.3.5" data-path="r言語の基本.html"><a href="r言語の基本.html#行列演算"><i class="fa fa-check"></i><b>2.3.5</b> 行列演算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#r関数"><i class="fa fa-check"></i><b>2.4</b> R関数</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r言語の基本.html"><a href="r言語の基本.html#数学基本関数"><i class="fa fa-check"></i><b>2.4.1</b> 数学基本関数</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本統計量の計算"><i class="fa fa-check"></i><b>2.4.2</b> 基本統計量の計算</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r言語の基本.html"><a href="r言語の基本.html#確率分布"><i class="fa fa-check"></i><b>2.4.3</b> 確率分布</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r言語の基本.html"><a href="r言語の基本.html#その他便利な関数"><i class="fa fa-check"></i><b>2.4.4</b> その他便利な関数</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#データの可視化"><i class="fa fa-check"></i><b>2.5</b> データの可視化</a></li>
+<li class="chapter" data-level="2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#ファイル入出力"><i class="fa fa-check"></i><b>2.6</b> ファイル入出力</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル読み込み"><i class="fa fa-check"></i><b>2.6.1</b> テキストファイル読み込み</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル書き出し"><i class="fa fa-check"></i><b>2.6.2</b> テキストファイル書き出し</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="r言語の基本.html"><a href="r言語の基本.html#パッケージtidyverse"><i class="fa fa-check"></i><b>2.7</b> パッケージ<code>tidyverse</code></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="r言語の基本.html"><a href="r言語の基本.html#q-rの初心者はtidyverseから勉強することは可能か"><i class="fa fa-check"></i><b>2.7.1</b> Q: Rの初心者は<code>tidyverse</code>から勉強することは可能か?</a></li>
+<li class="chapter" data-level="2.7.2" data-path="r言語の基本.html"><a href="r言語の基本.html#tidyverseの基本"><i class="fa fa-check"></i><b>2.7.2</b> <code>tidyverse</code>の基本</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="仮説検定.html"><a href="仮説検定.html"><i class="fa fa-check"></i><b>3</b> 仮説検定</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> 平均値の差の検定</a>
+<ul>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-ペア検定"><i class="fa fa-check"></i>平均値の差の検定 (ペア検定)</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-1"><i class="fa fa-check"></i>平均値の差の検定</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-ノンパラメトリック検定"><i class="fa fa-check"></i>平均値の差の検定 (ノンパラメトリック検定)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ビジネス統計</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="仮説検定" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> 仮説検定<a href="仮説検定.html#仮説検定" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>本章では, 仮説検定の中でも, 実務において, 恐らく最も良く用いると思われる,</p>
+<ul>
+<li>平均値の差の検定</li>
+<li>独立性の検定</li>
+</ul>
+<p>について説明する. 独立性の検定と共通点のある</p>
+<ul>
+<li>適合度検定</li>
+</ul>
+<p>についても説明する.</p>
+<div id="平均値の差の検定" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 平均値の差の検定<a href="仮説検定.html#平均値の差の検定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>t検定は, Rで標準的に用意されている関数<code>t.test()</code>を用いて行う.</p>
+<pre><code># t.test(x, y = NULL, 
+#    alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;), 
+#    mu = 0, paired = FALSE, var.equal = FALSE, 
+#    conf.level = 0.95, ...)
+#
+#
+#   One Sample t-test
+# Performs one and two sample t-tests on vectors of data.</code></pre>
+<div id="平均値の差の検定-ペア検定" class="section level3 unnumbered hasAnchor">
+<h3>平均値の差の検定 (ペア検定)<a href="仮説検定.html#平均値の差の検定-ペア検定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ペア検定を実施する場合には, <code>t.test()</code>の引数<code>paired</code>を真 (<code>TRUE</code>, または<code>T</code>)
+に設定する. デフォルトは,<code>paired = F</code>である (ペア検定ではない).</p>
+<p>ここでは, Rにデフォルトで収録されているデータセット<code>sleep</code>を用いる.</p>
+<div id="データセット-sleep" class="section level4 unnumbered hasAnchor">
+<h4>データセット: sleep<a href="仮説検定.html#データセット-sleep" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>sleep: 睡眠薬の効果を調べる実験データ
+- 患者10名, 2種類の睡眠薬の比較 (コントロールに対する睡眠時間の増加分)
+- (extra, group, ID) 20件, 患者(ID) 10名</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="仮説検定.html#cb140-1" tabindex="-1"></a><span class="co"># help(sleep)</span></span>
+<span id="cb140-2"><a href="仮説検定.html#cb140-2" tabindex="-1"></a><span class="co"># Data which show the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients.</span></span>
+<span id="cb140-3"><a href="仮説検定.html#cb140-3" tabindex="-1"></a><span class="fu">head</span>(sleep); <span class="fu">tail</span>(sleep)</span>
+<span id="cb140-4"><a href="仮説検定.html#cb140-4" tabindex="-1"></a><span class="co">#&gt;   extra group ID</span></span>
+<span id="cb140-5"><a href="仮説検定.html#cb140-5" tabindex="-1"></a><span class="co">#&gt; 1   0.7     1  1</span></span>
+<span id="cb140-6"><a href="仮説検定.html#cb140-6" tabindex="-1"></a><span class="co">#&gt; 2  -1.6     1  2</span></span>
+<span id="cb140-7"><a href="仮説検定.html#cb140-7" tabindex="-1"></a><span class="co">#&gt; 3  -0.2     1  3</span></span>
+<span id="cb140-8"><a href="仮説検定.html#cb140-8" tabindex="-1"></a><span class="co">#&gt; 4  -1.2     1  4</span></span>
+<span id="cb140-9"><a href="仮説検定.html#cb140-9" tabindex="-1"></a><span class="co">#&gt; 5  -0.1     1  5</span></span>
+<span id="cb140-10"><a href="仮説検定.html#cb140-10" tabindex="-1"></a><span class="co">#&gt; 6   3.4     1  6</span></span>
+<span id="cb140-11"><a href="仮説検定.html#cb140-11" tabindex="-1"></a><span class="co">#&gt;    extra group ID</span></span>
+<span id="cb140-12"><a href="仮説検定.html#cb140-12" tabindex="-1"></a><span class="co">#&gt; 15  -0.1     2  5</span></span>
+<span id="cb140-13"><a href="仮説検定.html#cb140-13" tabindex="-1"></a><span class="co">#&gt; 16   4.4     2  6</span></span>
+<span id="cb140-14"><a href="仮説検定.html#cb140-14" tabindex="-1"></a><span class="co">#&gt; 17   5.5     2  7</span></span>
+<span id="cb140-15"><a href="仮説検定.html#cb140-15" tabindex="-1"></a><span class="co">#&gt; 18   1.6     2  8</span></span>
+<span id="cb140-16"><a href="仮説検定.html#cb140-16" tabindex="-1"></a><span class="co">#&gt; 19   4.6     2  9</span></span>
+<span id="cb140-17"><a href="仮説検定.html#cb140-17" tabindex="-1"></a><span class="co">#&gt; 20   3.4     2 10</span></span></code></pre></div>
+<p>最初に, Rへの指示を簡潔にするために, <code>attach(sleep)</code> を実行する. これにより, <code>sleep</code>内に含まれる変数<code>extra</code>,<code>group</code>,<code>ID</code>については,
+それらが<code>sleep</code>の変数であることをその都度教えてなくても, Rは理解できるようになる.
+(Rの”サーチパス”に載せる, と言う)</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="仮説検定.html#cb141-1" tabindex="-1"></a><span class="fu">attach</span>(sleep)</span>
+<span id="cb141-2"><a href="仮説検定.html#cb141-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb141-3"><a href="仮説検定.html#cb141-3" tabindex="-1"></a><span class="fu">plot</span>(extra); <span class="fu">hist</span>(extra)</span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-3-1.png" width="75%" /></p>
+<p>両側検定, 片側検定は, 引数<code>alternative</code>の値 (“two.sided”, “less”, “greater”) で指定する.
+デフォルトは<code>alteranative="two.sided"</code>, すなわち, 両側検定である.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="仮説検定.html#cb142-1" tabindex="-1"></a><span class="co"># t.test(extra) </span></span>
+<span id="cb142-2"><a href="仮説検定.html#cb142-2" tabindex="-1"></a><span class="co"># 注) デフォルトはpaired = F (ペア検定ではない)</span></span>
+<span id="cb142-3"><a href="仮説検定.html#cb142-3" tabindex="-1"></a></span>
+<span id="cb142-4"><a href="仮説検定.html#cb142-4" tabindex="-1"></a><span class="co"># 両側検定</span></span>
+<span id="cb142-5"><a href="仮説検定.html#cb142-5" tabindex="-1"></a><span class="fu">t.test</span>(extra[group <span class="sc">==</span> <span class="dv">1</span>], extra[group <span class="sc">==</span> <span class="dv">2</span>], <span class="at">paired =</span> T)</span>
+<span id="cb142-6"><a href="仮説検定.html#cb142-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb142-7"><a href="仮説検定.html#cb142-7" tabindex="-1"></a><span class="co">#&gt;  Paired t-test</span></span>
+<span id="cb142-8"><a href="仮説検定.html#cb142-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb142-9"><a href="仮説検定.html#cb142-9" tabindex="-1"></a><span class="co">#&gt; data:  extra[group == 1] and extra[group == 2]</span></span>
+<span id="cb142-10"><a href="仮説検定.html#cb142-10" tabindex="-1"></a><span class="co">#&gt; t = -4.0621, df = 9, p-value = 0.002833</span></span>
+<span id="cb142-11"><a href="仮説検定.html#cb142-11" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean difference is not equal to 0</span></span>
+<span id="cb142-12"><a href="仮説検定.html#cb142-12" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb142-13"><a href="仮説検定.html#cb142-13" tabindex="-1"></a><span class="co">#&gt;  -2.4598858 -0.7001142</span></span>
+<span id="cb142-14"><a href="仮説検定.html#cb142-14" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb142-15"><a href="仮説検定.html#cb142-15" tabindex="-1"></a><span class="co">#&gt; mean difference </span></span>
+<span id="cb142-16"><a href="仮説検定.html#cb142-16" tabindex="-1"></a><span class="co">#&gt;           -1.58</span></span></code></pre></div>
+<p>片側検定は, 右側は<code>alternative = "greater"</code>, 左側は<code>alternative = "greater"</code>で指定する.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="仮説検定.html#cb143-1" tabindex="-1"></a><span class="co"># 片側検定</span></span>
+<span id="cb143-2"><a href="仮説検定.html#cb143-2" tabindex="-1"></a><span class="fu">t.test</span>(extra[group <span class="sc">==</span> <span class="dv">1</span>], extra[group <span class="sc">==</span> <span class="dv">2</span>], <span class="at">paired =</span> T, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>) <span class="co"># 片側 (右側) 検定)</span></span>
+<span id="cb143-3"><a href="仮説検定.html#cb143-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb143-4"><a href="仮説検定.html#cb143-4" tabindex="-1"></a><span class="co">#&gt;  Paired t-test</span></span>
+<span id="cb143-5"><a href="仮説検定.html#cb143-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb143-6"><a href="仮説検定.html#cb143-6" tabindex="-1"></a><span class="co">#&gt; data:  extra[group == 1] and extra[group == 2]</span></span>
+<span id="cb143-7"><a href="仮説検定.html#cb143-7" tabindex="-1"></a><span class="co">#&gt; t = -4.0621, df = 9, p-value = 0.9986</span></span>
+<span id="cb143-8"><a href="仮説検定.html#cb143-8" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean difference is greater than 0</span></span>
+<span id="cb143-9"><a href="仮説検定.html#cb143-9" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb143-10"><a href="仮説検定.html#cb143-10" tabindex="-1"></a><span class="co">#&gt;  -2.293005       Inf</span></span>
+<span id="cb143-11"><a href="仮説検定.html#cb143-11" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb143-12"><a href="仮説検定.html#cb143-12" tabindex="-1"></a><span class="co">#&gt; mean difference </span></span>
+<span id="cb143-13"><a href="仮説検定.html#cb143-13" tabindex="-1"></a><span class="co">#&gt;           -1.58</span></span>
+<span id="cb143-14"><a href="仮説検定.html#cb143-14" tabindex="-1"></a><span class="fu">t.test</span>(extra[group <span class="sc">==</span> <span class="dv">1</span>], extra[group <span class="sc">==</span> <span class="dv">2</span>], <span class="at">paired =</span> T, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>) <span class="co"># 片側 (左側) 検定)</span></span>
+<span id="cb143-15"><a href="仮説検定.html#cb143-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb143-16"><a href="仮説検定.html#cb143-16" tabindex="-1"></a><span class="co">#&gt;  Paired t-test</span></span>
+<span id="cb143-17"><a href="仮説検定.html#cb143-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb143-18"><a href="仮説検定.html#cb143-18" tabindex="-1"></a><span class="co">#&gt; data:  extra[group == 1] and extra[group == 2]</span></span>
+<span id="cb143-19"><a href="仮説検定.html#cb143-19" tabindex="-1"></a><span class="co">#&gt; t = -4.0621, df = 9, p-value = 0.001416</span></span>
+<span id="cb143-20"><a href="仮説検定.html#cb143-20" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean difference is less than 0</span></span>
+<span id="cb143-21"><a href="仮説検定.html#cb143-21" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb143-22"><a href="仮説検定.html#cb143-22" tabindex="-1"></a><span class="co">#&gt;        -Inf -0.8669947</span></span>
+<span id="cb143-23"><a href="仮説検定.html#cb143-23" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb143-24"><a href="仮説検定.html#cb143-24" tabindex="-1"></a><span class="co">#&gt; mean difference </span></span>
+<span id="cb143-25"><a href="仮説検定.html#cb143-25" tabindex="-1"></a><span class="co">#&gt;           -1.58</span></span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="仮説検定.html#cb144-1" tabindex="-1"></a><span class="fu">boxplot</span>(sleep)      <span class="co"># bad example</span></span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-6-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="仮説検定.html#cb145-1" tabindex="-1"></a><span class="co">#boxplot(extra)</span></span>
+<span id="cb145-2"><a href="仮説検定.html#cb145-2" tabindex="-1"></a><span class="fu">boxplot</span>(extra <span class="sc">~</span> group)</span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-6-2.png" width="75%" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="仮説検定.html#cb146-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>平均値の差に関するt検定は, 二つの標本 <span class="math inline">\((x_1,x_2,...,x_{n_1})\)</span>,
+<span class="math inline">\((y_1,y_2,...,y_{n_2})\)</span> の差<span class="math inline">\(\mu_1-\mu_2\)</span>がゼロか否かを評価する統計的な手続きである
+(ここで, 未知の真の平均はそれぞれ, <span class="math inline">\(\mu_1\)</span>, <span class="math inline">\(\mu_2\)</span>と表記する).</p>
+<p>ペア検定は, さらに, この2標本のサイズが等しく (<span class="math inline">\(n_1=n_2\equiv n\)</span>),
+しかも, 各々のデータ点がペア <span class="math inline">\((x_i,y_i)\)</span> として扱える (“対応がある”)
+ような特別な場合である. 対応のあるケースの例としては,
+同一の企業からデータを2種類, あるいは2時点について採取した場合である.</p>
+<p>このようなペアのケースにおける平均値の差の検定は, 2標本のまま扱うのではなく,
+各データ点ペアの差 <span class="math inline">\((x_i-y_i)\)</span> を取ることで1標本に集約した上で,
+1標本に対する平均値ゼロのt検定として行う.</p>
+<p>すなわち, 帰無仮説<span class="math inline">\(H_0: \mu_1-\mu_2=0\)</span>に対して, 対立仮説は,</p>
+<ul>
+<li>両側検定: <span class="math inline">\(H_1: \mu_1-\mu_2=0\)</span></li>
+<li>片側 (右側) 検定: <span class="math inline">\(H_1: \mu_1-\mu_2&gt;0\)</span></li>
+<li>片側 (左側) 検定: <span class="math inline">\(H_1: \mu_1-\mu_2&lt;0\)</span></li>
+</ul>
+<p>である. 上の<code>sleep</code>データセットのケースにおいては, 標本平均の差
+(<span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span>)の大きさが<span class="math inline">\(-1.58\)</span>であり, 対応する分散の大きさ
+(上の結果では表示されていない) に比べて十分に小さい (帰無仮説であるゼロ
+からマイナス方向に遠く離れている). その結果, 両側検定では,
+p値は0.002833となり, 1%有意水準 (<span class="math inline">\(\alpha=0.01\)</span>) でも帰無仮説は棄却される
+こととなった.</p>
+<p>一方, 対立仮説として, 右側 <span class="math inline">\(H_1: \mu_1-\mu_2&gt;0\)</span> を採用した場合には,
+標本から計算される平均値の差は正の値となることが期待され
+((<span class="math inline">\(\bar{x}_1-\bar{x}_2&gt;0\)</span>)), これは, データセットsleepから計算された値
+(<span class="math inline">\(-1.58\)</span>) とは明らかに整合的ではない. このことは, 対応するp値が<span class="math inline">\(0.9986\)</span>と
+1に近く, 帰無仮説を棄却できない大きさとなっていることに表れている.</p>
+<!-- #090225ERROR#t.test(extra ~ group, paired = T) # ペア検定 (両側検定 (デフォルト)) -->
+</div>
+</div>
+<div id="平均値の差の検定-1" class="section level3 unnumbered hasAnchor">
+<h3>平均値の差の検定<a href="仮説検定.html#平均値の差の検定-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ペアを構成しない一般の2標本の平均値の差に関するt検定においては,
+2標本の持つ未知の分散の大きさが等しいかが問題になる.</p>
+<p><code>t.test()</code>のデフォルトでは等分散性が成立しない (<code>var.equal = FALSE</code>) 設定となっている.
+この時は, <strong>Welch検定</strong>が実行される.</p>
+<p>もちろん, 等分散性が成立する場合には, <code>var.equal</code>の値は<code>T</code>または<code>TRUE</code>
+と指定せねばならない. この時は, 未知の分散はプール化された (“pooled”)
+推定値を持ちいたt検定が行われる.</p>
+<div id="abテストデータ-仮想データ" class="section level4 unnumbered hasAnchor">
+<h4>A/Bテストデータ (仮想データ)<a href="仮説検定.html#abテストデータ-仮想データ" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>デザイン A と B のどちらが平均的な購入意向を高めるか
+- id, group (A:旧デザイン, B:新デザイン), purchase_intent (1--7)
+- 標本サイズ: nA=50, nB=60</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="仮説検定.html#cb148-1" tabindex="-1"></a>abtest_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;purchase_1-7.csv&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb148-2"><a href="仮説検定.html#cb148-2" tabindex="-1"></a><span class="fu">boxplot</span>(purchase_intent <span class="sc">~</span> group, <span class="at">data =</span> abtest_df)</span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-7-1.png" width="75%" /></p>
+<p>等分散性の検定は, <code>var.test()</code>を用いることができる</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="仮説検定.html#cb149-1" tabindex="-1"></a><span class="co"># 等分散性の検定 (F検定)</span></span>
+<span id="cb149-2"><a href="仮説検定.html#cb149-2" tabindex="-1"></a><span class="fu">var.test</span>(purchase_intent <span class="sc">~</span> group, <span class="at">data =</span> abtest_df)</span>
+<span id="cb149-3"><a href="仮説検定.html#cb149-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb149-4"><a href="仮説検定.html#cb149-4" tabindex="-1"></a><span class="co">#&gt;  F test to compare two variances</span></span>
+<span id="cb149-5"><a href="仮説検定.html#cb149-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb149-6"><a href="仮説検定.html#cb149-6" tabindex="-1"></a><span class="co">#&gt; data:  purchase_intent by group</span></span>
+<span id="cb149-7"><a href="仮説検定.html#cb149-7" tabindex="-1"></a><span class="co">#&gt; F = 1.1253, num df = 49, denom df = 59, p-value = 0.6606</span></span>
+<span id="cb149-8"><a href="仮説検定.html#cb149-8" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true ratio of variances is not equal to 1</span></span>
+<span id="cb149-9"><a href="仮説検定.html#cb149-9" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb149-10"><a href="仮説検定.html#cb149-10" tabindex="-1"></a><span class="co">#&gt;  0.6592874 1.9472951</span></span>
+<span id="cb149-11"><a href="仮説検定.html#cb149-11" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb149-12"><a href="仮説検定.html#cb149-12" tabindex="-1"></a><span class="co">#&gt; ratio of variances </span></span>
+<span id="cb149-13"><a href="仮説検定.html#cb149-13" tabindex="-1"></a><span class="co">#&gt;           1.125316</span></span>
+<span id="cb149-14"><a href="仮説検定.html#cb149-14" tabindex="-1"></a><span class="co"># ※ 省略されることも多い</span></span></code></pre></div>
+<p>その上で, Welch検定か, プール化された分散推定値を用いるt検定を実行する.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="仮説検定.html#cb150-1" tabindex="-1"></a><span class="co"># 等分散の場合 ((Pooled variance使用する) t検定)</span></span>
+<span id="cb150-2"><a href="仮説検定.html#cb150-2" tabindex="-1"></a><span class="fu">t.test</span>(purchase_intent <span class="sc">~</span> group, <span class="at">var.equal =</span> T, <span class="at">data =</span> abtest_df)</span>
+<span id="cb150-3"><a href="仮説検定.html#cb150-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-4"><a href="仮説検定.html#cb150-4" tabindex="-1"></a><span class="co">#&gt;  Two Sample t-test</span></span>
+<span id="cb150-5"><a href="仮説検定.html#cb150-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-6"><a href="仮説検定.html#cb150-6" tabindex="-1"></a><span class="co">#&gt; data:  purchase_intent by group</span></span>
+<span id="cb150-7"><a href="仮説検定.html#cb150-7" tabindex="-1"></a><span class="co">#&gt; t = -4.3526, df = 108, p-value = 3.067e-05</span></span>
+<span id="cb150-8"><a href="仮説検定.html#cb150-8" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means between group A and group B is not equal to 0</span></span>
+<span id="cb150-9"><a href="仮説検定.html#cb150-9" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb150-10"><a href="仮説検定.html#cb150-10" tabindex="-1"></a><span class="co">#&gt;  -1.1449141 -0.4284192</span></span>
+<span id="cb150-11"><a href="仮説検定.html#cb150-11" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb150-12"><a href="仮説検定.html#cb150-12" tabindex="-1"></a><span class="co">#&gt; mean in group A mean in group B </span></span>
+<span id="cb150-13"><a href="仮説検定.html#cb150-13" tabindex="-1"></a><span class="co">#&gt;        4.480000        5.266667</span></span>
+<span id="cb150-14"><a href="仮説検定.html#cb150-14" tabindex="-1"></a></span>
+<span id="cb150-15"><a href="仮説検定.html#cb150-15" tabindex="-1"></a><span class="co"># 等分散でない場合 (Welch t検定)</span></span>
+<span id="cb150-16"><a href="仮説検定.html#cb150-16" tabindex="-1"></a><span class="fu">t.test</span>(purchase_intent <span class="sc">~</span> group, <span class="at">data =</span> abtest_df)</span>
+<span id="cb150-17"><a href="仮説検定.html#cb150-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-18"><a href="仮説検定.html#cb150-18" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb150-19"><a href="仮説検定.html#cb150-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-20"><a href="仮説検定.html#cb150-20" tabindex="-1"></a><span class="co">#&gt; data:  purchase_intent by group</span></span>
+<span id="cb150-21"><a href="仮説検定.html#cb150-21" tabindex="-1"></a><span class="co">#&gt; t = -4.3291, df = 101.99, p-value = 3.505e-05</span></span>
+<span id="cb150-22"><a href="仮説検定.html#cb150-22" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means between group A and group B is not equal to 0</span></span>
+<span id="cb150-23"><a href="仮説検定.html#cb150-23" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb150-24"><a href="仮説検定.html#cb150-24" tabindex="-1"></a><span class="co">#&gt;  -1.1470981 -0.4262352</span></span>
+<span id="cb150-25"><a href="仮説検定.html#cb150-25" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb150-26"><a href="仮説検定.html#cb150-26" tabindex="-1"></a><span class="co">#&gt; mean in group A mean in group B </span></span>
+<span id="cb150-27"><a href="仮説検定.html#cb150-27" tabindex="-1"></a><span class="co">#&gt;        4.480000        5.266667</span></span></code></pre></div>
+<p><strong>自主課題:</strong>
+- Q. 以上の検定結果を解釈しなさい.</p>
+<ul>
+<li><p>Q. 片側検定にするには? 対立仮説の方向はどちらか?</p></li>
+<li><p>Q. 購入意向 (1-7) は順序尺度では?</p></li>
+<li><p>正規分布を前提にしたt検定を使用して良いか?</p></li>
+</ul>
+</div>
+<div id="正規性の確認方法" class="section level4 unnumbered hasAnchor">
+<h4>正規性の確認方法<a href="仮説検定.html#正規性の確認方法" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="仮説検定.html#cb151-1" tabindex="-1"></a><span class="co"># ヒストグラム作成</span></span>
+<span id="cb151-2"><a href="仮説検定.html#cb151-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> abtest_df[abtest_df<span class="sc">$</span>group <span class="sc">==</span> <span class="st">&quot;A&quot;</span>, <span class="st">&quot;purchase_intent&quot;</span>]</span>
+<span id="cb151-3"><a href="仮説検定.html#cb151-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> abtest_df[abtest_df<span class="sc">$</span>group <span class="sc">==</span> <span class="st">&quot;B&quot;</span>, <span class="st">&quot;purchase_intent&quot;</span>]</span>
+<span id="cb151-4"><a href="仮説検定.html#cb151-4" tabindex="-1"></a><span class="fu">hist</span>(A, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)); <span class="fu">hist</span>(B, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>), <span class="at">add =</span> T)</span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-10-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="仮説検定.html#cb152-1" tabindex="-1"></a></span>
+<span id="cb152-2"><a href="仮説検定.html#cb152-2" tabindex="-1"></a><span class="co"># 正規性の検定</span></span>
+<span id="cb152-3"><a href="仮説検定.html#cb152-3" tabindex="-1"></a><span class="fu">ks.test</span>(A, <span class="st">&quot;pnorm&quot;</span>); <span class="fu">ks.test</span>(B, <span class="st">&quot;pnorm&quot;</span>)        <span class="co"># コルモゴロフ・スミルノフ (Kolmogorov-Smirnov) 検定</span></span>
+<span id="cb152-4"><a href="仮説検定.html#cb152-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-5"><a href="仮説検定.html#cb152-5" tabindex="-1"></a><span class="co">#&gt;  Asymptotic one-sample Kolmogorov-Smirnov test</span></span>
+<span id="cb152-6"><a href="仮説検定.html#cb152-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-7"><a href="仮説検定.html#cb152-7" tabindex="-1"></a><span class="co">#&gt; data:  A</span></span>
+<span id="cb152-8"><a href="仮説検定.html#cb152-8" tabindex="-1"></a><span class="co">#&gt; D = 0.99865, p-value &lt; 2.2e-16</span></span>
+<span id="cb152-9"><a href="仮説検定.html#cb152-9" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span>
+<span id="cb152-10"><a href="仮説検定.html#cb152-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-11"><a href="仮説検定.html#cb152-11" tabindex="-1"></a><span class="co">#&gt;  Asymptotic one-sample Kolmogorov-Smirnov test</span></span>
+<span id="cb152-12"><a href="仮説検定.html#cb152-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-13"><a href="仮説検定.html#cb152-13" tabindex="-1"></a><span class="co">#&gt; data:  B</span></span>
+<span id="cb152-14"><a href="仮説検定.html#cb152-14" tabindex="-1"></a><span class="co">#&gt; D = 0.99865, p-value &lt; 2.2e-16</span></span>
+<span id="cb152-15"><a href="仮説検定.html#cb152-15" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: two-sided</span></span>
+<span id="cb152-16"><a href="仮説検定.html#cb152-16" tabindex="-1"></a><span class="fu">shapiro.test</span>(A); <span class="fu">shapiro.test</span>(B)    <span class="co"># シャピロ・ウィルク (Shapiro-Wilk) 検定</span></span>
+<span id="cb152-17"><a href="仮説検定.html#cb152-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-18"><a href="仮説検定.html#cb152-18" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb152-19"><a href="仮説検定.html#cb152-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-20"><a href="仮説検定.html#cb152-20" tabindex="-1"></a><span class="co">#&gt; data:  A</span></span>
+<span id="cb152-21"><a href="仮説検定.html#cb152-21" tabindex="-1"></a><span class="co">#&gt; W = 0.89953, p-value = 0.0004638</span></span>
+<span id="cb152-22"><a href="仮説検定.html#cb152-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-23"><a href="仮説検定.html#cb152-23" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb152-24"><a href="仮説検定.html#cb152-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb152-25"><a href="仮説検定.html#cb152-25" tabindex="-1"></a><span class="co">#&gt; data:  B</span></span>
+<span id="cb152-26"><a href="仮説検定.html#cb152-26" tabindex="-1"></a><span class="co">#&gt; W = 0.89262, p-value = 7.16e-05</span></span>
+<span id="cb152-27"><a href="仮説検定.html#cb152-27" tabindex="-1"></a><span class="fu">qqnorm</span>(A); <span class="fu">qqnorm</span>(B)    <span class="co"># q-qプロット</span></span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-10-2.png" width="75%" /><img src="020-testing_files/figure-html/unnamed-chunk-10-3.png" width="75%" /></p>
+<p>なお, 関数<code>ggplot()</code>を使うことで, よりエレガントなプロットを描くことが出来る.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="仮説検定.html#cb153-1" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;)  # 必要に応じてインストール</span></span>
+<span id="cb153-2"><a href="仮説検定.html#cb153-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb153-3"><a href="仮説検定.html#cb153-3" tabindex="-1"></a> </span>
+<span id="cb153-4"><a href="仮説検定.html#cb153-4" tabindex="-1"></a><span class="fu">ggplot</span>(abtest_df, <span class="fu">aes</span>(<span class="at">x =</span> purchase_intent, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb153-5"><a href="仮説検定.html#cb153-5" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, </span>
+<span id="cb153-6"><a href="仮説検定.html#cb153-6" tabindex="-1"></a>                  <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb153-7"><a href="仮説検定.html#cb153-7" tabindex="-1"></a>                  <span class="at">bins =</span> <span class="dv">7</span>,         <span class="co"># ビンの数を適宜指定</span></span>
+<span id="cb153-8"><a href="仮説検定.html#cb153-8" tabindex="-1"></a>                  <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span>  <span class="co"># 枠線の色 (任意)</span></span>
+<span id="cb153-9"><a href="仮説検定.html#cb153-9" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span> <span class="ot">=</span> <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;B&quot;</span> <span class="ot">=</span> <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb153-10"><a href="仮説検定.html#cb153-10" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of Two Groups (Overlapped)&quot;</span>,</span>
+<span id="cb153-11"><a href="仮説検定.html#cb153-11" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;Purchase Intent (1-7)&quot;</span>,</span>
+<span id="cb153-12"><a href="仮説検定.html#cb153-12" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-13"><a href="仮説検定.html#cb153-13" tabindex="-1"></a>   <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="020-testing_files/figure-html/unnamed-chunk-11-1.png" width="75%" /></p>
+</div>
+</div>
+<div id="平均値の差の検定-ノンパラメトリック検定" class="section level3 unnumbered hasAnchor">
+<h3>平均値の差の検定 (ノンパラメトリック検定)<a href="仮説検定.html#平均値の差の検定-ノンパラメトリック検定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="wilcoxonの順位和検定-mannwhitneyのu検定" class="section level4 unnumbered hasAnchor">
+<h4>Wilcoxonの順位和検定 (Mann–WhitneyのU検定)<a href="仮説検定.html#wilcoxonの順位和検定-mannwhitneyのu検定" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ノンパラメトリック検定の一手法である</p>
+<ul>
+<li>2群の中央値の差を調べる</li>
+<li>外れ値に対して頑強</li>
+</ul>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="仮説検定.html#cb154-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(purchase_intent <span class="sc">~</span> group, <span class="at">data =</span> abtest_df)</span>
+<span id="cb154-2"><a href="仮説検定.html#cb154-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb154-3"><a href="仮説検定.html#cb154-3" tabindex="-1"></a><span class="co">#&gt;  Wilcoxon rank sum test with continuity correction</span></span>
+<span id="cb154-4"><a href="仮説検定.html#cb154-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb154-5"><a href="仮説検定.html#cb154-5" tabindex="-1"></a><span class="co">#&gt; data:  purchase_intent by group</span></span>
+<span id="cb154-6"><a href="仮説検定.html#cb154-6" tabindex="-1"></a><span class="co">#&gt; W = 861.5, p-value = 5.992e-05</span></span>
+<span id="cb154-7"><a href="仮説検定.html#cb154-7" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true location shift is not equal to 0</span></span>
+<span id="cb154-8"><a href="仮説検定.html#cb154-8" tabindex="-1"></a></span>
+<span id="cb154-9"><a href="仮説検定.html#cb154-9" tabindex="-1"></a><span class="co"># A,Bを定義しておいた場合, 以下の実行も可能</span></span>
+<span id="cb154-10"><a href="仮説検定.html#cb154-10" tabindex="-1"></a><span class="co"># wilcox.test(A, B)</span></span></code></pre></div>
+<p><strong>自主課題:</strong>
+- Q. 以上の検定結果を解釈しなさい.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r言語の基本.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
