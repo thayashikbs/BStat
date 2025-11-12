@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="判別分析.html"/>
-
+<link rel="next" href="主成分分析-pca.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="判別分析.html"><a href="判別分析.html#線形判別-2次判別---パッケージmassの利用"><i class="fa fa-check"></i><b>7.1</b> 線形判別 &amp; 2次判別 - パッケージMASSの利用</a>
 <ul>
-<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データセット-1-ビジネススクールの入学許可データ"><i class="fa fa-check"></i>データセット (1): ビジネススクールの入学許可データ</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データセット1-ビジネススクールの入学許可データ"><i class="fa fa-check"></i>データセット1: ビジネススクールの入学許可データ</a></li>
 <li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#線形判別-lda"><i class="fa fa-check"></i>線形判別 (LDA)</a></li>
 <li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#次判別-qda"><i class="fa fa-check"></i>2次判別 (QDA)</a></li>
 </ul></li>
@@ -297,6 +297,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="決定木分析.html"><a href="決定木分析.html#分類木"><i class="fa fa-check"></i><b>8.3</b> 分類木</a>
 <ul>
 <li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット3-自動車評価データ"><i class="fa fa-check"></i>データセット3: 自動車評価データ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html"><i class="fa fa-check"></i><b>9</b> 主成分分析 (PCA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#基本操作-1"><i class="fa fa-check"></i><b>9.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット1-従業員スキル評価データ仮想"><i class="fa fa-check"></i>データセット1: 従業員スキル評価データ(仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#種類のpca-相関行列ベース-vs-分散共分散行列ベース"><i class="fa fa-check"></i><b>9.2</b> 2種類のPCA: 相関行列ベース vs 分散共分散行列ベース</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット2-usarrests-data"><i class="fa fa-check"></i>データセット2: USArrests data</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -502,9 +513,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb305-6"><a href="決定木分析.html#cb305-6" tabindex="-1"></a><span class="co">#&gt;   n= 50 </span></span>
 <span id="cb305-7"><a href="決定木分析.html#cb305-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb305-8"><a href="決定木分析.html#cb305-8" tabindex="-1"></a><span class="co">#&gt;          CP nsplit rel error    xerror      xstd</span></span>
-<span id="cb305-9"><a href="決定木分析.html#cb305-9" tabindex="-1"></a><span class="co">#&gt; 1 0.4676398      0 1.0000000 1.0350968 0.2249325</span></span>
-<span id="cb305-10"><a href="決定木分析.html#cb305-10" tabindex="-1"></a><span class="co">#&gt; 2 0.1104944      1 0.5323602 0.7664277 0.1494484</span></span>
-<span id="cb305-11"><a href="決定木分析.html#cb305-11" tabindex="-1"></a><span class="co">#&gt; 3 0.0100000      2 0.4218658 0.5736928 0.1265877</span></span>
+<span id="cb305-9"><a href="決定木分析.html#cb305-9" tabindex="-1"></a><span class="co">#&gt; 1 0.4676398      0 1.0000000 1.0437387 0.2153296</span></span>
+<span id="cb305-10"><a href="決定木分析.html#cb305-10" tabindex="-1"></a><span class="co">#&gt; 2 0.1104944      1 0.5323602 0.7107221 0.1480185</span></span>
+<span id="cb305-11"><a href="決定木分析.html#cb305-11" tabindex="-1"></a><span class="co">#&gt; 3 0.0100000      2 0.4218658 0.5359054 0.1210711</span></span>
 <span id="cb305-12"><a href="決定木分析.html#cb305-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb305-13"><a href="決定木分析.html#cb305-13" tabindex="-1"></a><span class="co">#&gt; Variable importance</span></span>
 <span id="cb305-14"><a href="決定木分析.html#cb305-14" tabindex="-1"></a><span class="co">#&gt; speed </span></span>
@@ -1342,8 +1353,8 @@ AUCを計算する.
           </div>
         </div>
       </div>
-<a href="判別分析.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="判別分析.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="主成分分析-pca.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

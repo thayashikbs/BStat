@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="判別分析.html"><a href="判別分析.html#線形判別-2次判別---パッケージmassの利用"><i class="fa fa-check"></i><b>7.1</b> 線形判別 &amp; 2次判別 - パッケージMASSの利用</a>
 <ul>
-<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データセット-1-ビジネススクールの入学許可データ"><i class="fa fa-check"></i>データセット (1): ビジネススクールの入学許可データ</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データセット1-ビジネススクールの入学許可データ"><i class="fa fa-check"></i>データセット1: ビジネススクールの入学許可データ</a></li>
 <li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#線形判別-lda"><i class="fa fa-check"></i>線形判別 (LDA)</a></li>
 <li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#次判別-qda"><i class="fa fa-check"></i>2次判別 (QDA)</a></li>
 </ul></li>
@@ -299,6 +299,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット3-自動車評価データ"><i class="fa fa-check"></i>データセット3: 自動車評価データ</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html"><i class="fa fa-check"></i><b>9</b> 主成分分析 (PCA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#基本操作-1"><i class="fa fa-check"></i><b>9.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット1-従業員スキル評価データ仮想"><i class="fa fa-check"></i>データセット1: 従業員スキル評価データ(仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#種類のpca-相関行列ベース-vs-分散共分散行列ベース"><i class="fa fa-check"></i><b>9.2</b> 2種類のPCA: 相関行列ベース vs 分散共分散行列ベース</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析-pca.html"><a href="主成分分析-pca.html#データセット2-usarrests-data"><i class="fa fa-check"></i>データセット2: USArrests data</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -323,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>手初めに, データセットを学習データ (訓練データ) とテストデータに分けずに,
 標準パッケージ<strong>MASS</strong>内の線形判別, 2次判別を実行する関数
 <code>lda</code>, <code>qda</code>を適用した結果 (内挿予測) を眺めてみる.</p>
-<div id="データセット-1-ビジネススクールの入学許可データ" class="section level3 unnumbered hasAnchor">
-<h3>データセット (1): ビジネススクールの入学許可データ<a href="判別分析.html#データセット-1-ビジネススクールの入学許可データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="データセット1-ビジネススクールの入学許可データ" class="section level3 unnumbered hasAnchor">
+<h3>データセット1: ビジネススクールの入学許可データ<a href="判別分析.html#データセット1-ビジネススクールの入学許可データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>- admission.csv
    - GPA
    - GMAT
@@ -451,9 +462,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb284-7"><a href="判別分析.html#cb284-7" tabindex="-1"></a><span class="co">#　confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb284-8"><a href="判別分析.html#cb284-8" tabindex="-1"></a><span class="co">#&gt;           </span></span>
 <span id="cb284-9"><a href="判別分析.html#cb284-9" tabindex="-1"></a><span class="co">#&gt; pred_knn   admit border notadmit</span></span>
-<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       24      2        2</span></span>
-<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       4     17        7</span></span>
-<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     3      7       19</span></span></code></pre></div>
+<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       25      1        1</span></span>
+<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       3     15        7</span></span>
+<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     3     10       20</span></span></code></pre></div>
 </div>
 <div id="データセット分割学習判別評価" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> データセット分割・学習・判別・評価<a href="判別分析.html#データセット分割学習判別評価" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -507,8 +518,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb290-7"><a href="判別分析.html#cb290-7" tabindex="-1"></a><span class="co"># confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb290-8"><a href="判別分析.html#cb290-8" tabindex="-1"></a><span class="co">#&gt;         </span></span>
 <span id="cb290-9"><a href="判別分析.html#cb290-9" tabindex="-1"></a><span class="co">#&gt; pred_knn    0    1</span></span>
-<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2396   83</span></span>
-<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   14    7</span></span></code></pre></div>
+<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2406   56</span></span>
+<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   15   23</span></span></code></pre></div>
 </div>
 </div>
 <div id="他パッケージの利用" class="section level2 hasAnchor" number="7.4">
