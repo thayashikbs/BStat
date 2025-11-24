@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 判別分析 | ビジネス統計</title>
   <meta name="description" content="7 判別分析 | ビジネス統計" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 判別分析 | ビジネス統計" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#データセット1-従業員評価データ-仮想"><i class="fa fa-check"></i>データセット1: 従業員評価データ (仮想)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
+<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#パッケージpsychの利用"><i class="fa fa-check"></i><b>10.2</b> パッケージ<strong>psych</strong>の利用</a></li>
 <li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a>
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子数の決定"><i class="fa fa-check"></i>因子数の決定</a></li>
@@ -476,9 +476,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb284-7"><a href="判別分析.html#cb284-7" tabindex="-1"></a><span class="co">#　confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb284-8"><a href="判別分析.html#cb284-8" tabindex="-1"></a><span class="co">#&gt;           </span></span>
 <span id="cb284-9"><a href="判別分析.html#cb284-9" tabindex="-1"></a><span class="co">#&gt; pred_knn   admit border notadmit</span></span>
-<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       26      1        2</span></span>
-<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       3     16        5</span></span>
-<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     2      9       21</span></span></code></pre></div>
+<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       24      2        2</span></span>
+<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       4     16        5</span></span>
+<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     3      8       21</span></span></code></pre></div>
 </div>
 <div id="データセット分割学習判別評価" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> データセット分割・学習・判別・評価<a href="判別分析.html#データセット分割学習判別評価" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -532,8 +532,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb290-7"><a href="判別分析.html#cb290-7" tabindex="-1"></a><span class="co"># confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb290-8"><a href="判別分析.html#cb290-8" tabindex="-1"></a><span class="co">#&gt;         </span></span>
 <span id="cb290-9"><a href="判別分析.html#cb290-9" tabindex="-1"></a><span class="co">#&gt; pred_knn    0    1</span></span>
-<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2390   76</span></span>
-<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   18   16</span></span></code></pre></div>
+<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2412   67</span></span>
+<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   11   10</span></span></code></pre></div>
 </div>
 </div>
 <div id="他パッケージの利用" class="section level2 hasAnchor" number="7.4">
@@ -594,42 +594,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

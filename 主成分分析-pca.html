@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 主成分分析 (PCA) | ビジネス統計</title>
   <meta name="description" content="9 主成分分析 (PCA) | ビジネス統計" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 主成分分析 (PCA) | ビジネス統計" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#データセット1-従業員評価データ-仮想"><i class="fa fa-check"></i>データセット1: 従業員評価データ (仮想)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
+<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#パッケージpsychの利用"><i class="fa fa-check"></i><b>10.2</b> パッケージ<strong>psych</strong>の利用</a></li>
 <li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a>
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子数の決定"><i class="fa fa-check"></i>因子数の決定</a></li>
@@ -357,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - n = 94, p = 2
 ```
 
-```r
+``` r
 price_dat <- read.csv("sony_pana_close_Oct2015-Feb2016.csv", header = T, row.name = 1)
 sony_ret <- diff(log(price_dat[, "sony"]))
 pana_ret <- diff(log(price_dat[, "panasonic"]))
@@ -373,7 +373,7 @@ head(ret_df)
 ```
 
 
-```r
+``` r
 # PCA (分散共分散行列に対して)
 ret_pca <- princomp(ret_df)     # PCA on covariance matrix
 summary(ret_pca)
@@ -391,7 +391,7 @@ plot(ret_pca)
 ```
 
 
-```r
+``` r
 ret_pca$center
 ret_pca$sd
 
@@ -402,7 +402,7 @@ plot(ret_pca$loadings)
 
 <img src="110-pca_files/figure-html/unnamed-chunk-5-1.png" width="75%" />
 
-```r
+``` r
 
 # PC得点（符号反転前)
 plot(ret_pca$scores)
@@ -410,7 +410,7 @@ plot(ret_pca$scores)
 
 <img src="110-pca_files/figure-html/unnamed-chunk-5-2.png" width="75%" />
 
-```r
+``` r
 head(ret_pca$scores)
 #>         sony         pana 
 #> -0.001931057 -0.004103680 
@@ -436,7 +436,7 @@ head(ret_pca$scores)
 ```
 
 
-```r
+``` r
 # PCA (相関行列に対して)
 ret_pca <- princomp(ret_df, cor = T)    # PCA on correlation matrix
 summary(ret_pca)
@@ -455,7 +455,7 @@ biplot(ret_pca)
 ```
 
 
-```r
+``` r
 # 変数のスケーリング影響確認
 ret_df2 <- data.frame(sony = sony_ret*10, pana = pana_ret,row.names = rownames(price_dat[-1, ]))
 
@@ -780,42 +780,42 @@ ret_pca3$loadings
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

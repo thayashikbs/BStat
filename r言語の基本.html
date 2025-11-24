@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 R言語の基本 | ビジネス統計</title>
   <meta name="description" content="2 R言語の基本 | ビジネス統計" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 R言語の基本 | ビジネス統計" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#データセット1-従業員評価データ-仮想"><i class="fa fa-check"></i>データセット1: 従業員評価データ (仮想)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#ライブラリpsychの利用"><i class="fa fa-check"></i><b>10.2</b> ライブラリ<strong>psych</strong>の利用</a></li>
+<li class="chapter" data-level="10.2" data-path="探索的因子分析.html"><a href="探索的因子分析.html#パッケージpsychの利用"><i class="fa fa-check"></i><b>10.2</b> パッケージ<strong>psych</strong>の利用</a></li>
 <li class="chapter" data-level="10.3" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子分析に有用なツール"><i class="fa fa-check"></i><b>10.3</b> 因子分析に有用なツール</a>
 <ul>
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#因子数の決定"><i class="fa fa-check"></i>因子数の決定</a></li>
@@ -776,12 +776,12 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <span id="cb94-14"><a href="r言語の基本.html#cb94-14" tabindex="-1"></a>lm_res[<span class="st">&quot;coefficients&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] TRUE
 ## (Intercept)         xxx 
-##  -0.7448990   0.6344885 
+##  -0.5777073   0.5476770 
 ## (Intercept)         xxx 
-##  -0.7448990   0.6344885 
+##  -0.5777073   0.5476770 
 ## $coefficients
 ## (Intercept)         xxx 
-##  -0.7448990   0.6344885</code></pre>
+##  -0.5777073   0.5476770</code></pre>
 </div>
 <div id="データフレーム" class="section level3 hasAnchor" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -992,31 +992,30 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <p><img src="010-Intro_files/figure-html/plot-7.png" width="672" /></p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="r言語の基本.html#cb123-1" tabindex="-1"></a><span class="co"># 散布図</span></span>
 <span id="cb123-2"><a href="r言語の基本.html#cb123-2" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb123-3"><a href="r言語の基本.html#cb123-3" tabindex="-1"></a><span class="fu">pairs</span>(ccc)</span>
-<span id="cb123-4"><a href="r言語の基本.html#cb123-4" tabindex="-1"></a></span>
-<span id="cb123-5"><a href="r言語の基本.html#cb123-5" tabindex="-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
-<span id="cb123-6"><a href="r言語の基本.html#cb123-6" tabindex="-1"></a><span class="co">#library(car)</span></span>
-<span id="cb123-7"><a href="r言語の基本.html#cb123-7" tabindex="-1"></a><span class="co">#scatterplot(ccc)</span></span>
-<span id="cb123-8"><a href="r言語の基本.html#cb123-8" tabindex="-1"></a><span class="co"># install.packages(&quot;scatterplot3d&quot;); library(scatterplot3d)</span></span>
-<span id="cb123-9"><a href="r言語の基本.html#cb123-9" tabindex="-1"></a><span class="co"># scatterplot3d</span></span>
-<span id="cb123-10"><a href="r言語の基本.html#cb123-10" tabindex="-1"></a></span>
-<span id="cb123-11"><a href="r言語の基本.html#cb123-11" tabindex="-1"></a><span class="co"># その他のグラフ</span></span>
-<span id="cb123-12"><a href="r言語の基本.html#cb123-12" tabindex="-1"></a><span class="co"># coplot; mosaic plot; stars; faces; persp; image; contour</span></span>
-<span id="cb123-13"><a href="r言語の基本.html#cb123-13" tabindex="-1"></a></span>
-<span id="cb123-14"><a href="r言語の基本.html#cb123-14" tabindex="-1"></a><span class="co"># その他</span></span>
-<span id="cb123-15"><a href="r言語の基本.html#cb123-15" tabindex="-1"></a><span class="co"># windows()     #新しいグラフィック・ウィンドウを開く</span></span>
-<span id="cb123-16"><a href="r言語の基本.html#cb123-16" tabindex="-1"></a><span class="co"># par(mfrow = c(2, 2))</span></span>
-<span id="cb123-17"><a href="r言語の基本.html#cb123-17" tabindex="-1"></a></span>
-<span id="cb123-18"><a href="r言語の基本.html#cb123-18" tabindex="-1"></a><span class="co"># より洗練されたグラフ. やや難易度が高いがモダンなアプローチ</span></span>
-<span id="cb123-19"><a href="r言語の基本.html#cb123-19" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;, dependencies = T)</span></span>
-<span id="cb123-20"><a href="r言語の基本.html#cb123-20" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<span id="cb123-3"><a href="r言語の基本.html#cb123-3" tabindex="-1"></a><span class="fu">pairs</span>(ccc)</span></code></pre></div>
 <p><img src="010-Intro_files/figure-html/plot-8.png" width="672" /></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r言語の基本.html#cb124-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
-<span id="cb124-2"><a href="r言語の基本.html#cb124-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
-<span id="cb124-3"><a href="r言語の基本.html#cb124-3" tabindex="-1"></a>                     <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb124-4"><a href="r言語の基本.html#cb124-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Species)) <span class="sc">+</span></span>
-<span id="cb124-5"><a href="r言語の基本.html#cb124-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb124-6"><a href="r言語の基本.html#cb124-6" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r言語の基本.html#cb124-1" tabindex="-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
+<span id="cb124-2"><a href="r言語の基本.html#cb124-2" tabindex="-1"></a><span class="co">#library(car)</span></span>
+<span id="cb124-3"><a href="r言語の基本.html#cb124-3" tabindex="-1"></a><span class="co">#scatterplot(ccc)</span></span>
+<span id="cb124-4"><a href="r言語の基本.html#cb124-4" tabindex="-1"></a><span class="co"># install.packages(&quot;scatterplot3d&quot;); library(scatterplot3d)</span></span>
+<span id="cb124-5"><a href="r言語の基本.html#cb124-5" tabindex="-1"></a><span class="co"># scatterplot3d</span></span>
+<span id="cb124-6"><a href="r言語の基本.html#cb124-6" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="r言語の基本.html#cb124-7" tabindex="-1"></a><span class="co"># その他のグラフ</span></span>
+<span id="cb124-8"><a href="r言語の基本.html#cb124-8" tabindex="-1"></a><span class="co"># coplot; mosaic plot; stars; faces; persp; image; contour</span></span>
+<span id="cb124-9"><a href="r言語の基本.html#cb124-9" tabindex="-1"></a></span>
+<span id="cb124-10"><a href="r言語の基本.html#cb124-10" tabindex="-1"></a><span class="co"># その他</span></span>
+<span id="cb124-11"><a href="r言語の基本.html#cb124-11" tabindex="-1"></a><span class="co"># windows()     #新しいグラフィック・ウィンドウを開く</span></span>
+<span id="cb124-12"><a href="r言語の基本.html#cb124-12" tabindex="-1"></a><span class="co"># par(mfrow = c(2, 2))</span></span>
+<span id="cb124-13"><a href="r言語の基本.html#cb124-13" tabindex="-1"></a></span>
+<span id="cb124-14"><a href="r言語の基本.html#cb124-14" tabindex="-1"></a><span class="co"># より洗練されたグラフ. やや難易度が高いがモダンなアプローチ</span></span>
+<span id="cb124-15"><a href="r言語の基本.html#cb124-15" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;, dependencies = T)</span></span>
+<span id="cb124-16"><a href="r言語の基本.html#cb124-16" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb124-17"><a href="r言語の基本.html#cb124-17" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb124-18"><a href="r言語の基本.html#cb124-18" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb124-19"><a href="r言語の基本.html#cb124-19" tabindex="-1"></a>                     <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
+<span id="cb124-20"><a href="r言語の基本.html#cb124-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Species)) <span class="sc">+</span></span>
+<span id="cb124-21"><a href="r言語の基本.html#cb124-21" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb124-22"><a href="r言語の基本.html#cb124-22" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="010-Intro_files/figure-html/plot-9.png" width="672" /></p>
 </div>
@@ -1144,10 +1143,10 @@ ifile &lt;- file.path(fpath, &quot;)</code></pre>
 <span id="cb131-4"><a href="r言語の基本.html#cb131-4" tabindex="-1"></a><span class="co"># ライブラリに読み込む</span></span>
 <span id="cb131-5"><a href="r言語の基本.html#cb131-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.3     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
@@ -1219,42 +1218,42 @@ ifile &lt;- file.path(fpath, &quot;)</code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
