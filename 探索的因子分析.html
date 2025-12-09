@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="主成分分析-pca.html"/>
-
+<link rel="next" href="クラスター分析.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -324,6 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#確証的因子分析"><i class="fa fa-check"></i>確証的因子分析</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="クラスター分析.html"><a href="クラスター分析.html"><i class="fa fa-check"></i><b>11</b> クラスター分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="クラスター分析.html"><a href="クラスター分析.html#基本操作-3"><i class="fa fa-check"></i><b>11.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#階層型クラスタリング"><i class="fa fa-check"></i>階層型クラスタリング</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#k-means法"><i class="fa fa-check"></i>k-means法</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#変数に対するクラスタリング"><i class="fa fa-check"></i>変数に対するクラスタリング</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="クラスター分析.html"><a href="クラスター分析.html#データ分析例-1"><i class="fa fa-check"></i><b>11.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-1-ワイン品質データ-再掲"><i class="fa fa-check"></i>データセット (1): ワイン品質データ (再掲)</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-2-id無し-posデータ"><i class="fa fa-check"></i>データセット (2): (ID無し) POSデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="クラスター分析.html"><a href="クラスター分析.html#発展的なクラスター分析"><i class="fa fa-check"></i><b>11.3</b> 発展的なクラスター分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数agnes"><i class="fa fa-check"></i>関数<code>agnes</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pheatmap"><i class="fa fa-check"></i>関数<code>pheatmap</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pam"><i class="fa fa-check"></i>関数<code>pam</code></a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -359,60 +379,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   - コミュ力/Communication (同)
 - n = 30, p = 5
 - ※ 英語版は, &quot;selfeval30_eg.csv&quot;</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="探索的因子分析.html#cb359-1" tabindex="-1"></a><span class="co"># (1) factanal: 最尤法only</span></span>
-<span id="cb359-2"><a href="探索的因子分析.html#cb359-2" tabindex="-1"></a>tokuten <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;selfeval30_jp.csv&quot;</span>, <span class="at">header =</span> T, </span>
-<span id="cb359-3"><a href="探索的因子分析.html#cb359-3" tabindex="-1"></a>                    <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb359-4"><a href="探索的因子分析.html#cb359-4" tabindex="-1"></a><span class="co"># tokuten &lt;- read.csv(&quot;selfeval30_eg.csv&quot;, header = T, row.names = 1)</span></span>
-<span id="cb359-5"><a href="探索的因子分析.html#cb359-5" tabindex="-1"></a><span class="co"># 散布図</span></span>
-<span id="cb359-6"><a href="探索的因子分析.html#cb359-6" tabindex="-1"></a><span class="fu">pairs</span>(tokuten)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="探索的因子分析.html#cb359-1" tabindex="-1"></a>tokuten <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;selfeval30_jp.csv&quot;</span>, <span class="at">header =</span> T, </span>
+<span id="cb359-2"><a href="探索的因子分析.html#cb359-2" tabindex="-1"></a>                    <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb359-3"><a href="探索的因子分析.html#cb359-3" tabindex="-1"></a><span class="co"># tokuten &lt;- read.csv(&quot;selfeval30_eg.csv&quot;, header = T, row.names = 1)</span></span>
+<span id="cb359-4"><a href="探索的因子分析.html#cb359-4" tabindex="-1"></a><span class="co"># 散布図</span></span>
+<span id="cb359-5"><a href="探索的因子分析.html#cb359-5" tabindex="-1"></a><span class="fu">pairs</span>(tokuten)</span></code></pre></div>
 <p><img src="120-fa_BS_files/figure-html/unnamed-chunk-4-1.png" width="75%" /></p>
 <p>Rでは, 因子分析を実行する関数として<code>factanal()</code>が標準的に用意されている.
 <code>factanal()</code>は, 最尤法を使ってモデル推定を行う. 他の推定法を試したい場合には,
 後述のパッケージ<strong>psych</strong>内の<code>fa()</code>を使用すると良い.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="探索的因子分析.html#cb360-1" tabindex="-1"></a>tokuten_fac <span class="ot">&lt;-</span> <span class="fu">factanal</span>(tokuten, <span class="at">factors =</span> <span class="dv">2</span>)   <span class="co"># default varimax回転</span></span>
-<span id="cb360-2"><a href="探索的因子分析.html#cb360-2" tabindex="-1"></a>tokuten_fac</span>
-<span id="cb360-3"><a href="探索的因子分析.html#cb360-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-4"><a href="探索的因子分析.html#cb360-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb360-5"><a href="探索的因子分析.html#cb360-5" tabindex="-1"></a><span class="co">#&gt; factanal(x = tokuten, factors = 2)</span></span>
-<span id="cb360-6"><a href="探索的因子分析.html#cb360-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-7"><a href="探索的因子分析.html#cb360-7" tabindex="-1"></a><span class="co">#&gt; Uniquenesses:</span></span>
-<span id="cb360-8"><a href="探索的因子分析.html#cb360-8" tabindex="-1"></a><span class="co">#&gt;         専門性         分析力 リーダーシップ     プレゼン力       コミュ力 </span></span>
-<span id="cb360-9"><a href="探索的因子分析.html#cb360-9" tabindex="-1"></a><span class="co">#&gt;          0.312          0.124          0.429          0.340          0.150 </span></span>
-<span id="cb360-10"><a href="探索的因子分析.html#cb360-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-11"><a href="探索的因子分析.html#cb360-11" tabindex="-1"></a><span class="co">#&gt; Loadings:</span></span>
-<span id="cb360-12"><a href="探索的因子分析.html#cb360-12" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
-<span id="cb360-13"><a href="探索的因子分析.html#cb360-13" tabindex="-1"></a><span class="co">#&gt; 専門性         0.180   0.810  </span></span>
-<span id="cb360-14"><a href="探索的因子分析.html#cb360-14" tabindex="-1"></a><span class="co">#&gt; 分析力         0.223   0.909  </span></span>
-<span id="cb360-15"><a href="探索的因子分析.html#cb360-15" tabindex="-1"></a><span class="co">#&gt; リーダーシップ 0.714   0.246  </span></span>
-<span id="cb360-16"><a href="探索的因子分析.html#cb360-16" tabindex="-1"></a><span class="co">#&gt; プレゼン力     0.811          </span></span>
-<span id="cb360-17"><a href="探索的因子分析.html#cb360-17" tabindex="-1"></a><span class="co">#&gt; コミュ力       0.866   0.315  </span></span>
-<span id="cb360-18"><a href="探索的因子分析.html#cb360-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-19"><a href="探索的因子分析.html#cb360-19" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
-<span id="cb360-20"><a href="探索的因子分析.html#cb360-20" tabindex="-1"></a><span class="co">#&gt; SS loadings      2.001   1.644</span></span>
-<span id="cb360-21"><a href="探索的因子分析.html#cb360-21" tabindex="-1"></a><span class="co">#&gt; Proportion Var   0.400   0.329</span></span>
-<span id="cb360-22"><a href="探索的因子分析.html#cb360-22" tabindex="-1"></a><span class="co">#&gt; Cumulative Var   0.400   0.729</span></span>
-<span id="cb360-23"><a href="探索的因子分析.html#cb360-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-24"><a href="探索的因子分析.html#cb360-24" tabindex="-1"></a><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></span>
-<span id="cb360-25"><a href="探索的因子分析.html#cb360-25" tabindex="-1"></a><span class="co">#&gt; The chi square statistic is 1.13 on 1 degree of freedom.</span></span>
-<span id="cb360-26"><a href="探索的因子分析.html#cb360-26" tabindex="-1"></a><span class="co">#&gt; The p-value is 0.288</span></span>
-<span id="cb360-27"><a href="探索的因子分析.html#cb360-27" tabindex="-1"></a></span>
-<span id="cb360-28"><a href="探索的因子分析.html#cb360-28" tabindex="-1"></a>tokuten_fac<span class="sc">$</span>loading</span>
-<span id="cb360-29"><a href="探索的因子分析.html#cb360-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-30"><a href="探索的因子分析.html#cb360-30" tabindex="-1"></a><span class="co">#&gt; Loadings:</span></span>
-<span id="cb360-31"><a href="探索的因子分析.html#cb360-31" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
-<span id="cb360-32"><a href="探索的因子分析.html#cb360-32" tabindex="-1"></a><span class="co">#&gt; 専門性         0.180   0.810  </span></span>
-<span id="cb360-33"><a href="探索的因子分析.html#cb360-33" tabindex="-1"></a><span class="co">#&gt; 分析力         0.223   0.909  </span></span>
-<span id="cb360-34"><a href="探索的因子分析.html#cb360-34" tabindex="-1"></a><span class="co">#&gt; リーダーシップ 0.714   0.246  </span></span>
-<span id="cb360-35"><a href="探索的因子分析.html#cb360-35" tabindex="-1"></a><span class="co">#&gt; プレゼン力     0.811          </span></span>
-<span id="cb360-36"><a href="探索的因子分析.html#cb360-36" tabindex="-1"></a><span class="co">#&gt; コミュ力       0.866   0.315  </span></span>
-<span id="cb360-37"><a href="探索的因子分析.html#cb360-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb360-38"><a href="探索的因子分析.html#cb360-38" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
-<span id="cb360-39"><a href="探索的因子分析.html#cb360-39" tabindex="-1"></a><span class="co">#&gt; SS loadings      2.001   1.644</span></span>
-<span id="cb360-40"><a href="探索的因子分析.html#cb360-40" tabindex="-1"></a><span class="co">#&gt; Proportion Var   0.400   0.329</span></span>
-<span id="cb360-41"><a href="探索的因子分析.html#cb360-41" tabindex="-1"></a><span class="co">#&gt; Cumulative Var   0.400   0.729</span></span>
-<span id="cb360-42"><a href="探索的因子分析.html#cb360-42" tabindex="-1"></a><span class="co"># 確認(各因子のloadingsベクトルの2乗和--&gt; SS loadings))</span></span>
-<span id="cb360-43"><a href="探索的因子分析.html#cb360-43" tabindex="-1"></a><span class="fu">sum</span>(tokuten_fac<span class="sc">$</span>loading[, <span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb360-44"><a href="探索的因子分析.html#cb360-44" tabindex="-1"></a><span class="co">#&gt; [1] 2.000541</span></span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="探索的因子分析.html#cb360-1" tabindex="-1"></a><span class="co"># (1) factanal: 最尤法only</span></span>
+<span id="cb360-2"><a href="探索的因子分析.html#cb360-2" tabindex="-1"></a>tokuten_fac <span class="ot">&lt;-</span> <span class="fu">factanal</span>(tokuten, <span class="at">factors =</span> <span class="dv">2</span>)   <span class="co"># default varimax回転</span></span>
+<span id="cb360-3"><a href="探索的因子分析.html#cb360-3" tabindex="-1"></a>tokuten_fac</span>
+<span id="cb360-4"><a href="探索的因子分析.html#cb360-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-5"><a href="探索的因子分析.html#cb360-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb360-6"><a href="探索的因子分析.html#cb360-6" tabindex="-1"></a><span class="co">#&gt; factanal(x = tokuten, factors = 2)</span></span>
+<span id="cb360-7"><a href="探索的因子分析.html#cb360-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-8"><a href="探索的因子分析.html#cb360-8" tabindex="-1"></a><span class="co">#&gt; Uniquenesses:</span></span>
+<span id="cb360-9"><a href="探索的因子分析.html#cb360-9" tabindex="-1"></a><span class="co">#&gt;         専門性         分析力 リーダーシップ     プレゼン力       コミュ力 </span></span>
+<span id="cb360-10"><a href="探索的因子分析.html#cb360-10" tabindex="-1"></a><span class="co">#&gt;          0.312          0.124          0.429          0.340          0.150 </span></span>
+<span id="cb360-11"><a href="探索的因子分析.html#cb360-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-12"><a href="探索的因子分析.html#cb360-12" tabindex="-1"></a><span class="co">#&gt; Loadings:</span></span>
+<span id="cb360-13"><a href="探索的因子分析.html#cb360-13" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
+<span id="cb360-14"><a href="探索的因子分析.html#cb360-14" tabindex="-1"></a><span class="co">#&gt; 専門性         0.180   0.810  </span></span>
+<span id="cb360-15"><a href="探索的因子分析.html#cb360-15" tabindex="-1"></a><span class="co">#&gt; 分析力         0.223   0.909  </span></span>
+<span id="cb360-16"><a href="探索的因子分析.html#cb360-16" tabindex="-1"></a><span class="co">#&gt; リーダーシップ 0.714   0.246  </span></span>
+<span id="cb360-17"><a href="探索的因子分析.html#cb360-17" tabindex="-1"></a><span class="co">#&gt; プレゼン力     0.811          </span></span>
+<span id="cb360-18"><a href="探索的因子分析.html#cb360-18" tabindex="-1"></a><span class="co">#&gt; コミュ力       0.866   0.315  </span></span>
+<span id="cb360-19"><a href="探索的因子分析.html#cb360-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-20"><a href="探索的因子分析.html#cb360-20" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
+<span id="cb360-21"><a href="探索的因子分析.html#cb360-21" tabindex="-1"></a><span class="co">#&gt; SS loadings      2.001   1.644</span></span>
+<span id="cb360-22"><a href="探索的因子分析.html#cb360-22" tabindex="-1"></a><span class="co">#&gt; Proportion Var   0.400   0.329</span></span>
+<span id="cb360-23"><a href="探索的因子分析.html#cb360-23" tabindex="-1"></a><span class="co">#&gt; Cumulative Var   0.400   0.729</span></span>
+<span id="cb360-24"><a href="探索的因子分析.html#cb360-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-25"><a href="探索的因子分析.html#cb360-25" tabindex="-1"></a><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></span>
+<span id="cb360-26"><a href="探索的因子分析.html#cb360-26" tabindex="-1"></a><span class="co">#&gt; The chi square statistic is 1.13 on 1 degree of freedom.</span></span>
+<span id="cb360-27"><a href="探索的因子分析.html#cb360-27" tabindex="-1"></a><span class="co">#&gt; The p-value is 0.288</span></span>
+<span id="cb360-28"><a href="探索的因子分析.html#cb360-28" tabindex="-1"></a></span>
+<span id="cb360-29"><a href="探索的因子分析.html#cb360-29" tabindex="-1"></a>tokuten_fac<span class="sc">$</span>loading</span>
+<span id="cb360-30"><a href="探索的因子分析.html#cb360-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-31"><a href="探索的因子分析.html#cb360-31" tabindex="-1"></a><span class="co">#&gt; Loadings:</span></span>
+<span id="cb360-32"><a href="探索的因子分析.html#cb360-32" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
+<span id="cb360-33"><a href="探索的因子分析.html#cb360-33" tabindex="-1"></a><span class="co">#&gt; 専門性         0.180   0.810  </span></span>
+<span id="cb360-34"><a href="探索的因子分析.html#cb360-34" tabindex="-1"></a><span class="co">#&gt; 分析力         0.223   0.909  </span></span>
+<span id="cb360-35"><a href="探索的因子分析.html#cb360-35" tabindex="-1"></a><span class="co">#&gt; リーダーシップ 0.714   0.246  </span></span>
+<span id="cb360-36"><a href="探索的因子分析.html#cb360-36" tabindex="-1"></a><span class="co">#&gt; プレゼン力     0.811          </span></span>
+<span id="cb360-37"><a href="探索的因子分析.html#cb360-37" tabindex="-1"></a><span class="co">#&gt; コミュ力       0.866   0.315  </span></span>
+<span id="cb360-38"><a href="探索的因子分析.html#cb360-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb360-39"><a href="探索的因子分析.html#cb360-39" tabindex="-1"></a><span class="co">#&gt;                Factor1 Factor2</span></span>
+<span id="cb360-40"><a href="探索的因子分析.html#cb360-40" tabindex="-1"></a><span class="co">#&gt; SS loadings      2.001   1.644</span></span>
+<span id="cb360-41"><a href="探索的因子分析.html#cb360-41" tabindex="-1"></a><span class="co">#&gt; Proportion Var   0.400   0.329</span></span>
+<span id="cb360-42"><a href="探索的因子分析.html#cb360-42" tabindex="-1"></a><span class="co">#&gt; Cumulative Var   0.400   0.729</span></span>
+<span id="cb360-43"><a href="探索的因子分析.html#cb360-43" tabindex="-1"></a><span class="co"># 確認(各因子のloadingsベクトルの2乗和--&gt; SS loadings))</span></span>
+<span id="cb360-44"><a href="探索的因子分析.html#cb360-44" tabindex="-1"></a><span class="fu">sum</span>(tokuten_fac<span class="sc">$</span>loading[, <span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb360-45"><a href="探索的因子分析.html#cb360-45" tabindex="-1"></a><span class="co">#&gt; [1] 2.000541</span></span></code></pre></div>
 <p>得られた因子負荷量の解釈をしやすくするために,
 棒グラフを用いることも多い.</p>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="探索的因子分析.html#cb361-1" tabindex="-1"></a><span class="co"># 因子負荷量barplot(factor loadings)</span></span>
@@ -786,11 +806,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb377-9"><a href="探索的因子分析.html#cb377-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb377-10"><a href="探索的因子分析.html#cb377-10" tabindex="-1"></a><span class="co">#&gt;  Eigen Values of </span></span>
 <span id="cb377-11"><a href="探索的因子分析.html#cb377-11" tabindex="-1"></a><span class="co">#&gt;   Original factors Resampled data Simulated data Original components</span></span>
-<span id="cb377-12"><a href="探索的因子分析.html#cb377-12" tabindex="-1"></a><span class="co">#&gt; 1             2.48           1.03           1.04                2.93</span></span>
-<span id="cb377-13"><a href="探索的因子分析.html#cb377-13" tabindex="-1"></a><span class="co">#&gt; 2             0.63           0.28           0.29                1.23</span></span>
+<span id="cb377-12"><a href="探索的因子分析.html#cb377-12" tabindex="-1"></a><span class="co">#&gt; 1             2.48           1.15           1.12                2.93</span></span>
+<span id="cb377-13"><a href="探索的因子分析.html#cb377-13" tabindex="-1"></a><span class="co">#&gt; 2             0.63           0.28           0.30                1.23</span></span>
 <span id="cb377-14"><a href="探索的因子分析.html#cb377-14" tabindex="-1"></a><span class="co">#&gt;   Resampled components Simulated components</span></span>
-<span id="cb377-15"><a href="探索的因子分析.html#cb377-15" tabindex="-1"></a><span class="co">#&gt; 1                 1.57                 1.58</span></span>
-<span id="cb377-16"><a href="探索的因子分析.html#cb377-16" tabindex="-1"></a><span class="co">#&gt; 2                 1.21                 1.20</span></span></code></pre></div>
+<span id="cb377-15"><a href="探索的因子分析.html#cb377-15" tabindex="-1"></a><span class="co">#&gt; 1                 1.58                 1.52</span></span>
+<span id="cb377-16"><a href="探索的因子分析.html#cb377-16" tabindex="-1"></a><span class="co">#&gt; 2                 1.21                 1.23</span></span></code></pre></div>
 <p><strong>VSS (Very Simple Structure) 基準</strong></p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="探索的因子分析.html#cb378-1" tabindex="-1"></a><span class="co"># VSS (Very Simple Structure) 基準</span></span>
 <span id="cb378-2"><a href="探索的因子分析.html#cb378-2" tabindex="-1"></a><span class="co"># Very Simple Structure criterion ( VSS) for estimating the optimal number of factors</span></span>
@@ -853,8 +873,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="主成分分析-pca.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="主成分分析-pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="クラスター分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

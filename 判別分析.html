@@ -324,6 +324,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="探索的因子分析.html"><a href="探索的因子分析.html#確証的因子分析"><i class="fa fa-check"></i>確証的因子分析</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="クラスター分析.html"><a href="クラスター分析.html"><i class="fa fa-check"></i><b>11</b> クラスター分析</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="クラスター分析.html"><a href="クラスター分析.html#基本操作-3"><i class="fa fa-check"></i><b>11.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#階層型クラスタリング"><i class="fa fa-check"></i>階層型クラスタリング</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#k-means法"><i class="fa fa-check"></i>k-means法</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#変数に対するクラスタリング"><i class="fa fa-check"></i>変数に対するクラスタリング</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="クラスター分析.html"><a href="クラスター分析.html#データ分析例-1"><i class="fa fa-check"></i><b>11.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-1-ワイン品質データ-再掲"><i class="fa fa-check"></i>データセット (1): ワイン品質データ (再掲)</a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#データセット-2-id無し-posデータ"><i class="fa fa-check"></i>データセット (2): (ID無し) POSデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="クラスター分析.html"><a href="クラスター分析.html#発展的なクラスター分析"><i class="fa fa-check"></i><b>11.3</b> 発展的なクラスター分析</a>
+<ul>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数agnes"><i class="fa fa-check"></i>関数<code>agnes</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pheatmap"><i class="fa fa-check"></i>関数<code>pheatmap</code></a></li>
+<li class="chapter" data-level="" data-path="クラスター分析.html"><a href="クラスター分析.html#関数pam"><i class="fa fa-check"></i>関数<code>pam</code></a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -476,9 +496,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb284-7"><a href="判別分析.html#cb284-7" tabindex="-1"></a><span class="co">#　confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb284-8"><a href="判別分析.html#cb284-8" tabindex="-1"></a><span class="co">#&gt;           </span></span>
 <span id="cb284-9"><a href="判別分析.html#cb284-9" tabindex="-1"></a><span class="co">#&gt; pred_knn   admit border notadmit</span></span>
-<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       24      2        2</span></span>
-<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       4     16        5</span></span>
-<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     3      8       21</span></span></code></pre></div>
+<span id="cb284-10"><a href="判別分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt;   admit       26      2        1</span></span>
+<span id="cb284-11"><a href="判別分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt;   border       4     15        7</span></span>
+<span id="cb284-12"><a href="判別分析.html#cb284-12" tabindex="-1"></a><span class="co">#&gt;   notadmit     1      9       20</span></span></code></pre></div>
 </div>
 <div id="データセット分割学習判別評価" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> データセット分割・学習・判別・評価<a href="判別分析.html#データセット分割学習判別評価" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -532,8 +552,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb290-7"><a href="判別分析.html#cb290-7" tabindex="-1"></a><span class="co"># confusionMatrix(knn_tab,  mode = &quot;prec_recall&quot;)</span></span>
 <span id="cb290-8"><a href="判別分析.html#cb290-8" tabindex="-1"></a><span class="co">#&gt;         </span></span>
 <span id="cb290-9"><a href="判別分析.html#cb290-9" tabindex="-1"></a><span class="co">#&gt; pred_knn    0    1</span></span>
-<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2412   67</span></span>
-<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   11   10</span></span></code></pre></div>
+<span id="cb290-10"><a href="判別分析.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;        0 2394   76</span></span>
+<span id="cb290-11"><a href="判別分析.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;        1   18   12</span></span></code></pre></div>
 </div>
 </div>
 <div id="他パッケージの利用" class="section level2 hasAnchor" number="7.4">
