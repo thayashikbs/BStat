@@ -309,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ロジットプロビット回帰分析" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">7</span> ロジット/プロビット回帰分析<a href="ロジットプロビット回帰分析.html#ロジットプロビット回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<!-- 2026.10.25 Claude: 疑似R2の使い分け (参考) の節を追加. -->
+<!-- 2026.10.25 Claude: 疑似R2の使い分け (参考) の節を追加. McFadden の「最もよく使われる」「最も基本的な」を断定を避けた表現に修正. -->
 <!-- 2026.10.25 Claude: default.csv の金額をドル建てと明記. ロジット/プロビットの係数比・有意性の記述を精密化 (データ2で比較を追加). -->
 <!-- 2026.10.25 Claude: FDS2026版 050-logit.Rmd (共通部分を改訂済み) を土台に, データ部分をBSのR演習スクリプト R_logit_dist.R (2026年度版) の firmperf.txt / default.csv に差し替えて作成. BS2025版からの主な変更: 誤字修正, attach()の廃止, factor()による基準水準の明示, オッズ比・相対リスクの解説追加, 線形確率モデルとの比較を追加 -->
 <p>第4回の授業では, ロジット回帰の考え方 (2値データに対する回帰, ロジスティック変換, オッズ比) を学び,
@@ -996,7 +996,7 @@ OR = \frac{P[Y=1 \mid X=1]/P[Y=0 \mid X=1]}{P[Y=1 \mid X=0]/P[Y=0 \mid X=0]} = \
 <span id="cb196-18"><a href="ロジットプロビット回帰分析.html#cb196-18" tabindex="-1"></a><span class="co">#&gt;    1205.4266756    -584.8680212   -1096.0855951    1022.4351478</span></span></code></pre></div>
 <p>疑似<span class="math inline">\(R^2\)</span>は, 方法により相当異なることが確認される.
 したがって, 線形回帰の<span class="math inline">\(R^2\)</span>のように「何%を説明している」とは解釈せず, 同じ指標で複数のモデルを比較する目的で使うのが良い.</p>
-<p>最もよく使われる McFadden の疑似<span class="math inline">\(R^2\)</span>は, モデルの対数尤度 <span class="math inline">\(\log L\)</span> と, 切片のみのモデルの対数尤度 <span class="math inline">\(\log L_0\)</span> を用いて,
+<p>代表的な指標の一つである McFadden の疑似<span class="math inline">\(R^2\)</span>は, モデルの対数尤度 <span class="math inline">\(\log L\)</span> と, 切片のみのモデルの対数尤度 <span class="math inline">\(\log L_0\)</span> を用いて,
 <span class="math display">\[
 R^2_{\text{McFadden}} = 1 - \frac{\log L}{\log L_0}
 \]</span>
@@ -1045,7 +1045,7 @@ R^2_{\text{McFadden}} = 1 - \frac{\log L}{\log L_0}
 <p>どの疑似<span class="math inline">\(R^2\)</span>を使うべきかについて, 決まった正解はない.
 ここでは, 実務上の目安として, よく使われる指標の特徴をまとめておく.</p>
 <ul>
-<li><strong>McFadden</strong>: 対数尤度に基づく, 最も基本的な指標である. 例えば統計ソフト Stata のロジット回帰の出力に “Pseudo R2” として表示されるなど, 計量経済学の分野で広く使われている. 線形回帰の<span class="math inline">\(R^2\)</span>と比べて小さめの値になりやすく, 0.2〜0.4程度でも当てはまりは良好とする目安 (McFadden, 1979) が知られている.</li>
+<li><strong>McFadden</strong>: 対数尤度に基づく基本的な指標である. 例えば統計ソフト Stata のロジット回帰の出力に “Pseudo R2” として表示されるなど, 計量経済学の分野で広く使われている. 線形回帰の<span class="math inline">\(R^2\)</span>と比べて小さめの値になりやすく, 0.2〜0.4程度でも当てはまりは良好とする目安 (McFadden, 1979) が知られている.</li>
 <li><strong>Cox-Snell と Nagelkerke</strong>: 統計ソフト SPSS のロジスティック回帰の出力に表示されるため, SPSS がよく使われる分野 (医学・心理学など) の論文でよく見かける. Cox-Snell は最大値が1に届かないという欠点があり, Nagelkerke はそれを最大値が1になるよう補正したものである.</li>
 <li><strong>McKelvey-Zavoina</strong>: 0/1 の目的変数の背後に連続的な潜在変数を想定し, その潜在変数に対する線形回帰の<span class="math inline">\(R^2\)</span>を推定する指標である. シミュレーション研究では, 潜在変数モデルの想定が正しい場合に, 潜在変数を直接観測できたときの (OLS の)<span class="math inline">\(R^2\)</span>に近い値を与えると報告されている (Windmeijer, 1995; Veall and Zimmermann, 1996). ただし, この性質は潜在変数モデルの想定に依存する.</li>
 <li><strong>Tjur</strong>: 「<span class="math inline">\(Y=1\)</span> の個体の予測確率の平均」から「<span class="math inline">\(Y=0\)</span> の個体の予測確率の平均」を引いたもので, 二つのグループをどれだけ予測確率で区別できているかを表す. 定義が直感的に分かりやすく, パッケージ<strong>performance</strong>の<code>r2()</code>がロジット回帰に対して既定で出力するのもこの指標である.</li>
