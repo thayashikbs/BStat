@@ -287,6 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージdesctoolsの利用"><i class="fa fa-check"></i>パッケージ<strong>DescTools</strong>の利用</a></li>
 <li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージpsclの利用"><i class="fa fa-check"></i>パッケージ<strong>pscl</strong>の利用</a></li>
 <li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージperformanceの利用"><i class="fa fa-check"></i>パッケージ<strong>performance</strong>の利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#参考-疑似r2の使い分け"><i class="fa fa-check"></i>(参考) 疑似R2の使い分け</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -308,6 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ロジットプロビット回帰分析" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">7</span> ロジット/プロビット回帰分析<a href="ロジットプロビット回帰分析.html#ロジットプロビット回帰分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- 2026.10.25 Claude: 疑似R2の使い分け (参考) の節を追加. -->
 <!-- 2026.10.25 Claude: default.csv の金額をドル建てと明記. ロジット/プロビットの係数比・有意性の記述を精密化 (データ2で比較を追加). -->
 <!-- 2026.10.25 Claude: FDS2026版 050-logit.Rmd (共通部分を改訂済み) を土台に, データ部分をBSのR演習スクリプト R_logit_dist.R (2026年度版) の firmperf.txt / default.csv に差し替えて作成. BS2025版からの主な変更: 誤字修正, attach()の廃止, factor()による基準水準の明示, オッズ比・相対リスクの解説追加, 線形確率モデルとの比較を追加 -->
 <p>第4回の授業では, ロジット回帰の考え方 (2値データに対する回帰, ロジスティック変換, オッズ比) を学び,
@@ -1037,6 +1039,31 @@ R^2_{\text{McFadden}} = 1 - \frac{\log L}{\log L_0}
 <span id="cb201-3"><a href="ロジットプロビット回帰分析.html#cb201-3" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">r2</span>(res_glm)</span>
 <span id="cb201-4"><a href="ロジットプロビット回帰分析.html#cb201-4" tabindex="-1"></a><span class="co">#&gt; # R2 for Logistic Regression</span></span>
 <span id="cb201-5"><a href="ロジットプロビット回帰分析.html#cb201-5" tabindex="-1"></a><span class="co">#&gt;   Tjur&#39;s R2: 0.341</span></span></code></pre></div>
+</div>
+<div id="参考-疑似r2の使い分け" class="section level3 unnumbered hasAnchor">
+<h3>(参考) 疑似R2の使い分け<a href="ロジットプロビット回帰分析.html#参考-疑似r2の使い分け" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>どの疑似<span class="math inline">\(R^2\)</span>を使うべきかについて, 決まった正解はない.
+ここでは, 実務上の目安として, よく使われる指標の特徴をまとめておく.</p>
+<ul>
+<li><strong>McFadden</strong>: 対数尤度に基づく, 最も基本的な指標である. 例えば統計ソフト Stata のロジット回帰の出力に “Pseudo R2” として表示されるなど, 計量経済学の分野で広く使われている. 線形回帰の<span class="math inline">\(R^2\)</span>と比べて小さめの値になりやすく, 0.2〜0.4程度でも当てはまりは良好とする目安 (McFadden, 1979) が知られている.</li>
+<li><strong>Cox-Snell と Nagelkerke</strong>: 統計ソフト SPSS のロジスティック回帰の出力に表示されるため, SPSS がよく使われる分野 (医学・心理学など) の論文でよく見かける. Cox-Snell は最大値が1に届かないという欠点があり, Nagelkerke はそれを最大値が1になるよう補正したものである.</li>
+<li><strong>McKelvey-Zavoina</strong>: 0/1 の目的変数の背後に連続的な潜在変数を想定し, その潜在変数に対する線形回帰の<span class="math inline">\(R^2\)</span>を推定する指標である. シミュレーション研究では, 潜在変数モデルの想定が正しい場合に, 潜在変数を直接観測できたときの (OLS の)<span class="math inline">\(R^2\)</span>に近い値を与えると報告されている (Windmeijer, 1995; Veall and Zimmermann, 1996). ただし, この性質は潜在変数モデルの想定に依存する.</li>
+<li><strong>Tjur</strong>: 「<span class="math inline">\(Y=1\)</span> の個体の予測確率の平均」から「<span class="math inline">\(Y=0\)</span> の個体の予測確率の平均」を引いたもので, 二つのグループをどれだけ予測確率で区別できているかを表す. 定義が直感的に分かりやすく, パッケージ<strong>performance</strong>の<code>r2()</code>がロジット回帰に対して既定で出力するのもこの指標である.</li>
+</ul>
+<p>上の個人ローン・データの例でも, McFadden は0.47, Nagelkerke は0.50, McKelvey-Zavoina は0.70, Tjur は0.34と, 指標によって値が大きく異なる.
+したがって, 実務では次の点に注意すると良い.</p>
+<ul>
+<li>どの指標を使ったかを必ず明記する. 異なる指標の値どうしを比べてはいけない.</li>
+<li>指標の選択に迷う場合は, 報告先の分野やソフトウェアの慣行に合わせる.</li>
+<li>疑似<span class="math inline">\(R^2\)</span>は, 線形回帰の<span class="math inline">\(R^2\)</span>のような「目的変数の分散のうち説明された割合」ではない. 値の絶対的な大きさで良し悪しを判断するよりも, 同じ目的変数・同じデータに対する複数のモデルを, 同じ指標で比較する目的で使うのが適切である.</li>
+</ul>
+<p>(参考文献)</p>
+<ul>
+<li>McFadden, D. (1979). Quantitative methods for analysing travel behaviour of individuals: Some recent developments. In D. A. Hensher and P. R. Stopher (Eds.), <em>Behavioural Travel Modelling</em> (pp. 279–318). Croom Helm.</li>
+<li>Tjur, T. (2009). Coefficients of determination in logistic regression models: A new proposal: The coefficient of discrimination. <em>The American Statistician</em>, 63(4), 366–372.</li>
+<li>Veall, M. R. and Zimmermann, K. F. (1996). Pseudo-R2 measures for some common limited dependent variable models. <em>Journal of Economic Surveys</em>, 10(3), 241–259.</li>
+<li>Windmeijer, F. A. G. (1995). Goodness-of-fit measures in binary choice models. <em>Econometric Reviews</em>, 14(1), 101–116.</li>
+</ul>
 
 </div>
 </div>
