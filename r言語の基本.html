@@ -290,6 +290,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#参考-疑似r2の使い分け"><i class="fa fa-check"></i>(参考) 疑似R2の使い分け</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="決定木分析.html"><a href="決定木分析.html"><i class="fa fa-check"></i><b>8</b> 決定木分析</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="決定木分析.html"><a href="決定木分析.html#導入-回帰木-vs-線形回帰"><i class="fa fa-check"></i><b>8.1</b> 導入: 回帰木 vs 線形回帰</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット1-自動車の制動距離"><i class="fa fa-check"></i>データセット1: 自動車の制動距離</a></li>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#基本操作-回帰木"><i class="fa fa-check"></i>基本操作: 回帰木</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="決定木分析.html"><a href="決定木分析.html#回帰木"><i class="fa fa-check"></i><b>8.2</b> 回帰木</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット2-ワイン品質データ"><i class="fa fa-check"></i>データセット2: ワイン品質データ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="決定木分析.html"><a href="決定木分析.html#分類木"><i class="fa fa-check"></i><b>8.3</b> 分類木</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット3-自動車評価データ"><i class="fa fa-check"></i>データセット3: 自動車評価データ</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -759,12 +775,12 @@ Rを用いた統計分析では, データフレームを用いるケースが�
 <span id="cb25-14"><a href="r言語の基本.html#cb25-14" tabindex="-1"></a>lm_res[<span class="st">&quot;coefficients&quot;</span>]</span>
 <span id="cb25-15"><a href="r言語の基本.html#cb25-15" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb25-16"><a href="r言語の基本.html#cb25-16" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb25-17"><a href="r言語の基本.html#cb25-17" tabindex="-1"></a><span class="co">#&gt;  -0.5725521   0.5999400 </span></span>
+<span id="cb25-17"><a href="r言語の基本.html#cb25-17" tabindex="-1"></a><span class="co">#&gt;   0.3106264   0.4639420 </span></span>
 <span id="cb25-18"><a href="r言語の基本.html#cb25-18" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb25-19"><a href="r言語の基本.html#cb25-19" tabindex="-1"></a><span class="co">#&gt;  -0.5725521   0.5999400 </span></span>
+<span id="cb25-19"><a href="r言語の基本.html#cb25-19" tabindex="-1"></a><span class="co">#&gt;   0.3106264   0.4639420 </span></span>
 <span id="cb25-20"><a href="r言語の基本.html#cb25-20" tabindex="-1"></a><span class="co">#&gt; $coefficients</span></span>
 <span id="cb25-21"><a href="r言語の基本.html#cb25-21" tabindex="-1"></a><span class="co">#&gt; (Intercept)         xxx </span></span>
-<span id="cb25-22"><a href="r言語の基本.html#cb25-22" tabindex="-1"></a><span class="co">#&gt;  -0.5725521   0.5999400</span></span></code></pre></div>
+<span id="cb25-22"><a href="r言語の基本.html#cb25-22" tabindex="-1"></a><span class="co">#&gt;   0.3106264   0.4639420</span></span></code></pre></div>
 </div>
 <div id="データフレーム" class="section level3 hasAnchor" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> データフレーム<a href="r言語の基本.html#データフレーム" class="anchor-section" aria-label="Anchor link to header"></a></h3>
