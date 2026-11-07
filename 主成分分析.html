@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 主成分分析 | ビジネス統計</title>
+  <meta name="description" content="10 主成分分析 | ビジネス統計" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 主成分分析 | ビジネス統計" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 主成分分析 | ビジネス統計" />
+  
+  
+  
+
+<meta name="author" content="林 高樹" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="決定木分析.html"/>
+
+<script src="libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#コースの目的"><i class="fa fa-check"></i><b>1.1</b> コースの目的</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#統計学統計的手法の学習について"><i class="fa fa-check"></i><b>1.2</b> 統計学/統計的手法の学習について</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#学習の目標"><i class="fa fa-check"></i>学習の目標</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習方法"><i class="fa fa-check"></i>統計学/統計的手法の学習方法</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#統計学統計的手法の学習ステップ"><i class="fa fa-check"></i>統計学/統計的手法の学習ステップ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#ビジネス応用における統計学の最近の趨勢"><i class="fa fa-check"></i><b>1.3</b> ビジネス応用における統計学の最近の趨勢</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#本書内の記載の注意点"><i class="fa fa-check"></i><b>1.4</b> 本書内の記載の注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r言語の基本.html"><a href="r言語の基本.html"><i class="fa fa-check"></i><b>2</b> R言語の基本</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#rの基本プログラミング"><i class="fa fa-check"></i><b>2.1</b> Rの基本プログラミング</a>
+<ul>
+<li class="chapter" data-level="" data-path="r言語の基本.html"><a href="r言語の基本.html#生成ai利用に関する注意事項"><i class="fa fa-check"></i>生成AI利用に関する注意事項</a></li>
+<li class="chapter" data-level="2.1.1" data-path="r言語の基本.html"><a href="r言語の基本.html#基本操作"><i class="fa fa-check"></i><b>2.1.1</b> 基本操作</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本構文"><i class="fa fa-check"></i><b>2.1.2</b> 基本構文</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r言語の基本.html"><a href="r言語の基本.html#自作関数"><i class="fa fa-check"></i><b>2.1.3</b> 自作関数</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r言語の基本.html"><a href="r言語の基本.html#パッケージのインストール-読み込み"><i class="fa fa-check"></i><b>2.1.4</b> パッケージのインストール &amp; 読み込み</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r言語の基本.html"><a href="r言語の基本.html#ヘルプ"><i class="fa fa-check"></i><b>2.1.5</b> ヘルプ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの型や構造"><i class="fa fa-check"></i><b>2.2</b> データの型や構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r言語の基本.html"><a href="r言語の基本.html#データの値の種類-データ型"><i class="fa fa-check"></i><b>2.2.1</b> データの値の種類 (“データ型”)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r言語の基本.html"><a href="r言語の基本.html#データの配列の仕方-データ構造"><i class="fa fa-check"></i><b>2.2.2</b> データの配列の仕方 (“データ構造”)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトル"><i class="fa fa-check"></i><b>2.2.3</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#行列"><i class="fa fa-check"></i><b>2.2.4</b> 行列</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#データフレーム"><i class="fa fa-check"></i><b>2.2.6</b> データフレーム</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r言語の基本.html"><a href="r言語の基本.html#データの操作演算"><i class="fa fa-check"></i><b>2.3</b> データの操作・演算</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r言語の基本.html"><a href="r言語の基本.html#ベクトルの結合-ソート"><i class="fa fa-check"></i><b>2.3.1</b> ベクトルの結合, ソート</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r言語の基本.html"><a href="r言語の基本.html#二項演算"><i class="fa fa-check"></i><b>2.3.2</b> 二項演算</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r言語の基本.html"><a href="r言語の基本.html#論理演算"><i class="fa fa-check"></i><b>2.3.3</b> 論理演算</a></li>
+<li class="chapter" data-level="2.3.4" data-path="r言語の基本.html"><a href="r言語の基本.html#条件式"><i class="fa fa-check"></i><b>2.3.4</b> 条件式</a></li>
+<li class="chapter" data-level="2.3.5" data-path="r言語の基本.html"><a href="r言語の基本.html#行列演算"><i class="fa fa-check"></i><b>2.3.5</b> 行列演算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r言語の基本.html"><a href="r言語の基本.html#r関数"><i class="fa fa-check"></i><b>2.4</b> R関数</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r言語の基本.html"><a href="r言語の基本.html#数学基本関数"><i class="fa fa-check"></i><b>2.4.1</b> 数学基本関数</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r言語の基本.html"><a href="r言語の基本.html#基本統計量の計算"><i class="fa fa-check"></i><b>2.4.2</b> 基本統計量の計算</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r言語の基本.html"><a href="r言語の基本.html#確率分布"><i class="fa fa-check"></i><b>2.4.3</b> 確率分布</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r言語の基本.html"><a href="r言語の基本.html#その他便利な関数"><i class="fa fa-check"></i><b>2.4.4</b> その他便利な関数</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r言語の基本.html"><a href="r言語の基本.html#データの可視化"><i class="fa fa-check"></i><b>2.5</b> データの可視化</a></li>
+<li class="chapter" data-level="2.6" data-path="r言語の基本.html"><a href="r言語の基本.html#ファイル入出力"><i class="fa fa-check"></i><b>2.6</b> ファイル入出力</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル読み込み"><i class="fa fa-check"></i><b>2.6.1</b> テキストファイル読み込み</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r言語の基本.html"><a href="r言語の基本.html#テキストファイル書き出し"><i class="fa fa-check"></i><b>2.6.2</b> テキストファイル書き出し</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="仮説検定.html"><a href="仮説検定.html"><i class="fa fa-check"></i><b>3</b> 仮説検定</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定"><i class="fa fa-check"></i><b>3.1</b> 平均値の差の検定</a>
+<ul>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-ペア検定"><i class="fa fa-check"></i>平均値の差の検定 (ペア検定)</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-1"><i class="fa fa-check"></i>平均値の差の検定</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#平均値の差の検定-ノンパラメトリック検定"><i class="fa fa-check"></i>平均値の差の検定 (ノンパラメトリック検定)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="仮説検定.html"><a href="仮説検定.html#カイ二乗検定"><i class="fa fa-check"></i><b>3.2</b> カイ二乗検定</a>
+<ul>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#独立性検定"><i class="fa fa-check"></i>独立性検定</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#適合度検定"><i class="fa fa-check"></i>適合度検定</a></li>
+<li class="chapter" data-level="" data-path="仮説検定.html"><a href="仮説検定.html#分析例-社内dx研修データ"><i class="fa fa-check"></i>分析例: 社内DX研修データ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="分散分析-anova.html"><a href="分散分析-anova.html"><i class="fa fa-check"></i><b>4</b> 分散分析 (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="分散分析-anova.html"><a href="分散分析-anova.html#元配置anova"><i class="fa fa-check"></i><b>4.1</b> 1元配置ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="分散分析-anova.html"><a href="分散分析-anova.html#anovaの計算ロジックの確認"><i class="fa fa-check"></i>ANOVAの計算ロジックの確認*</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="分散分析-anova.html"><a href="分散分析-anova.html#元配置anova-1"><i class="fa fa-check"></i><b>4.2</b> 2元配置ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="分散分析-anova.html"><a href="分散分析-anova.html#分析例"><i class="fa fa-check"></i><b>4.3</b> 分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="分散分析-anova.html"><a href="分散分析-anova.html#データ1-口コミサイトの企業評価-仮想データ"><i class="fa fa-check"></i>データ1: 口コミサイトの企業評価 (仮想データ)</a></li>
+<li class="chapter" data-level="" data-path="分散分析-anova.html"><a href="分散分析-anova.html#データ2-社内dx研修データ"><i class="fa fa-check"></i>データ2: 社内DX研修データ</a></li>
+<li class="chapter" data-level="" data-path="分散分析-anova.html"><a href="分散分析-anova.html#データ3-経営科学アンケート"><i class="fa fa-check"></i>データ3: 経営科学アンケート</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="分散分析-anova.html"><a href="分散分析-anova.html#分散分析と平均値の多重比較"><i class="fa fa-check"></i><b>4.4</b> 分散分析と平均値の多重比較*</a>
+<ul>
+<li class="chapter" data-level="" data-path="分散分析-anova.html"><a href="分散分析-anova.html#rによる事後分析の実行例"><i class="fa fa-check"></i>Rによる事後分析の実行例</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="線形回帰-1.html"><a href="線形回帰-1.html"><i class="fa fa-check"></i><b>5</b> 線形回帰 (1)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="線形回帰-1.html"><a href="線形回帰-1.html#基本操作-1"><i class="fa fa-check"></i><b>5.1</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#データセット1-賃貸マンションの家賃データ"><i class="fa fa-check"></i>データセット1: 賃貸マンションの家賃データ</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#推定結果の取り出し方"><i class="fa fa-check"></i>推定結果の取り出し方</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#モデル診断"><i class="fa fa-check"></i>モデル診断</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#予測"><i class="fa fa-check"></i>予測</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#標準化回帰係数"><i class="fa fa-check"></i>標準(化)回帰係数</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="線形回帰-1.html"><a href="線形回帰-1.html#分析結果の見方分散分析表変数選択"><i class="fa fa-check"></i><b>5.2</b> 分析結果の見方・分散分析表・変数選択</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#データセット2-小売チェーンの店舗パフォーマンスデータ"><i class="fa fa-check"></i>データセット2: 小売チェーンの店舗パフォーマンスデータ</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#分析結果の見方"><i class="fa fa-check"></i>分析結果の見方</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#分散分析表の利用"><i class="fa fa-check"></i>分散分析表の利用</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#モデルの比較-変数組を追加するしないの判断"><i class="fa fa-check"></i>モデルの比較: 変数(組)を追加する・しないの判断</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#変数選択"><i class="fa fa-check"></i>変数選択</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#変数の変換によるモデルの改良"><i class="fa fa-check"></i>変数の変換によるモデルの改良</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#aicbicによるモデル比較"><i class="fa fa-check"></i>AIC/BICによるモデル比較</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#ステップワイズ法による変数選択"><i class="fa fa-check"></i>ステップワイズ法による変数選択</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-1.html"><a href="線形回帰-1.html#vif-多重共線性のチェック"><i class="fa fa-check"></i>VIF (多重共線性のチェック)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="線形回帰-1.html"><a href="線形回帰-1.html#質的変数を含む回帰診断"><i class="fa fa-check"></i><b>5.3</b> 質的変数を含む回帰診断</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="線形回帰-2.html"><a href="線形回帰-2.html"><i class="fa fa-check"></i><b>6</b> 線形回帰 (2)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="線形回帰-2.html"><a href="線形回帰-2.html#質的変数を含む回帰"><i class="fa fa-check"></i><b>6.1</b> 質的変数を含む回帰</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#データセット-キャリア年数と月収"><i class="fa fa-check"></i>データセット: キャリア年数と月収</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#業種を考慮しない回帰"><i class="fa fa-check"></i>業種を考慮しない回帰</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#業種を加えた回帰"><i class="fa fa-check"></i>業種を加えた回帰</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#交互作用項を加えたモデル"><i class="fa fa-check"></i>交互作用項を加えたモデル</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#能力試験を加えたモデル"><i class="fa fa-check"></i>能力試験を加えたモデル</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#モデル比較"><i class="fa fa-check"></i>モデル比較</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="線形回帰-2.html"><a href="線形回帰-2.html#分散分析と回帰分析の関係-連続変数と因子型変数の違い"><i class="fa fa-check"></i><b>6.2</b> 分散分析と回帰分析の関係: 連続変数と因子型変数の違い</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#データセット-統計学の試験データ"><i class="fa fa-check"></i>データセット: 統計学の試験データ</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#lmscoremath-と-lmscorefactormath"><i class="fa fa-check"></i>lm(score~math) と lm(score~factor(math))</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="線形回帰-2.html"><a href="線形回帰-2.html#多項式回帰"><i class="fa fa-check"></i><b>6.3</b> 多項式回帰</a>
+<ul>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#データセット-wage-賃金データ"><i class="fa fa-check"></i>データセット: Wage (賃金データ)</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#polyによる多項式回帰"><i class="fa fa-check"></i>poly()による多項式回帰</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#直交多項式と通常の多項式"><i class="fa fa-check"></i>直交多項式と通常の多項式</a></li>
+<li class="chapter" data-level="" data-path="線形回帰-2.html"><a href="線形回帰-2.html#何次まで多項式を使うべきか"><i class="fa fa-check"></i>何次まで多項式を使うべきか</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html"><i class="fa fa-check"></i><b>7</b> ロジット/プロビット回帰分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#ロジット回帰分析の基本操作"><i class="fa fa-check"></i><b>7.1</b> ロジット回帰分析の基本操作</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#ロジットモデル-シミュレーションデータ"><i class="fa fa-check"></i>ロジットモデル: シミュレーションデータ</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#データ分析例"><i class="fa fa-check"></i><b>7.2</b> データ分析例</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#データ1-企業パフォーマンスデータ-集計データ-仮想"><i class="fa fa-check"></i>データ1: 企業パフォーマンス・データ (集計データ, 仮想)</a></li>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#データ2-個人ローンデフォルトデータ-仮想"><i class="fa fa-check"></i>データ2: 個人ローン・デフォルト・データ (仮想)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#オッズ比と相対リスク"><i class="fa fa-check"></i><b>7.3</b> オッズ比と相対リスク</a></li>
+<li class="chapter" data-level="7.4" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#疑似r2の計算"><i class="fa fa-check"></i><b>7.4</b> 疑似R2の計算</a>
+<ul>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージdesctoolsの利用"><i class="fa fa-check"></i>パッケージ<strong>DescTools</strong>の利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージpsclの利用"><i class="fa fa-check"></i>パッケージ<strong>pscl</strong>の利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#パッケージperformanceの利用"><i class="fa fa-check"></i>パッケージ<strong>performance</strong>の利用</a></li>
+<li class="chapter" data-level="" data-path="ロジットプロビット回帰分析.html"><a href="ロジットプロビット回帰分析.html#参考-疑似r2の使い分け"><i class="fa fa-check"></i>(参考) 疑似R2の使い分け</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="判別分析.html"><a href="判別分析.html"><i class="fa fa-check"></i><b>8</b> 判別分析</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="判別分析.html"><a href="判別分析.html#線形判別2次判別knn法-ビジネススクールの入学許可"><i class="fa fa-check"></i><b>8.1</b> 線形判別・2次判別・kNN法: ビジネススクールの入学許可</a>
+<ul>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データ1-ビジネススクールの入学許可データ"><i class="fa fa-check"></i>データ1: ビジネススクールの入学許可データ</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#線形判別-lda"><i class="fa fa-check"></i>線形判別 (LDA)</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#次判別-qda"><i class="fa fa-check"></i>2次判別 (QDA)</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#knn法"><i class="fa fa-check"></i>kNN法</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="判別分析.html"><a href="判別分析.html#データの分割学習判別評価-個人ローンのデフォルト"><i class="fa fa-check"></i><b>8.2</b> データの分割・学習・判別・評価: 個人ローンのデフォルト</a>
+<ul>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#データ2-個人ローンのデフォルトデータ-仮想"><i class="fa fa-check"></i>データ2: 個人ローンのデフォルト・データ (仮想)</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#線形判別"><i class="fa fa-check"></i>線形判別</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#knn法-1"><i class="fa fa-check"></i>kNN法</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="判別分析.html"><a href="判別分析.html#klar-パッケージによる判別境界の可視化"><i class="fa fa-check"></i><b>8.3</b> klaR パッケージによる判別境界の可視化</a>
+<ul>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#関数partimatによる判別境界の可視化"><i class="fa fa-check"></i>関数<code>partimat()</code>による判別境界の可視化</a></li>
+<li class="chapter" data-level="" data-path="判別分析.html"><a href="判別分析.html#ナイーブベイズ法"><i class="fa fa-check"></i>ナイーブ・ベイズ法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="決定木分析.html"><a href="決定木分析.html"><i class="fa fa-check"></i><b>9</b> 決定木分析</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="決定木分析.html"><a href="決定木分析.html#導入-回帰木-vs-線形回帰"><i class="fa fa-check"></i><b>9.1</b> 導入: 回帰木 vs 線形回帰</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット1-自動車の制動距離"><i class="fa fa-check"></i>データセット1: 自動車の制動距離</a></li>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#基本操作-回帰木"><i class="fa fa-check"></i>基本操作: 回帰木</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="決定木分析.html"><a href="決定木分析.html#回帰木"><i class="fa fa-check"></i><b>9.2</b> 回帰木</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット2-ワイン品質データ"><i class="fa fa-check"></i>データセット2: ワイン品質データ</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="決定木分析.html"><a href="決定木分析.html#分類木"><i class="fa fa-check"></i><b>9.3</b> 分類木</a>
+<ul>
+<li class="chapter" data-level="" data-path="決定木分析.html"><a href="決定木分析.html#データセット3-自動車評価データ"><i class="fa fa-check"></i>データセット3: 自動車評価データ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="主成分分析.html"><a href="主成分分析.html"><i class="fa fa-check"></i><b>10</b> 主成分分析</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="主成分分析.html"><a href="主成分分析.html#分散共分散行列か-相関行列か-usarrests"><i class="fa fa-check"></i><b>10.1</b> 分散共分散行列か, 相関行列か: USArrests</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#データ1-usarrests-r-の組み込みデータ"><i class="fa fa-check"></i>データ1: USArrests (R の組み込みデータ)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="主成分分析.html"><a href="主成分分析.html#基本操作-従業員評価データ"><i class="fa fa-check"></i><b>10.2</b> 基本操作: 従業員評価データ</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#データ2-従業員評価データ-仮想データ"><i class="fa fa-check"></i>データ2: 従業員評価データ (仮想データ)</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#pca-の実行"><i class="fa fa-check"></i>PCA の実行</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#主成分負荷量"><i class="fa fa-check"></i>主成分負荷量</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#主成分得点"><i class="fa fa-check"></i>主成分得点</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#バイプロット"><i class="fa fa-check"></i>バイプロット</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#計算結果の確認"><i class="fa fa-check"></i>計算結果の確認</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#元の変数の散布図との比較"><i class="fa fa-check"></i>元の変数の散布図との比較</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#代替的な関数-prcomp"><i class="fa fa-check"></i>代替的な関数: prcomp()</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="主成分分析.html"><a href="主成分分析.html#標準化するか-しないか-従業員評価データ2"><i class="fa fa-check"></i><b>10.3</b> 標準化するか, しないか: 従業員評価データ2</a>
+<ul>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#データ3-従業員評価データ2-仮想データ"><i class="fa fa-check"></i>データ3: 従業員評価データ2 (仮想データ)</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#分散共分散行列に対する-pca-標準化しない"><i class="fa fa-check"></i>分散共分散行列に対する PCA (標準化しない)</a></li>
+<li class="chapter" data-level="" data-path="主成分分析.html"><a href="主成分分析.html#相関行列に対する-pca-各項目を標準化"><i class="fa fa-check"></i>相関行列に対する PCA (各項目を標準化)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="主成分分析.html"><a href="主成分分析.html#課題"><i class="fa fa-check"></i><b>10.4</b> 課題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ビジネス統計</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="主成分分析" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> 主成分分析<a href="主成分分析.html#主成分分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- 2026.11.07 Claude: 2026年度版として整備. 共通部分 (冒頭の説明, USArrests による分散共分散行列と相関行列の比較, 主成分負荷量・主成分得点・バイプロット, 計算結果の確認, princomp() と prcomp() の違い, 固有値1の目安) は FDS2026版 110-pca.Rmd に合わせ, データ部分は BS の R演習 (R_pca_dist.R, 2026-11-07 版) の USArrests, 従業員評価データ (testdat_jap.csv), 従業員評価データ2 (employee_scores_raw.csv) とした. BS2025版からの主な変更: 章独自の setup チャンクを削除 (index.Rmd の設定を使う), 節の構成を R演習スクリプトの順 (USArrests → 従業員評価 → 従業員評価2) に, 作図での Mac 専用フォント指定 (family = "HiraKakuProN-W3") を削除, 従業員評価データ2 (標準化の有無の比較) の節を追加 -->
+<p>主成分分析 (principal component analysis, PCA) は, 互いに相関のある多数の変数を, 情報の損失をできるだけ小さくしながら, 互いに無相関な少数の合成変数 (主成分) に集約する手法である.
+第1主成分は, 変数の線形結合のうち分散が最大となるもの, 第2主成分は, 第1主成分と無相関なもののうち分散が最大となるもの, … と順に定められる.
+主成分の係数を<strong>主成分負荷量</strong>, 各個体の主成分の値を<strong>主成分得点</strong>と呼ぶ.</p>
+<p>R では, 標準パッケージの関数<code>princomp()</code>と<code>prcomp()</code>で実行できる.</p>
+<ul>
+<li><code>princomp()</code>: 分散を n で割って計算する. 引数 <code>cor = TRUE</code> で相関行列に対する PCA</li>
+<li><code>prcomp()</code>: 不偏分散 (n − 1 で割る) を使う. 引数 <code>scale. = TRUE</code> で相関行列に対する PCA (各変数を標準化してから PCA). 計算精度の点で, こちらが推奨される</li>
+</ul>
+<p>本章の内容は, 授業の R 演習スクリプト <code>R_pca_dist.R</code> に対応する.</p>
+<div id="分散共分散行列か-相関行列か-usarrests" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> 分散共分散行列か, 相関行列か: USArrests<a href="主成分分析.html#分散共分散行列か-相関行列か-usarrests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="データ1-usarrests-r-の組み込みデータ" class="section level3 unnumbered hasAnchor">
+<h3>データ1: USArrests (R の組み込みデータ)<a href="主成分分析.html#データ1-usarrests-r-の組み込みデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>USArrests: n = 50, p = 4
+- 全米50州 (1973年) の, 人口10万人当たりの凶悪犯罪の逮捕者数
+  (Murder: 殺人, Assault: 暴行, Rape: 強姦), 及び都市部の人口割合 (UrbanPop, %)</code></pre>
+<p>変数の散らばりの大きさ (スケール) の違いが PCA の結果にどう影響するかを理解するのに適したデータである.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="主成分分析.html#cb264-1" tabindex="-1"></a><span class="fu">pairs</span>(USArrests)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="主成分分析.html#cb265-1" tabindex="-1"></a><span class="fu">summary</span>(USArrests)</span>
+<span id="cb265-2"><a href="主成分分析.html#cb265-2" tabindex="-1"></a><span class="co">#&gt;      Murder          Assault         UrbanPop          Rape      </span></span>
+<span id="cb265-3"><a href="主成分分析.html#cb265-3" tabindex="-1"></a><span class="co">#&gt;  Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  </span></span>
+<span id="cb265-4"><a href="主成分分析.html#cb265-4" tabindex="-1"></a><span class="co">#&gt;  1st Qu.: 4.075   1st Qu.:109.0   1st Qu.:54.50   1st Qu.:15.07  </span></span>
+<span id="cb265-5"><a href="主成分分析.html#cb265-5" tabindex="-1"></a><span class="co">#&gt;  Median : 7.250   Median :159.0   Median :66.00   Median :20.10  </span></span>
+<span id="cb265-6"><a href="主成分分析.html#cb265-6" tabindex="-1"></a><span class="co">#&gt;  Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  </span></span>
+<span id="cb265-7"><a href="主成分分析.html#cb265-7" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  </span></span>
+<span id="cb265-8"><a href="主成分分析.html#cb265-8" tabindex="-1"></a><span class="co">#&gt;  Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00</span></span>
+<span id="cb265-9"><a href="主成分分析.html#cb265-9" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">apply</span>(USArrests, <span class="dv">2</span>, sd), <span class="dv">1</span>)  <span class="co"># 変数によって散らばりの大きさが大きく異なる</span></span>
+<span id="cb265-10"><a href="主成分分析.html#cb265-10" tabindex="-1"></a><span class="co">#&gt;   Murder  Assault UrbanPop     Rape </span></span>
+<span id="cb265-11"><a href="主成分分析.html#cb265-11" tabindex="-1"></a><span class="co">#&gt;      4.4     83.3     14.5      9.4</span></span></code></pre></div>
+<p><code>Assault</code> の標準偏差は, 他の変数より一桁以上大きい.</p>
+<p><strong>自主課題</strong>:
+以下の2つのやり方のどちらが良いか考えてみよう.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="主成分分析.html#cb266-1" tabindex="-1"></a><span class="co"># どちらが良いか?</span></span>
+<span id="cb266-2"><a href="主成分分析.html#cb266-2" tabindex="-1"></a>(pc_cr3 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests))  <span class="co"># 分散共分散行列に対する PCA (標準化しない)</span></span>
+<span id="cb266-3"><a href="主成分分析.html#cb266-3" tabindex="-1"></a><span class="co">#&gt; Standard deviations (1, .., p=4):</span></span>
+<span id="cb266-4"><a href="主成分分析.html#cb266-4" tabindex="-1"></a><span class="co">#&gt; [1] 83.732400 14.212402  6.489426  2.482790</span></span>
+<span id="cb266-5"><a href="主成分分析.html#cb266-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb266-6"><a href="主成分分析.html#cb266-6" tabindex="-1"></a><span class="co">#&gt; Rotation (n x k) = (4 x 4):</span></span>
+<span id="cb266-7"><a href="主成分分析.html#cb266-7" tabindex="-1"></a><span class="co">#&gt;                 PC1         PC2         PC3         PC4</span></span>
+<span id="cb266-8"><a href="主成分分析.html#cb266-8" tabindex="-1"></a><span class="co">#&gt; Murder   0.04170432 -0.04482166  0.07989066 -0.99492173</span></span>
+<span id="cb266-9"><a href="主成分分析.html#cb266-9" tabindex="-1"></a><span class="co">#&gt; Assault  0.99522128 -0.05876003 -0.06756974  0.03893830</span></span>
+<span id="cb266-10"><a href="主成分分析.html#cb266-10" tabindex="-1"></a><span class="co">#&gt; UrbanPop 0.04633575  0.97685748 -0.20054629 -0.05816914</span></span>
+<span id="cb266-11"><a href="主成分分析.html#cb266-11" tabindex="-1"></a><span class="co">#&gt; Rape     0.07515550  0.20071807  0.97408059  0.07232502</span></span>
+<span id="cb266-12"><a href="主成分分析.html#cb266-12" tabindex="-1"></a>(pc_cr4 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(USArrests, <span class="at">scale. =</span> <span class="cn">TRUE</span>))  <span class="co"># 相関行列に対する PCA (各変数を標準化)</span></span>
+<span id="cb266-13"><a href="主成分分析.html#cb266-13" tabindex="-1"></a><span class="co">#&gt; Standard deviations (1, .., p=4):</span></span>
+<span id="cb266-14"><a href="主成分分析.html#cb266-14" tabindex="-1"></a><span class="co">#&gt; [1] 1.5748783 0.9948694 0.5971291 0.4164494</span></span>
+<span id="cb266-15"><a href="主成分分析.html#cb266-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb266-16"><a href="主成分分析.html#cb266-16" tabindex="-1"></a><span class="co">#&gt; Rotation (n x k) = (4 x 4):</span></span>
+<span id="cb266-17"><a href="主成分分析.html#cb266-17" tabindex="-1"></a><span class="co">#&gt;                 PC1        PC2        PC3         PC4</span></span>
+<span id="cb266-18"><a href="主成分分析.html#cb266-18" tabindex="-1"></a><span class="co">#&gt; Murder   -0.5358995 -0.4181809  0.3412327  0.64922780</span></span>
+<span id="cb266-19"><a href="主成分分析.html#cb266-19" tabindex="-1"></a><span class="co">#&gt; Assault  -0.5831836 -0.1879856  0.2681484 -0.74340748</span></span>
+<span id="cb266-20"><a href="主成分分析.html#cb266-20" tabindex="-1"></a><span class="co">#&gt; UrbanPop -0.2781909  0.8728062  0.3780158  0.13387773</span></span>
+<span id="cb266-21"><a href="主成分分析.html#cb266-21" tabindex="-1"></a><span class="co">#&gt; Rape     -0.5434321  0.1673186 -0.8177779  0.08902432</span></span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="主成分分析.html#cb267-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb267-2"><a href="主成分分析.html#cb267-2" tabindex="-1"></a><span class="fu">plot</span>(pc_cr3, <span class="at">main =</span> <span class="st">&quot;分散共分散行列&quot;</span>)</span>
+<span id="cb267-3"><a href="主成分分析.html#cb267-3" tabindex="-1"></a><span class="fu">plot</span>(pc_cr4, <span class="at">main =</span> <span class="st">&quot;相関行列&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="主成分分析.html#cb268-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb268-2"><a href="主成分分析.html#cb268-2" tabindex="-1"></a><span class="fu">summary</span>(pc_cr3)</span>
+<span id="cb268-3"><a href="主成分分析.html#cb268-3" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb268-4"><a href="主成分分析.html#cb268-4" tabindex="-1"></a><span class="co">#&gt;                            PC1      PC2    PC3     PC4</span></span>
+<span id="cb268-5"><a href="主成分分析.html#cb268-5" tabindex="-1"></a><span class="co">#&gt; Standard deviation     83.7324 14.21240 6.4894 2.48279</span></span>
+<span id="cb268-6"><a href="主成分分析.html#cb268-6" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance  0.9655  0.02782 0.0058 0.00085</span></span>
+<span id="cb268-7"><a href="主成分分析.html#cb268-7" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion   0.9655  0.99335 0.9991 1.00000</span></span>
+<span id="cb268-8"><a href="主成分分析.html#cb268-8" tabindex="-1"></a><span class="fu">summary</span>(pc_cr4)</span>
+<span id="cb268-9"><a href="主成分分析.html#cb268-9" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb268-10"><a href="主成分分析.html#cb268-10" tabindex="-1"></a><span class="co">#&gt;                           PC1    PC2     PC3     PC4</span></span>
+<span id="cb268-11"><a href="主成分分析.html#cb268-11" tabindex="-1"></a><span class="co">#&gt; Standard deviation     1.5749 0.9949 0.59713 0.41645</span></span>
+<span id="cb268-12"><a href="主成分分析.html#cb268-12" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance 0.6201 0.2474 0.08914 0.04336</span></span>
+<span id="cb268-13"><a href="主成分分析.html#cb268-13" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion  0.6201 0.8675 0.95664 1.00000</span></span></code></pre></div>
+<p>分散共分散行列に対する PCA では, 第1主成分の負荷量はほぼ <code>Assault</code> だけで決まり, 第1主成分だけで全変動の97%を説明する.
+これは, 4つの変数の関係を捉えた結果ではなく, 単に <code>Assault</code> の分散が大きいことを反映しているに過ぎない.
+一方, 相関行列に対する PCA (各変数を標準化) では, 第1主成分は3種類の犯罪の逮捕者数にほぼ同じ大きさの負荷量を持ち (「凶悪犯罪の多さ」. ここでは負荷量の符号が負なので, 得点が小さいほど凶悪犯罪が多い), 第2主成分は主に <code>UrbanPop</code> (「都市化の程度」) を表している.</p>
+<p><strong>単位や散らばりの大きさが異なる変数を扱う場合は, 各変数を標準化する (相関行列に対する PCA を行う)</strong> のが基本である.
+逆に, 全ての変数の単位がそろっていて, 散らばりの大きさの違い自体に意味がある場合 (例えば, 同じ満点の評価項目) は, 分散共分散行列に対する PCA を使って良い.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="主成分分析.html#cb269-1" tabindex="-1"></a><span class="co"># PCA にかける変数の絞り込み</span></span>
+<span id="cb269-2"><a href="主成分分析.html#cb269-2" tabindex="-1"></a><span class="fu">prcomp</span>(<span class="sc">~</span>Murder <span class="sc">+</span> Assault <span class="sc">+</span> Rape, <span class="at">data =</span> USArrests, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="基本操作-従業員評価データ" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> 基本操作: 従業員評価データ<a href="主成分分析.html#基本操作-従業員評価データ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="データ2-従業員評価データ-仮想データ" class="section level3 unnumbered hasAnchor">
+<h3>データ2: 従業員評価データ (仮想データ)<a href="主成分分析.html#データ2-従業員評価データ-仮想データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>testdat_jap.csv (英語版: testdat_eng.csv): n = 9人, p = 5 (仮想データ)
+- 各従業員の5項目 (専門性, 分析力, リーダーシップ, プレゼン力, コミュ力) を100点満点で評価</code></pre>
+<p>スライド「主成分分析 (2)」の実行例と同じデータである.
+1行目は説明の行なので <code>skip = 1</code> で読み飛ばし, 1列目の氏名を行名に使う (<code>row.names = 1</code>).
+文字化けする場合には, 英語版 <code>testdat_eng.csv</code> を使っても良い.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="主成分分析.html#cb271-1" tabindex="-1"></a>tokuten <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;class/testdat_jap.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb271-2"><a href="主成分分析.html#cb271-2" tabindex="-1"></a>tokuten</span>
+<span id="cb271-3"><a href="主成分分析.html#cb271-3" tabindex="-1"></a><span class="co">#&gt;      専門性 分析力 リーダーシップ プレゼン力 コミュ力</span></span>
+<span id="cb271-4"><a href="主成分分析.html#cb271-4" tabindex="-1"></a><span class="co">#&gt; 山田     80     87             70         65       67</span></span>
+<span id="cb271-5"><a href="主成分分析.html#cb271-5" tabindex="-1"></a><span class="co">#&gt; 鈴木     85     83             65         68       63</span></span>
+<span id="cb271-6"><a href="主成分分析.html#cb271-6" tabindex="-1"></a><span class="co">#&gt; 田中     75     70             80         79       75</span></span>
+<span id="cb271-7"><a href="主成分分析.html#cb271-7" tabindex="-1"></a><span class="co">#&gt; 中村     70     72             85         83       79</span></span>
+<span id="cb271-8"><a href="主成分分析.html#cb271-8" tabindex="-1"></a><span class="co">#&gt; 大野     88     85             85         90       91</span></span>
+<span id="cb271-9"><a href="主成分分析.html#cb271-9" tabindex="-1"></a><span class="co">#&gt; 松井     75     78             79         85       80</span></span>
+<span id="cb271-10"><a href="主成分分析.html#cb271-10" tabindex="-1"></a><span class="co">#&gt; 高木     80     80             75         75       80</span></span>
+<span id="cb271-11"><a href="主成分分析.html#cb271-11" tabindex="-1"></a><span class="co">#&gt; 三浦     83     72             85         80       83</span></span>
+<span id="cb271-12"><a href="主成分分析.html#cb271-12" tabindex="-1"></a><span class="co">#&gt; 佐藤     69     82             77         70       80</span></span>
+<span id="cb271-13"><a href="主成分分析.html#cb271-13" tabindex="-1"></a><span class="fu">pairs</span>(tokuten)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="75%" /></p>
+</div>
+<div id="pca-の実行" class="section level3 unnumbered hasAnchor">
+<h3>PCA の実行<a href="主成分分析.html#pca-の実行" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>5項目とも同じ100点満点の尺度なので, 分散共分散行列に対する PCA (<code>princomp()</code> のデフォルト) を使う.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="主成分分析.html#cb272-1" tabindex="-1"></a>tokuten_pc <span class="ot">&lt;-</span> <span class="fu">princomp</span>(tokuten)</span>
+<span id="cb272-2"><a href="主成分分析.html#cb272-2" tabindex="-1"></a><span class="fu">summary</span>(tokuten_pc)  <span class="co"># 寄与率, 累積寄与率</span></span>
+<span id="cb272-3"><a href="主成分分析.html#cb272-3" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb272-4"><a href="主成分分析.html#cb272-4" tabindex="-1"></a><span class="co">#&gt;                            Comp.1    Comp.2     Comp.3    Comp.4     Comp.5</span></span>
+<span id="cb272-5"><a href="主成分分析.html#cb272-5" tabindex="-1"></a><span class="co">#&gt; Standard deviation     12.4807420 7.1424787 4.73037885 2.9724343 1.57269337</span></span>
+<span id="cb272-6"><a href="主成分分析.html#cb272-6" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance  0.6477709 0.2121478 0.09305346 0.0367422 0.01028558</span></span>
+<span id="cb272-7"><a href="主成分分析.html#cb272-7" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion   0.6477709 0.8599188 0.95297222 0.9897144 1.00000000</span></span>
+<span id="cb272-8"><a href="主成分分析.html#cb272-8" tabindex="-1"></a><span class="fu">plot</span>(tokuten_pc)  <span class="co"># スクリープロット (主成分の分散の棒グラフ)</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="主成分分析.html#cb273-1" tabindex="-1"></a><span class="co"># screeplot(tokuten_pc) # 同上</span></span></code></pre></div>
+</div>
+<div id="主成分負荷量" class="section level3 unnumbered hasAnchor">
+<h3>主成分負荷量<a href="主成分分析.html#主成分負荷量" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="主成分分析.html#cb274-1" tabindex="-1"></a>tokuten_pc<span class="sc">$</span>loadings  <span class="co"># 絶対値 0.1 未満は空欄で表示される</span></span>
+<span id="cb274-2"><a href="主成分分析.html#cb274-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb274-3"><a href="主成分分析.html#cb274-3" tabindex="-1"></a><span class="co">#&gt; Loadings:</span></span>
+<span id="cb274-4"><a href="主成分分析.html#cb274-4" tabindex="-1"></a><span class="co">#&gt;                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5</span></span>
+<span id="cb274-5"><a href="主成分分析.html#cb274-5" tabindex="-1"></a><span class="co">#&gt; 専門性                 0.775  0.536  0.332       </span></span>
+<span id="cb274-6"><a href="主成分分析.html#cb274-6" tabindex="-1"></a><span class="co">#&gt; 分析力          0.227  0.554 -0.634 -0.325  0.366</span></span>
+<span id="cb274-7"><a href="主成分分析.html#cb274-7" tabindex="-1"></a><span class="co">#&gt; リーダーシップ -0.510 -0.137         0.323  0.786</span></span>
+<span id="cb274-8"><a href="主成分分析.html#cb274-8" tabindex="-1"></a><span class="co">#&gt; プレゼン力     -0.591  0.153  0.275 -0.741       </span></span>
+<span id="cb274-9"><a href="主成分分析.html#cb274-9" tabindex="-1"></a><span class="co">#&gt; コミュ力       -0.582  0.223 -0.486  0.362 -0.496</span></span>
+<span id="cb274-10"><a href="主成分分析.html#cb274-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb274-11"><a href="主成分分析.html#cb274-11" tabindex="-1"></a><span class="co">#&gt;                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5</span></span>
+<span id="cb274-12"><a href="主成分分析.html#cb274-12" tabindex="-1"></a><span class="co">#&gt; SS loadings       1.0    1.0    1.0    1.0    1.0</span></span>
+<span id="cb274-13"><a href="主成分分析.html#cb274-13" tabindex="-1"></a><span class="co">#&gt; Proportion Var    0.2    0.2    0.2    0.2    0.2</span></span>
+<span id="cb274-14"><a href="主成分分析.html#cb274-14" tabindex="-1"></a><span class="co">#&gt; Cumulative Var    0.2    0.4    0.6    0.8    1.0</span></span>
+<span id="cb274-15"><a href="主成分分析.html#cb274-15" tabindex="-1"></a><span class="co"># t(tokuten_pc$loadings) %*% tokuten_pc$loadings # 直交性の確認 (単位行列)</span></span>
+<span id="cb274-16"><a href="主成分分析.html#cb274-16" tabindex="-1"></a><span class="co"># 軸だけ描く (文字が切れないよう描画範囲を広げる)</span></span>
+<span id="cb274-17"><a href="主成分分析.html#cb274-17" tabindex="-1"></a><span class="fu">plot</span>(tokuten_pc<span class="sc">$</span>loadings[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">type =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.75</span>, <span class="fl">0.35</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>,</span>
+<span id="cb274-18"><a href="主成分分析.html#cb274-18" tabindex="-1"></a>  <span class="fl">0.9</span>))</span>
+<span id="cb274-19"><a href="主成分分析.html#cb274-19" tabindex="-1"></a><span class="fu">text</span>(tokuten_pc<span class="sc">$</span>loadings[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="fu">colnames</span>(tokuten))</span>
+<span id="cb274-20"><a href="主成分分析.html#cb274-20" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-118-1.png" width="75%" /></p>
+<p><strong>自主課題</strong>:
+第1主成分, 第2主成分は, それぞれどのような意味に解釈できるか? (ヒント: 負荷量の符号と大きさに注目する)</p>
+</div>
+<div id="主成分得点" class="section level3 unnumbered hasAnchor">
+<h3>主成分得点<a href="主成分分析.html#主成分得点" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="主成分分析.html#cb275-1" tabindex="-1"></a>tokuten_pc<span class="sc">$</span>scores</span>
+<span id="cb275-2"><a href="主成分分析.html#cb275-2" tabindex="-1"></a><span class="co">#&gt;          Comp.1     Comp.2      Comp.3     Comp.4     Comp.5</span></span>
+<span id="cb275-3"><a href="主成分分析.html#cb275-3" tabindex="-1"></a><span class="co">#&gt; 山田  19.304343  2.7048291  -2.4411238  0.5754498  2.6750248</span></span>
+<span id="cb275-4"><a href="主成分分析.html#cb275-4" tabindex="-1"></a><span class="co">#&gt; 鈴木  21.655520  4.6155395   5.6073003 -1.7490457 -0.7368287</span></span>
+<span id="cb275-5"><a href="主成分分析.html#cb275-5" tabindex="-1"></a><span class="co">#&gt; 田中  -2.739766 -8.0346039   5.4765050  0.1887216 -0.4687677</span></span>
+<span id="cb275-6"><a href="主成分分析.html#cb275-6" tabindex="-1"></a><span class="co">#&gt; 中村  -9.682974 -9.9826824   0.6190434 -2.0247358  1.8769769</span></span>
+<span id="cb275-7"><a href="主成分分析.html#cb275-7" tabindex="-1"></a><span class="co">#&gt; 大野 -17.277425 14.9224986  -1.8787424 -1.1322419  0.8666327</span></span>
+<span id="cb275-8"><a href="主成分分析.html#cb275-8" tabindex="-1"></a><span class="co">#&gt; 松井  -6.867523 -1.4328205  -0.3577567 -5.3750278 -1.0885751</span></span>
+<span id="cb275-9"><a href="主成分分析.html#cb275-9" tabindex="-1"></a><span class="co">#&gt; 高木   1.694979  2.5684468  -1.6399325  1.7537323 -2.8802837</span></span>
+<span id="cb275-10"><a href="主成分分析.html#cb275-10" tabindex="-1"></a><span class="co">#&gt; 三浦  -9.824535  0.5291295   4.8161616  5.9565572  0.4056066</span></span>
+<span id="cb275-11"><a href="主成分分析.html#cb275-11" tabindex="-1"></a><span class="co">#&gt; 佐藤   3.737381 -5.8903368 -10.2014547  1.8065903 -0.6497859</span></span>
+<span id="cb275-12"><a href="主成分分析.html#cb275-12" tabindex="-1"></a><span class="fu">plot</span>(tokuten_pc<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">type =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb275-13"><a href="主成分分析.html#cb275-13" tabindex="-1"></a><span class="fu">text</span>(tokuten_pc<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="fu">rownames</span>(tokuten))</span>
+<span id="cb275-14"><a href="主成分分析.html#cb275-14" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-119-1.png" width="75%" /></p>
+</div>
+<div id="バイプロット" class="section level3 unnumbered hasAnchor">
+<h3>バイプロット<a href="主成分分析.html#バイプロット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>主成分得点 (個体) と主成分負荷量 (変数) を同時にプロットする.
+合成変数 (主成分) を縦横軸に取った平面上に, 各従業員の主成分得点を散布すると共に, 元の変数を矢印 (ベクトル) で表現したものである.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="主成分分析.html#cb276-1" tabindex="-1"></a><span class="fu">biplot</span>(tokuten_pc)</span>
+<span id="cb276-2"><a href="主成分分析.html#cb276-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="75%" /></p>
+<p><strong>自主課題</strong>:
+バイプロットから, 各従業員の特徴を読み取ってみよう.</p>
+</div>
+<div id="計算結果の確認" class="section level3 unnumbered hasAnchor">
+<h3>計算結果の確認<a href="主成分分析.html#計算結果の確認" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>主成分得点は, 各変数の平均からの偏差に, 主成分負荷量を掛けて合計したものである. 山田さんについて確かめる.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="主成分分析.html#cb277-1" tabindex="-1"></a>yamada <span class="ot">&lt;-</span> tokuten[<span class="st">&quot;山田&quot;</span>, ] <span class="sc">-</span> <span class="fu">colMeans</span>(tokuten)  <span class="co"># 平均からの偏差</span></span>
+<span id="cb277-2"><a href="主成分分析.html#cb277-2" tabindex="-1"></a><span class="fu">sum</span>(tokuten_pc<span class="sc">$</span>loadings[, <span class="dv">1</span>] <span class="sc">*</span> yamada)  <span class="co"># 第1主成分得点</span></span>
+<span id="cb277-3"><a href="主成分分析.html#cb277-3" tabindex="-1"></a><span class="co">#&gt; [1] 19.30434</span></span>
+<span id="cb277-4"><a href="主成分分析.html#cb277-4" tabindex="-1"></a><span class="fu">sum</span>(tokuten_pc<span class="sc">$</span>loadings[, <span class="dv">2</span>] <span class="sc">*</span> yamada)  <span class="co"># 第2主成分得点</span></span>
+<span id="cb277-5"><a href="主成分分析.html#cb277-5" tabindex="-1"></a><span class="co">#&gt; [1] 2.704829</span></span>
+<span id="cb277-6"><a href="主成分分析.html#cb277-6" tabindex="-1"></a>tokuten_pc<span class="sc">$</span>scores[<span class="st">&quot;山田&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]  <span class="co"># 一致する</span></span>
+<span id="cb277-7"><a href="主成分分析.html#cb277-7" tabindex="-1"></a><span class="co">#&gt;    Comp.1    Comp.2 </span></span>
+<span id="cb277-8"><a href="主成分分析.html#cb277-8" tabindex="-1"></a><span class="co">#&gt; 19.304343  2.704829</span></span></code></pre></div>
+</div>
+<div id="元の変数の散布図との比較" class="section level3 unnumbered hasAnchor">
+<h3>元の変数の散布図との比較<a href="主成分分析.html#元の変数の散布図との比較" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>評価項目のペアごとの散布図を描き, 主成分得点の散布図と見比べてみよう.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="主成分分析.html#cb278-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb278-2"><a href="主成分分析.html#cb278-2" tabindex="-1"></a><span class="fu">plot</span>(tokuten[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)], <span class="at">type =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb278-3"><a href="主成分分析.html#cb278-3" tabindex="-1"></a><span class="fu">text</span>(tokuten[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)], <span class="fu">rownames</span>(tokuten))</span>
+<span id="cb278-4"><a href="主成分分析.html#cb278-4" tabindex="-1"></a><span class="fu">plot</span>(tokuten[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)], <span class="at">type =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb278-5"><a href="主成分分析.html#cb278-5" tabindex="-1"></a><span class="fu">text</span>(tokuten[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)], <span class="fu">rownames</span>(tokuten))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="主成分分析.html#cb279-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+</div>
+<div id="代替的な関数-prcomp" class="section level3 unnumbered hasAnchor">
+<h3>代替的な関数: prcomp()<a href="主成分分析.html#代替的な関数-prcomp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="主成分分析.html#cb280-1" tabindex="-1"></a>tokuten_prcomp <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(tokuten)</span>
+<span id="cb280-2"><a href="主成分分析.html#cb280-2" tabindex="-1"></a><span class="fu">summary</span>(tokuten_prcomp)</span>
+<span id="cb280-3"><a href="主成分分析.html#cb280-3" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb280-4"><a href="主成分分析.html#cb280-4" tabindex="-1"></a><span class="co">#&gt;                            PC1    PC2     PC3     PC4     PC5</span></span>
+<span id="cb280-5"><a href="主成分分析.html#cb280-5" tabindex="-1"></a><span class="co">#&gt; Standard deviation     13.2378 7.5757 5.01732 3.15274 1.66809</span></span>
+<span id="cb280-6"><a href="主成分分析.html#cb280-6" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance  0.6478 0.2122 0.09305 0.03674 0.01029</span></span>
+<span id="cb280-7"><a href="主成分分析.html#cb280-7" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion   0.6478 0.8599 0.95297 0.98971 1.00000</span></span>
+<span id="cb280-8"><a href="主成分分析.html#cb280-8" tabindex="-1"></a>tokuten_prcomp<span class="sc">$</span>rotation  <span class="co"># 主成分負荷量</span></span>
+<span id="cb280-9"><a href="主成分分析.html#cb280-9" tabindex="-1"></a><span class="co">#&gt;                        PC1        PC2         PC3        PC4         PC5</span></span>
+<span id="cb280-10"><a href="主成分分析.html#cb280-10" tabindex="-1"></a><span class="co">#&gt; 専門性         -0.03162775  0.7753770  0.53571555  0.3316583 -0.02831625</span></span>
+<span id="cb280-11"><a href="主成分分析.html#cb280-11" tabindex="-1"></a><span class="co">#&gt; 分析力         -0.22710092  0.5541994 -0.63357070 -0.3251925 -0.36623249</span></span>
+<span id="cb280-12"><a href="主成分分析.html#cb280-12" tabindex="-1"></a><span class="co">#&gt; リーダーシップ  0.50974398 -0.1365068 -0.01367592  0.3227645 -0.78559724</span></span>
+<span id="cb280-13"><a href="主成分分析.html#cb280-13" tabindex="-1"></a><span class="co">#&gt; プレゼン力      0.59111858  0.1530044  0.27483158 -0.7411911  0.04766342</span></span>
+<span id="cb280-14"><a href="主成分分析.html#cb280-14" tabindex="-1"></a><span class="co">#&gt; コミュ力        0.58151936  0.2227311 -0.48567230  0.3615403  0.49561793</span></span>
+<span id="cb280-15"><a href="主成分分析.html#cb280-15" tabindex="-1"></a>tokuten_prcomp<span class="sc">$</span>x  <span class="co"># 主成分得点</span></span>
+<span id="cb280-16"><a href="主成分分析.html#cb280-16" tabindex="-1"></a><span class="co">#&gt;             PC1        PC2         PC3        PC4        PC5</span></span>
+<span id="cb280-17"><a href="主成分分析.html#cb280-17" tabindex="-1"></a><span class="co">#&gt; 山田 -19.304343  2.7048291  -2.4411238  0.5754498 -2.6750248</span></span>
+<span id="cb280-18"><a href="主成分分析.html#cb280-18" tabindex="-1"></a><span class="co">#&gt; 鈴木 -21.655520  4.6155395   5.6073003 -1.7490457  0.7368287</span></span>
+<span id="cb280-19"><a href="主成分分析.html#cb280-19" tabindex="-1"></a><span class="co">#&gt; 田中   2.739766 -8.0346039   5.4765050  0.1887216  0.4687677</span></span>
+<span id="cb280-20"><a href="主成分分析.html#cb280-20" tabindex="-1"></a><span class="co">#&gt; 中村   9.682974 -9.9826824   0.6190434 -2.0247358 -1.8769769</span></span>
+<span id="cb280-21"><a href="主成分分析.html#cb280-21" tabindex="-1"></a><span class="co">#&gt; 大野  17.277425 14.9224986  -1.8787424 -1.1322419 -0.8666327</span></span>
+<span id="cb280-22"><a href="主成分分析.html#cb280-22" tabindex="-1"></a><span class="co">#&gt; 松井   6.867523 -1.4328205  -0.3577567 -5.3750278  1.0885751</span></span>
+<span id="cb280-23"><a href="主成分分析.html#cb280-23" tabindex="-1"></a><span class="co">#&gt; 高木  -1.694979  2.5684468  -1.6399325  1.7537323  2.8802837</span></span>
+<span id="cb280-24"><a href="主成分分析.html#cb280-24" tabindex="-1"></a><span class="co">#&gt; 三浦   9.824535  0.5291295   4.8161616  5.9565572 -0.4056066</span></span>
+<span id="cb280-25"><a href="主成分分析.html#cb280-25" tabindex="-1"></a><span class="co">#&gt; 佐藤  -3.737381 -5.8903368 -10.2014547  1.8065903  0.6497859</span></span>
+<span id="cb280-26"><a href="主成分分析.html#cb280-26" tabindex="-1"></a><span class="fu">biplot</span>(tokuten_prcomp)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="75%" /></p>
+<p><code>princomp()</code> と <code>prcomp()</code> では, 主成分負荷量・主成分得点の符号が逆になっている主成分がある.
+主成分の符号は一意に定まらない (負荷量ベクトルの向きを反転させても, 分散や他の主成分との無相関性は変わらない) ので, 解釈しやすい向きに読み替えて良い.
+また, <code>prcomp()</code> は不偏分散を使うので, 主成分の標準偏差の値も少し異なる (寄与率は同じ).</p>
+</div>
+</div>
+<div id="標準化するか-しないか-従業員評価データ2" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> 標準化するか, しないか: 従業員評価データ2<a href="主成分分析.html#標準化するか-しないか-従業員評価データ2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="データ3-従業員評価データ2-仮想データ" class="section level3 unnumbered hasAnchor">
+<h3>データ3: 従業員評価データ2 (仮想データ)<a href="主成分分析.html#データ3-従業員評価データ2-仮想データ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>employee_scores_raw.csv: n = 100人, p = 10 (仮想データ). 1列目は従業員ID
+- JobPerf: 業務成果 (上司評価), TechSkill: 技術スキル (テストスコア),
+  CommSkill: 対人コミュニケーションスキル (360度評価), TeamScore: チームワーク貢献度,
+  LeadPot: リーダーシップの将来性評価 (上司評価), JobSat: 仕事満足度,
+  WLBal: ワークライフバランス満足度, TrainHrs: 自己啓発に費やす時間 (月間, 時間),
+  OTHrs: 残業時間 (月間, 時間), RetLik: 定着意向 (値が高いほど離職の可能性が低い)
+employee_scores.csv: 同じデータの各項目を, 平均50, 標準偏差10 に換算した偏差値形式のデータ</code></pre>
+<p><code>employee_scores_raw.csv</code> は元の単位のデータで, 時間で測った項目と点数の項目が混在している.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="主成分分析.html#cb282-1" tabindex="-1"></a>emp_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;class/employee_scores_raw.csv&quot;</span>)</span>
+<span id="cb282-2"><a href="主成分分析.html#cb282-2" tabindex="-1"></a>emp_raw <span class="ot">&lt;-</span> emp_raw[, <span class="sc">-</span><span class="dv">1</span>]  <span class="co"># 第1列 (ID) を除去</span></span>
+<span id="cb282-3"><a href="主成分分析.html#cb282-3" tabindex="-1"></a><span class="fu">summary</span>(emp_raw)</span>
+<span id="cb282-4"><a href="主成分分析.html#cb282-4" tabindex="-1"></a><span class="co">#&gt;     JobPerf        TechSkill       CommSkill       TeamScore     </span></span>
+<span id="cb282-5"><a href="主成分分析.html#cb282-5" tabindex="-1"></a><span class="co">#&gt;  Min.   :51.00   Min.   :42.00   Min.   :38.00   Min.   : 53.00  </span></span>
+<span id="cb282-6"><a href="主成分分析.html#cb282-6" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:64.00   1st Qu.:60.00   1st Qu.:55.00   1st Qu.: 69.00  </span></span>
+<span id="cb282-7"><a href="主成分分析.html#cb282-7" tabindex="-1"></a><span class="co">#&gt;  Median :70.00   Median :66.00   Median :59.00   Median : 75.00  </span></span>
+<span id="cb282-8"><a href="主成分分析.html#cb282-8" tabindex="-1"></a><span class="co">#&gt;  Mean   :70.04   Mean   :64.77   Mean   :59.61   Mean   : 74.54  </span></span>
+<span id="cb282-9"><a href="主成分分析.html#cb282-9" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:76.00   3rd Qu.:70.00   3rd Qu.:65.00   3rd Qu.: 80.00  </span></span>
+<span id="cb282-10"><a href="主成分分析.html#cb282-10" tabindex="-1"></a><span class="co">#&gt;  Max.   :92.00   Max.   :84.00   Max.   :76.00   Max.   :101.00  </span></span>
+<span id="cb282-11"><a href="主成分分析.html#cb282-11" tabindex="-1"></a><span class="co">#&gt;     LeadPot          JobSat          WLBal          TrainHrs    </span></span>
+<span id="cb282-12"><a href="主成分分析.html#cb282-12" tabindex="-1"></a><span class="co">#&gt;  Min.   :25.00   Min.   :51.00   Min.   :35.00   Min.   : 0.00  </span></span>
+<span id="cb282-13"><a href="主成分分析.html#cb282-13" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:43.00   1st Qu.:64.75   1st Qu.:57.75   1st Qu.: 4.00  </span></span>
+<span id="cb282-14"><a href="主成分分析.html#cb282-14" tabindex="-1"></a><span class="co">#&gt;  Median :49.00   Median :70.00   Median :63.00   Median : 5.00  </span></span>
+<span id="cb282-15"><a href="主成分分析.html#cb282-15" tabindex="-1"></a><span class="co">#&gt;  Mean   :48.24   Mean   :69.42   Mean   :63.50   Mean   : 5.09  </span></span>
+<span id="cb282-16"><a href="主成分分析.html#cb282-16" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:53.25   3rd Qu.:74.00   3rd Qu.:69.00   3rd Qu.: 6.00  </span></span>
+<span id="cb282-17"><a href="主成分分析.html#cb282-17" tabindex="-1"></a><span class="co">#&gt;  Max.   :69.00   Max.   :86.00   Max.   :98.00   Max.   :11.00  </span></span>
+<span id="cb282-18"><a href="主成分分析.html#cb282-18" tabindex="-1"></a><span class="co">#&gt;      OTHrs           RetLik      </span></span>
+<span id="cb282-19"><a href="主成分分析.html#cb282-19" tabindex="-1"></a><span class="co">#&gt;  Min.   : 5.00   Min.   : 56.00  </span></span>
+<span id="cb282-20"><a href="主成分分析.html#cb282-20" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:17.75   1st Qu.: 73.00  </span></span>
+<span id="cb282-21"><a href="主成分分析.html#cb282-21" tabindex="-1"></a><span class="co">#&gt;  Median :21.00   Median : 80.00  </span></span>
+<span id="cb282-22"><a href="主成分分析.html#cb282-22" tabindex="-1"></a><span class="co">#&gt;  Mean   :20.71   Mean   : 79.50  </span></span>
+<span id="cb282-23"><a href="主成分分析.html#cb282-23" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:25.00   3rd Qu.: 86.25  </span></span>
+<span id="cb282-24"><a href="主成分分析.html#cb282-24" tabindex="-1"></a><span class="co">#&gt;  Max.   :32.00   Max.   :111.00</span></span>
+<span id="cb282-25"><a href="主成分分析.html#cb282-25" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">apply</span>(emp_raw, <span class="dv">2</span>, sd), <span class="dv">1</span>)  <span class="co"># 項目によって散らばりの大きさが大きく異なる</span></span>
+<span id="cb282-26"><a href="主成分分析.html#cb282-26" tabindex="-1"></a><span class="co">#&gt;   JobPerf TechSkill CommSkill TeamScore   LeadPot    JobSat     WLBal  TrainHrs </span></span>
+<span id="cb282-27"><a href="主成分分析.html#cb282-27" tabindex="-1"></a><span class="co">#&gt;       8.4       8.1       7.5       9.7       9.0       7.2       9.9       2.0 </span></span>
+<span id="cb282-28"><a href="主成分分析.html#cb282-28" tabindex="-1"></a><span class="co">#&gt;     OTHrs    RetLik </span></span>
+<span id="cb282-29"><a href="主成分分析.html#cb282-29" tabindex="-1"></a><span class="co">#&gt;       5.0      10.4</span></span></code></pre></div>
+</div>
+<div id="分散共分散行列に対する-pca-標準化しない" class="section level3 unnumbered hasAnchor">
+<h3>分散共分散行列に対する PCA (標準化しない)<a href="主成分分析.html#分散共分散行列に対する-pca-標準化しない" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="主成分分析.html#cb283-1" tabindex="-1"></a>emp_pc_cov <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(emp_raw)</span>
+<span id="cb283-2"><a href="主成分分析.html#cb283-2" tabindex="-1"></a><span class="fu">summary</span>(emp_pc_cov)</span>
+<span id="cb283-3"><a href="主成分分析.html#cb283-3" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb283-4"><a href="主成分分析.html#cb283-4" tabindex="-1"></a><span class="co">#&gt;                            PC1     PC2     PC3     PC4     PC5     PC6     PC7</span></span>
+<span id="cb283-5"><a href="主成分分析.html#cb283-5" tabindex="-1"></a><span class="co">#&gt; Standard deviation     17.0059 11.4904 7.52855 6.96157 6.08481 5.65875 4.90989</span></span>
+<span id="cb283-6"><a href="主成分分析.html#cb283-6" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance  0.4431  0.2023 0.08685 0.07426 0.05673 0.04907 0.03694</span></span>
+<span id="cb283-7"><a href="主成分分析.html#cb283-7" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion   0.4431  0.6454 0.73229 0.80655 0.86328 0.91235 0.94929</span></span>
+<span id="cb283-8"><a href="主成分分析.html#cb283-8" tabindex="-1"></a><span class="co">#&gt;                            PC8    PC9    PC10</span></span>
+<span id="cb283-9"><a href="主成分分析.html#cb283-9" tabindex="-1"></a><span class="co">#&gt; Standard deviation     4.36478 3.3894 1.59898</span></span>
+<span id="cb283-10"><a href="主成分分析.html#cb283-10" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance 0.02919 0.0176 0.00392</span></span>
+<span id="cb283-11"><a href="主成分分析.html#cb283-11" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion  0.97848 0.9961 1.00000</span></span>
+<span id="cb283-12"><a href="主成分分析.html#cb283-12" tabindex="-1"></a><span class="fu">round</span>(emp_pc_cov<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb283-13"><a href="主成分分析.html#cb283-13" tabindex="-1"></a><span class="co">#&gt;             PC1   PC2</span></span>
+<span id="cb283-14"><a href="主成分分析.html#cb283-14" tabindex="-1"></a><span class="co">#&gt; JobPerf    0.29  0.34</span></span>
+<span id="cb283-15"><a href="主成分分析.html#cb283-15" tabindex="-1"></a><span class="co">#&gt; TechSkill  0.33  0.26</span></span>
+<span id="cb283-16"><a href="主成分分析.html#cb283-16" tabindex="-1"></a><span class="co">#&gt; CommSkill  0.32  0.24</span></span>
+<span id="cb283-17"><a href="主成分分析.html#cb283-17" tabindex="-1"></a><span class="co">#&gt; TeamScore  0.42  0.31</span></span>
+<span id="cb283-18"><a href="主成分分析.html#cb283-18" tabindex="-1"></a><span class="co">#&gt; LeadPot    0.36  0.23</span></span>
+<span id="cb283-19"><a href="主成分分析.html#cb283-19" tabindex="-1"></a><span class="co">#&gt; JobSat     0.28 -0.23</span></span>
+<span id="cb283-20"><a href="主成分分析.html#cb283-20" tabindex="-1"></a><span class="co">#&gt; WLBal      0.39 -0.50</span></span>
+<span id="cb283-21"><a href="主成分分析.html#cb283-21" tabindex="-1"></a><span class="co">#&gt; TrainHrs   0.06  0.03</span></span>
+<span id="cb283-22"><a href="主成分分析.html#cb283-22" tabindex="-1"></a><span class="co">#&gt; OTHrs     -0.08  0.24</span></span>
+<span id="cb283-23"><a href="主成分分析.html#cb283-23" tabindex="-1"></a><span class="co">#&gt; RetLik     0.39 -0.50</span></span></code></pre></div>
+<p>USArrests と同様に, 散らばりの大きい項目が第1主成分を支配し, 時間で測った項目 (<code>TrainHrs</code>, <code>OTHrs</code>) はほとんど寄与しない.</p>
+</div>
+<div id="相関行列に対する-pca-各項目を標準化" class="section level3 unnumbered hasAnchor">
+<h3>相関行列に対する PCA (各項目を標準化)<a href="主成分分析.html#相関行列に対する-pca-各項目を標準化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="主成分分析.html#cb284-1" tabindex="-1"></a>emp_pc <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(emp_raw, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb284-2"><a href="主成分分析.html#cb284-2" tabindex="-1"></a><span class="fu">summary</span>(emp_pc)  <span class="co"># 寄与率, 累積寄与率</span></span>
+<span id="cb284-3"><a href="主成分分析.html#cb284-3" tabindex="-1"></a><span class="co">#&gt; Importance of components:</span></span>
+<span id="cb284-4"><a href="主成分分析.html#cb284-4" tabindex="-1"></a><span class="co">#&gt;                           PC1    PC2     PC3     PC4     PC5     PC6    PC7</span></span>
+<span id="cb284-5"><a href="主成分分析.html#cb284-5" tabindex="-1"></a><span class="co">#&gt; Standard deviation     2.0264 1.4079 0.86921 0.84465 0.76267 0.68903 0.6738</span></span>
+<span id="cb284-6"><a href="主成分分析.html#cb284-6" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance 0.4106 0.1982 0.07555 0.07134 0.05817 0.04748 0.0454</span></span>
+<span id="cb284-7"><a href="主成分分析.html#cb284-7" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion  0.4106 0.6088 0.68438 0.75573 0.81389 0.86137 0.9068</span></span>
+<span id="cb284-8"><a href="主成分分析.html#cb284-8" tabindex="-1"></a><span class="co">#&gt;                            PC8     PC9    PC10</span></span>
+<span id="cb284-9"><a href="主成分分析.html#cb284-9" tabindex="-1"></a><span class="co">#&gt; Standard deviation     0.61489 0.53673 0.51589</span></span>
+<span id="cb284-10"><a href="主成分分析.html#cb284-10" tabindex="-1"></a><span class="co">#&gt; Proportion of Variance 0.03781 0.02881 0.02661</span></span>
+<span id="cb284-11"><a href="主成分分析.html#cb284-11" tabindex="-1"></a><span class="co">#&gt; Cumulative Proportion  0.94458 0.97339 1.00000</span></span>
+<span id="cb284-12"><a href="主成分分析.html#cb284-12" tabindex="-1"></a><span class="fu">screeplot</span>(emp_pc, <span class="at">type =</span> <span class="st">&quot;lines&quot;</span>, <span class="at">main =</span> <span class="st">&quot;スクリープロット (相関行列)&quot;</span>)</span>
+<span id="cb284-13"><a href="主成分分析.html#cb284-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)  <span class="co"># 固有値 1 の目安</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="75%" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="主成分分析.html#cb285-1" tabindex="-1"></a>emp_pc<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>  <span class="co"># 固有値</span></span>
+<span id="cb285-2"><a href="主成分分析.html#cb285-2" tabindex="-1"></a><span class="co">#&gt;  [1] 4.1062412 1.9820768 0.7555210 0.7134379 0.5816633 0.4747671 0.4539754</span></span>
+<span id="cb285-3"><a href="主成分分析.html#cb285-3" tabindex="-1"></a><span class="co">#&gt;  [8] 0.3780872 0.2880827 0.2661474</span></span>
+<span id="cb285-4"><a href="主成分分析.html#cb285-4" tabindex="-1"></a><span class="fu">round</span>(emp_pc<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>)  <span class="co"># 主成分負荷量</span></span>
+<span id="cb285-5"><a href="主成分分析.html#cb285-5" tabindex="-1"></a><span class="co">#&gt;             PC1   PC2   PC3</span></span>
+<span id="cb285-6"><a href="主成分分析.html#cb285-6" tabindex="-1"></a><span class="co">#&gt; JobPerf    0.31  0.24  0.53</span></span>
+<span id="cb285-7"><a href="主成分分析.html#cb285-7" tabindex="-1"></a><span class="co">#&gt; TechSkill  0.36  0.22  0.03</span></span>
+<span id="cb285-8"><a href="主成分分析.html#cb285-8" tabindex="-1"></a><span class="co">#&gt; CommSkill  0.37  0.23 -0.02</span></span>
+<span id="cb285-9"><a href="主成分分析.html#cb285-9" tabindex="-1"></a><span class="co">#&gt; TeamScore  0.36  0.21 -0.14</span></span>
+<span id="cb285-10"><a href="主成分分析.html#cb285-10" tabindex="-1"></a><span class="co">#&gt; LeadPot    0.35  0.15  0.07</span></span>
+<span id="cb285-11"><a href="主成分分析.html#cb285-11" tabindex="-1"></a><span class="co">#&gt; JobSat     0.33 -0.37  0.08</span></span>
+<span id="cb285-12"><a href="主成分分析.html#cb285-12" tabindex="-1"></a><span class="co">#&gt; WLBal      0.31 -0.44 -0.02</span></span>
+<span id="cb285-13"><a href="主成分分析.html#cb285-13" tabindex="-1"></a><span class="co">#&gt; TrainHrs   0.30  0.17 -0.14</span></span>
+<span id="cb285-14"><a href="主成分分析.html#cb285-14" tabindex="-1"></a><span class="co">#&gt; OTHrs     -0.12  0.57 -0.48</span></span>
+<span id="cb285-15"><a href="主成分分析.html#cb285-15" tabindex="-1"></a><span class="co">#&gt; RetLik     0.27 -0.31 -0.66</span></span></code></pre></div>
+<p>相関行列に対する PCA では, 主成分の分散 (= 相関行列の固有値) が1を超える主成分を採用するという目安 (カイザー基準) がよく使われる. 標準化した変数1つ分の分散が1なので, 「元の変数1つ分より多くの情報を持つ主成分」を残すという考え方である.
+このデータでは, 固有値が1を超える主成分は2個である.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="主成分分析.html#cb286-1" tabindex="-1"></a><span class="fu">biplot</span>(emp_pc, <span class="at">cex =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.8</span>))</span>
+<span id="cb286-2"><a href="主成分分析.html#cb286-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="75%" /></p>
+<p><strong>自主課題</strong>:</p>
+<ul>
+<li>第1主成分, 第2主成分にどのような名前を付けられるか?</li>
+<li>単位の異なる項目を含むデータでは, なぜ標準化が必要か?</li>
+</ul>
+<p>偏差値形式のデータ (<code>employee_scores.csv</code>) は, 各項目の標準偏差がそろっているので, これを分散共分散行列に対する PCA にかけると, 標準化した結果とほぼ同じになる.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="主成分分析.html#cb287-1" tabindex="-1"></a>emp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;class/employee_scores.csv&quot;</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb287-2"><a href="主成分分析.html#cb287-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">prcomp</span>(emp))</span></code></pre></div>
+</div>
+</div>
+<div id="課題" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> 課題<a href="主成分分析.html#課題" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>第2主成分の得点が高い従業員, 低い従業員は, それぞれどのような特徴を持つか.
+<code>emp_pc$x[, 2]</code> を使って調べてみよう.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="主成分分析.html#cb288-1" tabindex="-1"></a><span class="co"># ヒント: 第2主成分得点の上位・下位5人の各項目の値</span></span>
+<span id="cb288-2"><a href="主成分分析.html#cb288-2" tabindex="-1"></a>pc2 <span class="ot">&lt;-</span> emp_pc<span class="sc">$</span>x[, <span class="dv">2</span>]</span>
+<span id="cb288-3"><a href="主成分分析.html#cb288-3" tabindex="-1"></a>emp_raw[<span class="fu">order</span>(pc2, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], ]</span>
+<span id="cb288-4"><a href="主成分分析.html#cb288-4" tabindex="-1"></a>emp_raw[<span class="fu">order</span>(pc2)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], ]</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="決定木分析.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
